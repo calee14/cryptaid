@@ -1,9 +1,9 @@
 import { Button, Container, Heading, Alert, AlertIcon, AlertTitle, Box, AlertDescription, CloseButton, Input, Flex, Spacer, Avatar } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import { Routes, Route, Navigate, Link } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate, Link } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Profile } from "./components/Profile";
 import { Auth } from "./components/Auth";
@@ -11,6 +11,14 @@ import { Auth } from "./components/Auth";
 function App() {
 
   const { authenticate, isAuthenticated, isAuthUndefined, authError, logout, user } = useMoralis();
+  const navigate = useNavigate();
+
+  // redirect if user is not authenticated
+  useEffect(() => {
+    if(isAuthUndefined) {
+      navigate('/');
+    }
+  }, [isAuthenticated]);
 
   return (
     <Container>
@@ -28,7 +36,6 @@ function App() {
         <Route path="/profile" element={<Profile/>} exact/>
       </Routes> : 
       <>
-        {(!isAuthUndefined && isAuthenticated)&& <Navigate replace to="/"/>}
         <Auth/>
       </>
       }
