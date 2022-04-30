@@ -9,6 +9,18 @@ Run the following commands in the root directory of the app to install the npm p
 $ npm install
 ```
 
+### **Generate a .env file in your root directory (next to package.json is good enough)**     
+The contents of the file will contain our Moralis API keys
+
+The content of the files should be: 
+
+```secret
+<!--
+REACT_APP_APP_ID=h7syVUlFwQuTGNcPOiyap5XdxWr5qzM3u5svUGON
+REACT_APP_SERVER_URL=https://4fx44826hwy0.usemoralis.com:2053/server
+-->
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
