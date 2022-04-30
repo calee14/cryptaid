@@ -9,8 +9,8 @@ import { Profile } from "./components/Profile";
 import { Auth } from "./components/Auth";
 
 function App() {
-  const { authenticate, isAuthenticated, isAuthUndefined, authError, logout, user } = useMoralis();
 
+  const { authenticate, isAuthenticated, isAuthUndefined, authError, logout, user } = useMoralis();
 
   return (
     <Container>
@@ -28,7 +28,7 @@ function App() {
         <Route path="/profile" element={<Profile/>} exact/>
       </Routes> : 
       <>
-        {!isAuthUndefined && <Navigate replace to="/"/>}
+        {(!isAuthUndefined && isAuthenticated)&& <Navigate replace to="/"/>}
         <Auth/>
       </>
       }
