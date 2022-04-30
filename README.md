@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Installation Guide
+Run the following commands in the root directory of the app to install the npm packages.
+
+```bash
+$ npm install
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
