@@ -5,6 +5,7 @@ import { Routes, Route, Navigate, useNavigate, Link } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
 import { Auth } from "./components/Auth";
+import { Navbar } from "./components/Navbar";
 
 function App() {
 
@@ -20,11 +21,7 @@ function App() {
 
   return (
     <Container>
-      <Flex my={6}>
-          <Link to="/"><Heading>Home</Heading></Link>
-          <Spacer/>
-          {isAuthenticated && <Link to="/profile"><Avatar name={user.attributes.username}/></Link>}
-      </Flex>
+      <Navbar/>
       <Heading>
         Welcome to Cryptaid, {user ? user.attributes.username : ' authenticate please...'}
       </Heading>
