@@ -1,12 +1,14 @@
-import { Button, Flex, IconButton, Spacer, Avatar } from "@chakra-ui/react";
+import { Button, Flex, IconButton, Spacer, Avatar, Box } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import { useMoralis } from "react-moralis";
 import { useState } from "react";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 export const Navbar = () => {
     const { isAuthenticated, user } = useMoralis();
     const [display, changeDisplay] = useState('none')
+    const isMobile = useIsMobile();
 
     return (
         // <Flex my={6}>
@@ -15,29 +17,33 @@ export const Navbar = () => {
         //     {isAuthenticated && <Link to="/profile"><Avatar name={user.attributes.username}/></Link>}
         // </Flex>
         <Flex position={"relative"} my={10}>
-        <Flex position="fixed" top="0" left="1rem" right="1rem" align="center">
+        <Flex position="fixed" top="0" left="2rem" right="2rem" align="center">
             {/* Desktop */}
-            <Flex>
+            <Flex width={"100%"} align="center">
                 <Link to="/">
                     <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
                         Home
                     </Button>
                 </Link>
+                
                 <Spacer />
                 {isAuthenticated && <Link to="/profile"><Avatar name={user.attributes.username} /></Link>}
             </Flex>
 
             {/* Mobile */}
-            <IconButton
-                aria-label="Open Menu"
-                size="lg"
-                mr={2}
-                icon={<HamburgerIcon />}
-                onClick={() => changeDisplay('flex')}
-            />
+            {isMobile && (
+                <IconButton
+                    aria-label="Open Menu"
+                    size="lg"
+                    mr={2}
+                    icon={<HamburgerIcon />}
+                    onClick={() => changeDisplay('flex')}
+                />
+            )}
         </Flex>
-        
+
         {/* Mobile Content */}
+        
         <Flex
             w="100vw"
             display={display}
