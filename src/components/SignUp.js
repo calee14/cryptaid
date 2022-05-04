@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMoralis } from "react-moralis";
-import { Button, Container, Heading, Alert, AlertIcon, AlertTitle, Box, AlertDescription, CloseButton, Input } from "@chakra-ui/react";
+import { Button, Flex, Container, Heading, Alert, AlertIcon, AlertTitle, Box, AlertDescription, CloseButton, Input, Spacer } from "@chakra-ui/react";
 
 const SignUp = () => {
     const { signup } = useMoralis();
@@ -8,11 +8,15 @@ const SignUp = () => {
     const [password, setPassword] = useState();
   
     return (
-      <Box>
-        <Input placeholder="Email" value={email} onChange={(event) => setEmail(event.currentTarget.value)} />
-        <Input placeholder="Password" type="password" value={password} onChange={(event) => setPassword(event.currentTarget.value)} />
-        <Button onClick={() => signup(email, password, email)}>Sign up</Button>
-      </Box>
+        <Box width={"45%"}>
+          <Heading size="md">Sign Up</Heading>
+          <Spacer my={1}/>
+          <Input placeholder="Email" value={email} onChange={(event) => setEmail(event.currentTarget.value)} />
+          <Spacer my={1}/>
+          <Input placeholder="Password" type="password" value={password} onChange={(event) => setPassword(event.currentTarget.value)} />
+          <Spacer my={1}/>
+          <Button onClick={() => signup(email, password, email)}>Sign up</Button>
+        </Box>      
     );
 }
 

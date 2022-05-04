@@ -1,7 +1,11 @@
 import { AlertIcon, Alert, Box, AlertTitle, AlertDescription, CloseButton } from "@chakra-ui/react"
+import { useState } from "react";
 
 export const ErrorBox = ({ title, message }) => {
-    return (
+
+    const [isOpen, setIsOpen] = useState(true);
+
+    return isOpen && (
         <Alert status='error'>
             <AlertIcon />
             <Box>
@@ -15,6 +19,7 @@ export const ErrorBox = ({ title, message }) => {
                 position='relative'
                 right={-1}
                 top={-1}
+                onClick={() => setIsOpen(false)}
             />
         </Alert>
     )
