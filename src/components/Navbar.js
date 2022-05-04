@@ -18,7 +18,9 @@ export const Navbar = () => {
         // </Flex>
         <Flex position={"relative"} my={10}>
         <Flex position="fixed" top="0" left="2rem" right="2rem" align="center">
+
             {/* Desktop */}
+            
             <Flex width={"100%"} align="center">
                 <Link to="/">
                     <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
@@ -27,20 +29,25 @@ export const Navbar = () => {
                 </Link>
                 
                 <Spacer />
-                {isAuthenticated ? 
-                <Link to="/profile"><Avatar name={user.attributes.username} /></Link> 
-                : <Link to="/auth"><Button>auth</Button></Link>}
+                {!isMobile && (
+                <>
+                    {isAuthenticated ? 
+                    <Link to="/profile"><Avatar name={user.attributes.username} /></Link> 
+                    : <Link to="/auth"><Button>auth</Button></Link>}
+                </>
+                )}
             </Flex>
+            
 
             {/* Mobile */}
             {isMobile && (
-                <IconButton
-                    aria-label="Open Menu"
-                    size="lg"
-                    mr={2}
-                    icon={<HamburgerIcon />}
-                    onClick={() => changeDisplay('flex')}
-                />
+            <IconButton
+                aria-label="Open Menu"
+                size="lg"
+                mr={2}
+                icon={<HamburgerIcon />}
+                onClick={() => changeDisplay('flex')}
+            />
             )}
         </Flex>
 
@@ -70,14 +77,13 @@ export const Navbar = () => {
             </Flex>
 
             <Flex flexDir="column" align="center">
-                <Link to="/">
-                    <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
-                        Home
-                    </Button>
-                </Link>
+                    {isAuthenticated ? 
+                    <Link to="/profile"><Avatar name={user.attributes.username} /></Link> 
+                    : <Link to="/auth"><Button onClick={() => changeDisplay('none')}>auth</Button></Link>}
 
                 <Link to="/about">
-                    <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
+                    <Button as="a" variant="ghost" aria-label="About" my={5} w="100%"
+                            onClick={() => changeDisplay('none')}>
                         About
                     </Button>
                 </Link>
