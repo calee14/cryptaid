@@ -27,7 +27,9 @@ export const Navbar = () => {
                 </Link>
                 
                 <Spacer />
-                {isAuthenticated && <Link to="/profile"><Avatar name={user.attributes.username} /></Link>}
+                {isAuthenticated ? 
+                <Link to="/profile"><Avatar name={user.attributes.username} /></Link> 
+                : <Link to="/auth"><Button>auth</Button></Link>}
             </Flex>
 
             {/* Mobile */}
@@ -68,19 +70,19 @@ export const Navbar = () => {
             </Flex>
 
             <Flex flexDir="column" align="center">
-                <Link to="/" passHref>
+                <Link to="/">
                     <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
                         Home
                     </Button>
                 </Link>
 
-                <Link to="/about" passHref>
+                <Link to="/about">
                     <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
                         About
                     </Button>
                 </Link>
 
-                <Link to="/contact" passHref>
+                <Link to="/contact">
                     <Button as="a" variant="ghost" aria-label="Contact" my={5} w="100%">
                         Contact
                     </Button>

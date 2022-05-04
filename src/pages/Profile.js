@@ -1,14 +1,23 @@
 import { Box, Button, Input, Stack, Text } from "@chakra-ui/react"
 import { useMoralis } from "react-moralis"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ErrorBox } from "../components/Error";
+import { useRedirect } from "../hooks/useRedirect";
 
 export const Profile = () => {
-    const { user, setUserData, userError, isUserUpdating } = useMoralis();
+    const { user, setUserData, userError, isUserUpdating, isAuthenticated} = useMoralis();
 
     const [username, setUsername] = useState(user.attributes.username);
     const [email, setEmail] = useState(user.attributes.email);
     const [password, setPassword] = useState('');
+    const redirect = useRedirect();
+
+    // redirect if user is not authenticated
+    useEffect(() => {
+        if(!isAuthenticated) {
+            redirect("/");
+        }
+    }, [isAuthenticated]);
 
     const handleSave = () => {
         setUserData({username, email, password: password === "" ? undefined : password});
