@@ -1,4 +1,4 @@
-import { AlertIcon, Alert, Box, AlertTitle, AlertDescription, CloseButton } from "@chakra-ui/react"
+import { AlertIcon, Alert, Box, AlertTitle, AlertDescription, CloseButton, Flex, Spacer } from "@chakra-ui/react"
 import { useState } from "react";
 
 export const ErrorBox = ({ title, message }) => {
@@ -8,12 +8,14 @@ export const ErrorBox = ({ title, message }) => {
     return isOpen && (
         <Alert status='error'>
             <AlertIcon />
+            <Flex width={"100%"}>
             <Box>
                 <AlertTitle>{title}</AlertTitle>
                 <AlertDescription>
                     {message}
                 </AlertDescription>
             </Box>
+            <Spacer/>
             <CloseButton
                 alignSelf='flex-start'
                 position='relative'
@@ -21,6 +23,7 @@ export const ErrorBox = ({ title, message }) => {
                 top={-1}
                 onClick={() => setIsOpen(false)}
             />
+            </Flex>
         </Alert>
     )
 }

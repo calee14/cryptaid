@@ -30,14 +30,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} exact/>
         <Route path="/profile" element={<Profile/>} exact/>
-        {/* <Route path="/auth" element={<Auth/>} exact/> */}
+        <Route path="/auth" element={<Auth/>} exact/>
       </Routes> : 
-      <>
         <Routes>
+          <Route path="/" element={<Home/>} exact/>
           <Route path="/auth" element={<Auth/>} exact/>
         </Routes>
-        {/* <Auth/> */}
-      </>
       }
       
     </Container>
