@@ -8,6 +8,7 @@ import { BackendTesting } from "./pages/BackendTesting";
 import { Auth } from "./pages/Auth";
 import { Navbar } from "./components/Navbar";
 import { useRedirect } from "./hooks/useRedirect";
+import { Create } from "./pages/Create";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" element={<Home/>} exact/>
         <Route path="/profile" element={<Profile/>} exact/>
         <Route path="/auth" element={<Auth/>} exact/>
+        <Route path="/create" element={<Create/>} exact/>
       </Routes> : 
         <Routes>
           <Route path="/" element={<Home/>} exact/>
