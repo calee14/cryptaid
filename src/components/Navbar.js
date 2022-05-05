@@ -10,7 +10,7 @@ export const Navbar = () => {
     const { isAuthenticated, user } = useMoralis();
     const [display, changeDisplay] = useState('none')
     const isMobile = useIsMobile();
-    
+
     return (
         // <Flex my={6}>
         //     <Link to="/"><Heading>Home</Heading></Link>
