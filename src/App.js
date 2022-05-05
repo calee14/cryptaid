@@ -14,7 +14,7 @@ function App() {
   const redirect = useRedirect();
 
   return (
-    <Container>
+    <Container mx={"15rem"}>
       <Navbar/>
       <Heading>
         Welcome to Cryptaid, {user ? user.attributes.username : ' authenticate please...'}
