@@ -2,14 +2,15 @@ import { Button, Flex, IconButton, Spacer, Avatar, Box } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import { useMoralis } from "react-moralis";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useIsMobile } from "../hooks/useIsMobile";
+
 
 export const Navbar = () => {
     const { isAuthenticated, user } = useMoralis();
     const [display, changeDisplay] = useState('none')
     const isMobile = useIsMobile();
-
+    
     return (
         // <Flex my={6}>
         //     <Link to="/"><Heading>Home</Heading></Link>

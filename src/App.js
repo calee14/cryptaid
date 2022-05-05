@@ -13,13 +13,6 @@ function App() {
   const { authenticate, isAuthenticated, isAuthUndefined, authError, logout, user } = useMoralis();
   const redirect = useRedirect();
 
-  // redirect if user is not authenticated
-  useEffect(() => {
-    if(isAuthUndefined) {
-      redirect("/");
-    }
-  }, [isAuthenticated]);
-
   return (
     <Container>
       <Navbar/>

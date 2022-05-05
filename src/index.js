@@ -22,7 +22,7 @@ root.render(
   <React.StrictMode>
     <MoralisProvider appId={appId} serverUrl={serverUrl}>
       <ChakraProvider theme={theme}>
-        <BrowserRouter forceRefresh={true}>
+        <BrowserRouter>
           <App />
         </BrowserRouter>
       </ChakraProvider>
