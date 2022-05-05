@@ -37,7 +37,7 @@ export const Navbar = () => {
                 
                 <Spacer />
                 {!isMobile && (
-                <Flex gap={3}> 
+                <Flex gap={3} align="center"> 
                     <Link to="/create"><Button>Create<AddIcon ml={"0.5rem"} boxSize={"0.9rem"}/></Button></Link>
                     {isAuthenticated ? 
                     <Link to="/profile"><Avatar name={user.attributes.username} /></Link> 
