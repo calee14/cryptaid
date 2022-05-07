@@ -1,7 +1,7 @@
 import { Button, Container, Heading, Alert, AlertIcon, AlertTitle, Box, AlertDescription, CloseButton, Input, Flex, Spacer, Avatar } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, Navigate} from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
 import { BackendTesting } from "./pages/BackendTesting";
@@ -22,6 +22,7 @@ function App() {
         Welcome to Cryptaid, {user ? user.attributes.username : ' authenticate please...'}
       </Heading>
       {isAuthenticated ? 
+      // routes for when the user is logged in
       <Routes>
         <Route path="/backend" element={<BackendTesting/>} exact/>
         <Route path="/" element={<Home/>} exact/>
@@ -29,6 +30,7 @@ function App() {
         <Route path="/auth" element={<Auth/>} exact/>
         <Route path="/create" element={<Create/>} exact/>
       </Routes> : 
+        // routes for when the user is not logged in
         <Routes>
           <Route path="/" element={<Home/>} exact/>
           <Route path="/auth" element={<Auth/>} exact/>
