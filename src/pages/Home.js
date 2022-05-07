@@ -30,7 +30,7 @@ export const Home = () => {
             description: "Feed families and support democracy in Ukraine!!",
             location: "San Diego, CA",
             imgUrl: "https://static01.nyt.com/images/2022/03/06/world/06ukraine-poland01/merlin_203339697_279bbf5f-90d5-4c4d-8b8a-685250377a90-superJumbo.jpg",
-            donated: 10,
+            donated: 31,
             goal: 100,
         },
         {
@@ -38,15 +38,15 @@ export const Home = () => {
             description: "Support Ginny with her medical bills after her car accident",
             location: "Chino Hills, CA",
             imgUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.catesmahoney.com%2Fwp-content%2Fuploads%2F2021%2F06%2FCar-Accident-Injury.jpg&f=1&nofb=1",
-            donated: 10,
+            donated: 68,
             goal: 100,
         },
         {
-            title: "Feed Ukraine",
-            description: "Feed families and support democracy in Ukraine!!",
-            location: "Santa Barabra, CA",
-            imgUrl: "https://static01.nyt.com/images/2022/03/06/world/06ukraine-poland01/merlin_203339697_279bbf5f-90d5-4c4d-8b8a-685250377a90-superJumbo.jpg",
-            donated: 10,
+            title: "20 mil Trees",
+            description: "Help Mr. Beast plant dem trees. Lorax will be happy",
+            location: "Los Angeles, CA",
+            imgUrl: "https://static.boredpanda.com/blog/wp-content/uploads/2019/04/5cbf0b6489646-png__700.jpg",
+            donated: 90,
             goal: 100,
         }
     ];
