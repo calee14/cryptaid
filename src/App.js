@@ -9,6 +9,7 @@ import { Auth } from "./pages/Auth";
 import { Navbar } from "./components/Navbar";
 import { useRedirect } from "./hooks/useRedirect";
 import { Create } from "./pages/Create";
+import { Footer } from "./components/Footer";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
   const redirect = useRedirect();
 
   return (
+    <>
     <Container mx={"15rem"}>
       <Navbar/>
       <Heading>
@@ -36,8 +38,10 @@ function App() {
           <Route path="/auth" element={<Auth/>} exact/>
         </Routes>
       }
-      
     </Container>
+    <Spacer my={10}/>
+    <Footer/>
+    </>
   );
 }
 
