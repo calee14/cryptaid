@@ -28,16 +28,16 @@ export const Home = () => {
         {
             title: "Feed Ukraine",
             description: "Feed families and support democracy in Ukraine!!",
-            location: "Santa Barabra, CA",
+            location: "San Diego, CA",
             imgUrl: "https://static01.nyt.com/images/2022/03/06/world/06ukraine-poland01/merlin_203339697_279bbf5f-90d5-4c4d-8b8a-685250377a90-superJumbo.jpg",
             donated: 10,
             goal: 100,
         },
         {
-            title: "Feed Ukraine",
-            description: "Feed families and support democracy in Ukraine!!",
-            location: "Santa Barabra, CA",
-            imgUrl: "https://static01.nyt.com/images/2022/03/06/world/06ukraine-poland01/merlin_203339697_279bbf5f-90d5-4c4d-8b8a-685250377a90-superJumbo.jpg",
+            title: "Medical bills",
+            description: "Support Ginny with her medical bills after her car accident",
+            location: "Chino Hills, CA",
+            imgUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.catesmahoney.com%2Fwp-content%2Fuploads%2F2021%2F06%2FCar-Accident-Injury.jpg&f=1&nofb=1",
             donated: 10,
             goal: 100,
         },
@@ -58,7 +58,7 @@ export const Home = () => {
             }
             
             <Grid templateColumns={"repeat(3, 1fr)"} gap={10}>
-                
+
             {orgs.length > 0 ? orgs.map((props) => {
                 return (<OrgCard {...props} />)
                 
