@@ -1,9 +1,10 @@
 import { Button, Flex, IconButton, Spacer, Avatar, Box } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import { useMoralis } from "react-moralis";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useIsMobile } from "../hooks/useIsMobile";
+
 
 export const Navbar = () => {
     const { isAuthenticated, user } = useMoralis();
@@ -36,11 +37,12 @@ export const Navbar = () => {
                 
                 <Spacer />
                 {!isMobile && (
-                <>
+                <Flex gap={3} align="center"> 
+                    <Link to="/create"><Button>Create<AddIcon ml={"0.5rem"} boxSize={"0.9rem"}/></Button></Link>
                     {isAuthenticated ? 
                     <Link to="/profile"><Avatar name={user.attributes.username} /></Link> 
                     : <Link to="/auth"><Button>auth</Button></Link>}
-                </>
+                </Flex>
                 )}
             </Flex>
             

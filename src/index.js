@@ -5,6 +5,7 @@ import { MoralisProvider } from 'react-moralis';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createRoot } from 'react-dom/client';
 
 const theme = extendTheme({
   config: {
@@ -15,7 +16,8 @@ const theme = extendTheme({
 const appId = process.env.REACT_APP_APP_ID;
 const serverUrl = process.env.REACT_APP_SERVER_URL;
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <MoralisProvider appId={appId} serverUrl={serverUrl}>
