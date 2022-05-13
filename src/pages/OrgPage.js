@@ -1,4 +1,4 @@
-import { Box, Button, Center, Divider, Heading, Image, Spacer, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Container } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 
 export const OrgPage = () => {
@@ -23,20 +23,26 @@ export const OrgPage = () => {
     }
 
     return (
-        <Box mx={"10rem"}>
-            <Heading>{org_data.title}</Heading>
-            <Button>Donate Now</Button>
-            <Text>Deadline: {org_data.deadline}</Text>
-            <Image position={"relative"} width={"100%"} objectFit={"cover"} height={"50%"} src={org_data.imgUrl} rounded={"md"} alt='Org Image here'/>
-            <Center height={5} >
-                <Divider orientation="horizontal"/>
-            </Center>
-            <Text>I was going for the title but got hit by the tidal wave.
-            I was going for the title but got hit by the tidal wave.
-            I was going for the title but got hit by the tidal wave.
-            I was going for the title but got hit by the tidal wave.
-            </Text>
-
+        <Box mx={'10%'}>
+            <Flex width={"100%"}>
+                <Box flex={2} paddingX={"3rem"}>
+                    <Heading>{org_data.title}</Heading>
+                    <Button>Donate Now</Button>
+                    <Text>Deadline: {org_data.deadline}</Text>
+                    <Image position={"relative"} width={"100%"} objectFit={"cover"} height={"26rem"} src={org_data.imgUrl} rounded={"md"} alt='Org Image here'/>
+                    <Center height={5} >
+                        <Divider orientation="horizontal"/>
+                    </Center>
+                    <Text>I was going for the title but got hit by the tidal wave.
+                    I was going for the title but got hit by the tidal wave.
+                    I was going for the title but got hit by the tidal wave.
+                    I was going for the title but got hit by the tidal wave.
+                    </Text>
+                </Box>
+                <Center backgroundColor={"green"} flex={1}>
+                    hi
+                </Center>
+            </Flex>
         </Box>
     );
 };
