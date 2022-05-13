@@ -1,4 +1,4 @@
-import { Box, Button, Input, Stack, Text } from "@chakra-ui/react"
+import { Box, Button, Heading, Input, Stack, Text } from "@chakra-ui/react"
 import { useMoralis } from "react-moralis"
 import { useState, useEffect } from "react";
 import { ErrorBox } from "../components/Error";
@@ -29,6 +29,11 @@ export const Profile = () => {
                 {userError && 
                     <ErrorBox title="User update failed" message={userError.message} />
                 }
+                <Box>
+                    <Heading>
+                        Hello there, {user ? user.attributes.username : ' authenticate please...'}
+                    </Heading>
+                </Box>
                 <Box>
                     <Text>Username</Text>
                     <Input value={username} onChange={(event) => setUsername(event.currentTarget.value)}/>

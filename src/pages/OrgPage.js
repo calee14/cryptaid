@@ -27,15 +27,20 @@ export const OrgPage = () => {
             <Flex width={"100%"}>
                 <Box flex={2} paddingX={"3rem"}>
                     <Heading>{org_data.title}</Heading>
-                    <Button>Donate Now</Button>
-                    <Text fontSize={"smaller"}>Raised {org_data.donated} ETH out of {org_data.goal} ETH</Text>
-                    <Progress value={org_data.donated/org_data.goal*100} rounded="md" size={"sm"}></Progress>
-                    <Text>Deadline: {org_data.deadline}</Text>
+                    <Spacer my={3}/>
+                    <Text fontSize={"lg"} fontWeight={"semibold"}>Raised {org_data.donated} ETH out of {org_data.goal} ETH</Text>
+                    <Spacer my={3}/>
+                    <Progress height={1} value={org_data.donated/org_data.goal*100} rounded="md" size={"sm"}></Progress>
+                    <Spacer my={3}/>
+                    <Button width={"50%"}>Donate Now</Button>
+                    <Spacer my={3}/>
+                    <Text fontWeight={"medium"} >Deadline: <b>{org_data.deadline}</b></Text>
+                    <Spacer my={3}/>
                     <Image position={"relative"} width={"100%"} objectFit={"cover"} height={"26rem"} src={org_data.imgUrl} rounded={"xl"} alt='Org Image here'/>
                     <Center height={5} >
                         <Divider orientation="horizontal"/>
                     </Center>
-                    <Text>I was going for the title but got hit by the tidal wave.
+                    <Text fontWeight={"medium"}>I was going for the title but got hit by the tidal wave.
                     I was going for the title but got hit by the tidal wave.
                     I was going for the title but got hit by the tidal wave.
                     I was going for the title but got hit by the tidal wave.

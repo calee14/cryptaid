@@ -21,9 +21,6 @@ function App() {
     <>
     <Box>
       <Navbar/>
-      <Heading mx={"15rem"}>
-        Welcome to Cryptaid, {user ? user.attributes.username : ' authenticate please...'}
-      </Heading>
       {isAuthenticated ? 
       // routes for when the user is logged in
       <Routes>
