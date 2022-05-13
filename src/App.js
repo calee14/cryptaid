@@ -11,6 +11,7 @@ import { useRedirect } from "./hooks/useRedirect";
 import { Create } from "./pages/Create";
 import { Footer } from "./components/Footer";
 import { OrgPage } from "./pages/OrgPage";
+import { Donate } from "./pages/Donate";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/auth" element={<Auth/>} exact/>
         <Route path="/create" element={<Create/>} exact/>
         <Route path="/organization/:id" element={<OrgPage/>} exact/>
+        <Route path="/organization/:id/donate" element={<Donate/>} exact />
       </Routes> : 
         // routes for when the user is not logged in
         <Routes>

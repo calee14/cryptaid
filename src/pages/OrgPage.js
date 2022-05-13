@@ -1,10 +1,12 @@
 import { CheckCircleIcon, SettingsIcon } from "@chakra-ui/icons";
 import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Container, Progress, List, ListItem, ListIcon } from "@chakra-ui/react";
 import { Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export const OrgPage = () => {
     const params = useParams();
     const org_id = params.id;
+    const navigate = useNavigate();
 
     const imgUrl = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.kym-cdn.com%2Fentries%2Ficons%2Foriginal%2F000%2F029%2F514%2FScreen_Shot_2019-04-30_at_2.58.37_PM.png&f=1&nofb=1";
 
@@ -33,7 +35,7 @@ export const OrgPage = () => {
                     <Spacer my={3}/>
                     <Progress height={1} value={org_data.donated/org_data.goal*100} rounded="md" size={"sm"}></Progress>
                     <Spacer my={3}/>
-                    <Button width={"50%"}>Donate Now</Button>
+                    <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate")}>Donate Now</Button>
                     <Spacer my={3}/>
                     <Text fontWeight={"medium"} >Deadline: <b>{org_data.deadline}</b></Text>
                     <Spacer my={3}/>
@@ -63,7 +65,7 @@ export const OrgPage = () => {
                         
                     </List>
                     <Spacer my={3}/>
-                    <Button width={"50%"}>Donate Now</Button>
+                    <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate")}>Donate Now</Button>
                     <Center height={5} >
                         <Divider orientation="horizontal"/>
                     </Center>
