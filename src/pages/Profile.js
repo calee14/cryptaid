@@ -24,7 +24,7 @@ export const Profile = () => {
     };
 
     return (
-        <Box>
+        <Box mx={"15rem"}>
             <Stack spacing={3}>
                 {userError && 
                     <ErrorBox title="User update failed" message={userError.message} />

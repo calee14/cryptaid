@@ -20,7 +20,7 @@ export const Auth = () => {
 
     return (
         <>
-        <Box>
+        <Box mx={"15rem"} >
             {authError &&
                 <ErrorBox title="Authentication has failed" message={authError.message}/>
             }

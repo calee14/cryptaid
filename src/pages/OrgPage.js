@@ -1,4 +1,4 @@
-import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Container } from "@chakra-ui/react";
+import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Container, Progress } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 
 export const OrgPage = () => {
@@ -28,8 +28,10 @@ export const OrgPage = () => {
                 <Box flex={2} paddingX={"3rem"}>
                     <Heading>{org_data.title}</Heading>
                     <Button>Donate Now</Button>
+                    <Text fontSize={"smaller"}>Raised {org_data.donated} ETH out of {org_data.goal} ETH</Text>
+                    <Progress value={org_data.donated/org_data.goal*100} rounded="md" size={"sm"}></Progress>
                     <Text>Deadline: {org_data.deadline}</Text>
-                    <Image position={"relative"} width={"100%"} objectFit={"cover"} height={"26rem"} src={org_data.imgUrl} rounded={"md"} alt='Org Image here'/>
+                    <Image position={"relative"} width={"100%"} objectFit={"cover"} height={"26rem"} src={org_data.imgUrl} rounded={"xl"} alt='Org Image here'/>
                     <Center height={5} >
                         <Divider orientation="horizontal"/>
                     </Center>
@@ -40,7 +42,7 @@ export const OrgPage = () => {
                     </Text>
                 </Box>
                 <Center backgroundColor={"green"} flex={1}>
-                    hi
+                    sell nfts here
                 </Center>
             </Flex>
         </Box>
