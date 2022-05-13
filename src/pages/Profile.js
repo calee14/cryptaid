@@ -7,8 +7,8 @@ import { useRedirect } from "../hooks/useRedirect";
 export const Profile = () => {
     const { user, setUserData, userError, isUserUpdating, isAuthenticated} = useMoralis();
 
-    const [username, setUsername] = useState(user.attributes.username);
-    const [email, setEmail] = useState(user.attributes.email);
+    const [username, setUsername] = useState(user?.attributes.username);
+    const [email, setEmail] = useState(user?.attributes.email);
     const [password, setPassword] = useState('');
     const redirect = useRedirect();
 
@@ -17,7 +17,7 @@ export const Profile = () => {
         if(!isAuthenticated) {
             redirect("/");
         }
-    }, [isAuthenticated]);
+    }, [isAuthenticated,]);
 
     const handleSave = () => {
         setUserData({username, email, password: password === "" ? undefined : password});

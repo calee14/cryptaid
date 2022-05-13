@@ -1,6 +1,6 @@
 import { CheckCircleIcon, SettingsIcon } from "@chakra-ui/icons";
-import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Container, Progress, List, ListItem, ListIcon } from "@chakra-ui/react";
-import { Link, useParams } from "react-router-dom";
+import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Progress, List, ListItem, ListIcon } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 
 export const OrgPage = () => {
@@ -57,7 +57,7 @@ export const OrgPage = () => {
                         {org_data.milestone.map((ms, i) => {
                             return (
                             <ListItem>
-                                <ListIcon as={org_data.progress[i] == 100 ? CheckCircleIcon : SettingsIcon} color={org_data.progress[i] == 100 ? "green.500" : "gray.600"}/>
+                                <ListIcon as={org_data.progress[i] === 100 ? CheckCircleIcon : SettingsIcon} color={org_data.progress[i] === 100 ? "green.500" : "gray.600"}/>
                                 {ms}
                             </ListItem>
                             );

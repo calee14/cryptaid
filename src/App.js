@@ -38,6 +38,7 @@ function App() {
           <Route path="/" element={<Home/>} exact/>
           <Route path="/auth" element={<Auth/>} exact/>
           <Route path="/organization/:id" element={<OrgPage/>} exact/>
+          <Route path="/profile" element={<Profile/>} exact/>
         </Routes>
       }
     </Box>
