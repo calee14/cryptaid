@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Text } from "@chakra-ui/react";
+import { Box, Button, Container, Grid, Text } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis"
 import { OrgCard } from "../components/OrgCard";
 
@@ -56,18 +56,18 @@ export const Home = () => {
     ];
     
     return (
-        <Box>
+        <Container mx={"15rem"}>
             {isAuthenticated && 
                 <Button onClick={() => logout()}>Logout</Button>
             }
             
-            <Grid templateColumns={"repeat(3, 1fr)"} gap={10}>
+            <Grid templateColumns={"repeat(3, 1fr)"} columnGap={10} rowGap={5}>
 
             {orgs.length > 0 ? orgs.map((props) => {
                 return (<OrgCard {...props} />)
                 
             }) : <Text>No organizations at the moment</Text>}
             </Grid>
-        </Box>
+        </Container>
     );
 }

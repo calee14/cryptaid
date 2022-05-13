@@ -19,9 +19,9 @@ function App() {
 
   return (
     <>
-    <Container mx={"15rem"}>
+    <Box>
       <Navbar/>
-      <Heading>
+      <Heading mx={"15rem"}>
         Welcome to Cryptaid, {user ? user.attributes.username : ' authenticate please...'}
       </Heading>
       {isAuthenticated ? 
@@ -41,7 +41,7 @@ function App() {
           <Route path="/organization/:id" element={<OrgPage/>} exact/>
         </Routes>
       }
-    </Container>
+    </Box>
     <Spacer my={10}/>
     <Footer/>
     </>
