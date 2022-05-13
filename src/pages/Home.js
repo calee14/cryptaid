@@ -18,6 +18,7 @@ export const Home = () => {
 
     const orgs = [
         {
+            id: 1,
             title: "Save the turties",
             description: "I was going for the title but got hit by the tidal wave.",
             location: "Santa Barabra, CA",
@@ -26,6 +27,7 @@ export const Home = () => {
             goal: 100,
         },
         {
+            id: 2, 
             title: "Feed Ukraine",
             description: "Feed families and support democracy in Ukraine!!",
             location: "San Diego, CA",
@@ -34,6 +36,7 @@ export const Home = () => {
             goal: 100,
         },
         {
+            id: 3, 
             title: "Medical bills",
             description: "Support Ginny with her medical bills after her car accident",
             location: "Chino Hills, CA",
@@ -42,6 +45,7 @@ export const Home = () => {
             goal: 100,
         },
         {
+            id: 4,
             title: "20 mil Trees",
             description: "Help Mr. Beast plant dem trees. Lorax will be happy",
             location: "Los Angeles, CA",

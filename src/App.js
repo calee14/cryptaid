@@ -10,6 +10,7 @@ import { Navbar } from "./components/Navbar";
 import { useRedirect } from "./hooks/useRedirect";
 import { Create } from "./pages/Create";
 import { Footer } from "./components/Footer";
+import { OrgPage } from "./pages/OrgPage";
 
 function App() {
 
@@ -31,11 +32,13 @@ function App() {
         <Route path="/profile" element={<Profile/>} exact/>
         <Route path="/auth" element={<Auth/>} exact/>
         <Route path="/create" element={<Create/>} exact/>
+        <Route path="/organization/:id" element={<OrgPage/>} exact/>
       </Routes> : 
         // routes for when the user is not logged in
         <Routes>
           <Route path="/" element={<Home/>} exact/>
           <Route path="/auth" element={<Auth/>} exact/>
+          <Route path="/organization/:id" element={<OrgPage/>} exact/>
         </Routes>
       }
     </Container>
