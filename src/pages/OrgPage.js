@@ -1,5 +1,6 @@
-import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Container, Progress } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
+import { CheckCircleIcon, SettingsIcon } from "@chakra-ui/icons";
+import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Container, Progress, List, ListItem, ListIcon } from "@chakra-ui/react";
+import { Link, useParams } from "react-router-dom";
 
 export const OrgPage = () => {
     const params = useParams();
@@ -15,8 +16,8 @@ export const OrgPage = () => {
         description: "I was going for the title but got hit by the tidal wave.",
         location: "Santa Barabra, CA",
         links: ["isnta", "snap", "facebook"],
-        progress: [100, 50, 20],
-        milestone: ["pick up trash in ocean", "save turties injured by human trash"],
+        progress: [100, 100, 20],
+        milestone: ["pick up trash in ocean", "save turties injured by human trash", "Clean beaches for turtle's mating season"],
         imgUrl: imgUrl,
         donated: 10,
         goal: 100,
@@ -45,6 +46,38 @@ export const OrgPage = () => {
                     I was going for the title but got hit by the tidal wave.
                     I was going for the title but got hit by the tidal wave.
                     </Text>
+                    <Center height={5} >
+                        <Divider orientation="horizontal"/>
+                    </Center>
+                    <Heading fontSize="lg">Milestones:</Heading>
+                    <Spacer my={2}/>
+                    <List spacing={3}>
+                        {org_data.milestone.map((ms, i) => {
+                            return (
+                            <ListItem>
+                                <ListIcon as={org_data.progress[i] == 100 ? CheckCircleIcon : SettingsIcon} color={org_data.progress[i] == 100 ? "green.500" : "gray.600"}/>
+                                {ms}
+                            </ListItem>
+                            );
+                        })}
+                        
+                    </List>
+                    <Spacer my={3}/>
+                    <Button width={"50%"}>Donate Now</Button>
+                    <Center height={5} >
+                        <Divider orientation="horizontal"/>
+                    </Center>
+                    <Heading fontSize="lg">Socials:</Heading>
+                    <Spacer my={2}/>
+                    <List spacing={2}>
+                        {org_data.links.map((link) => {
+                            return (
+                                <ListItem>
+                                    <a href={link}>{link}</a>
+                                </ListItem>
+                            );
+                        })}
+                    </List>
                 </Box>
                 <Center backgroundColor={"green"} flex={1}>
                     sell nfts here
