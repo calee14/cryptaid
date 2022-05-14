@@ -1,13 +1,13 @@
 import { useWeb3Transfer } from "react-moralis";
+import { Moralis } from "moralis";
 
-export const useTransferEth = () => {
-    return ( _units, _receiver, _sender) => {
-        const { fetch, error, isFetching } = useWeb3Transfer({
-            type: "native",
-            amount: Moralis.Units.ETH(0.1),
-            receiver: "0x0000000000000000000000000000000000000000",
-        });
+export const useTransferEth = (_units, _receiver) => {
 
-        return { fetch, error, isFetching };
-    }
+    const { fetch, error, isFetching } = useWeb3Transfer({
+        type: "native",
+        amount: Moralis.Units.ETH(_units),
+        receiver: _receiver,
+    });
+
+    return { fetch, error, isFetching }
 };

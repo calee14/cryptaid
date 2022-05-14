@@ -1,5 +1,6 @@
 import { useLocation } from "react-router";
-
+import { useTransferEth } from "../hooks/useTransferEth";
+import { ErrorBox } from "../components/Error";
 export const Donate = (props) => {
     const { state } = useLocation();
     const { org_id } = state;
@@ -25,7 +26,14 @@ export const Donate = (props) => {
         goal: 100,
     }
 
+    const { fetch, error, isFetching} = useTransferEth(0.01, org_data.owner);
+
     return (
-        <></>
+        <>
+            {error && <ErrorBox title={"Error transferring eth"}  message={error.message}/>}
+            <button onClick={() => fetch()} disabled={isFetching}>
+                Transfer
+            </button>
+      </>
     );
 };
