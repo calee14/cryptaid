@@ -17,8 +17,8 @@ export const Navbar = () => {
         //     <Spacer/>
         //     {isAuthenticated && <Link to="/profile"><Avatar name={user.attributes.username}/></Link>}
         // </Flex>
-        <Flex position={"relative"} my={10}>
-        <Flex position="fixed" top="0" left="2rem" right="2rem" align="center">
+        <Box position={"relative"}>
+        <Flex paddingX={"1rem"} align="center">
 
             {/* Desktop */}
             
@@ -103,6 +103,6 @@ export const Navbar = () => {
                 </Link>
             </Flex>
         </Flex>
-        </Flex>
+        </Box>
     );
 };

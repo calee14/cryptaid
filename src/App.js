@@ -10,6 +10,8 @@ import { Navbar } from "./components/Navbar";
 import { useRedirect } from "./hooks/useRedirect";
 import { Create } from "./pages/Create";
 import { Footer } from "./components/Footer";
+import { OrgPage } from "./pages/OrgPage";
+import { Donate } from "./pages/Donate";
 
 function App() {
 
@@ -18,11 +20,8 @@ function App() {
 
   return (
     <>
-    <Container mx={"15rem"}>
+    <Box>
       <Navbar/>
-      <Heading>
-        Welcome to Cryptaid, {user ? user.attributes.username : ' authenticate please...'}
-      </Heading>
       {isAuthenticated ? 
       // routes for when the user is logged in
       <Routes>
@@ -31,14 +30,18 @@ function App() {
         <Route path="/profile" element={<Profile/>} exact/>
         <Route path="/auth" element={<Auth/>} exact/>
         <Route path="/create" element={<Create/>} exact/>
+        <Route path="/organization/:id" element={<OrgPage/>} exact/>
+        <Route path="/organization/:id/donate" element={<Donate/>} exact />
       </Routes> : 
         // routes for when the user is not logged in
         <Routes>
           <Route path="/" element={<Home/>} exact/>
           <Route path="/auth" element={<Auth/>} exact/>
+          <Route path="/organization/:id" element={<OrgPage/>} exact/>
+          <Route path="/profile" element={<Profile/>} exact/>
         </Routes>
       }
-    </Container>
+    </Box>
     <Spacer my={10}/>
     <Footer/>
     </>

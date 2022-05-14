@@ -1,4 +1,4 @@
-import { Box, Button, Input, Stack, Text } from "@chakra-ui/react"
+import { Box, Button, Heading, Input, Stack, Text } from "@chakra-ui/react"
 import { useMoralis } from "react-moralis"
 import { useState, useEffect } from "react";
 import { ErrorBox } from "../components/Error";
@@ -7,8 +7,8 @@ import { useRedirect } from "../hooks/useRedirect";
 export const Profile = () => {
     const { user, setUserData, userError, isUserUpdating, isAuthenticated} = useMoralis();
 
-    const [username, setUsername] = useState(user.attributes.username);
-    const [email, setEmail] = useState(user.attributes.email);
+    const [username, setUsername] = useState(user?.attributes.username);
+    const [email, setEmail] = useState(user?.attributes.email);
     const [password, setPassword] = useState('');
     const redirect = useRedirect();
 
@@ -17,18 +17,23 @@ export const Profile = () => {
         if(!isAuthenticated) {
             redirect("/");
         }
-    }, [isAuthenticated]);
+    }, [isAuthenticated,]);
 
     const handleSave = () => {
         setUserData({username, email, password: password === "" ? undefined : password});
     };
 
     return (
-        <Box>
+        <Box mx={"15rem"}>
             <Stack spacing={3}>
                 {userError && 
                     <ErrorBox title="User update failed" message={userError.message} />
                 }
+                <Box>
+                    <Heading>
+                        Hello there, {user ? user.attributes.username : ' authenticate please...'}
+                    </Heading>
+                </Box>
                 <Box>
                     <Text>Username</Text>
                     <Input value={username} onChange={(event) => setUsername(event.currentTarget.value)}/>
