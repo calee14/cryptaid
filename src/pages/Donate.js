@@ -30,28 +30,32 @@ export const Donate = (props) => {
         goal: 100,
     }
 
-    const { fetch, error, isFetching } = useTransferEth(0.01, org_data.owner);
+    const { fetch, error, isFetching } = useTransferEth(!Number.isNaN(parseFloat(amount)) ? amount : 0.0, org_data.owner);
 
-    // const handleAmountChange = (event) => {
-    //     if(parseFloat(event.target.value)) {
-    //         setAmount(event.target.value);
-    //     }
-    // };
+    const handleAmountChange = (event) => {
+        setAmount(event.target.value);
+    };
+
+    const handlePayment = () => {
+        if(parseFloat(amount)) {
+            fetch();
+        }
+    }
 
     return (
         
         <Container>
             {/* need to be logged in to donate */}
             {error && <ErrorBox title={"Error transferring eth"}  message={error.message}/>}
-            {/* <InputGroup>
+            <InputGroup>
                 <InputLeftElement
                     pointerEvents='none'
                     children={"Eth"}
                 />
-                <Input value={amount} placeholder="0.0"/>
-            </InputGroup> */}
+                <Input value={amount} onChange={handleAmountChange} placeholder="0.0"/>
+            </InputGroup>
             
-            <Button onClick={() => fetch()} disabled={isFetching}>
+            <Button onClick={handlePayment} disabled={isFetching}>
                 Donate now
             </Button>
         </Container>
