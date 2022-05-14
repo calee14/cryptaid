@@ -24,7 +24,7 @@ export const OrgPage = () => {
         donated: 10,
         goal: 100,
     }
-
+    
     return (
         <Box mx={'10%'}>
             <Flex width={"100%"}>

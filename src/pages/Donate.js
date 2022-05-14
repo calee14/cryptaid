@@ -26,7 +26,7 @@ export const Donate = (props) => {
         goal: 100,
     }
 
-    const { fetch, error, isFetching} = useTransferEth(0.01, org_data.owner);
+    const { fetch, error, isFetching } = useTransferEth(0.01, org_data.owner);
 
     return (
         <>
