@@ -1,13 +1,15 @@
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useTransferEth } from "../hooks/useTransferEth";
 import { ErrorBox } from "../components/Error";
-import { Button, Container, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { Button, Container, Heading, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react";
 import { useState } from "react";
+import { ArrowLeftIcon } from "@chakra-ui/icons";
 
 export const Donate = (props) => {
     const { state } = useLocation();
     const { org_id } = state;
     const [amount, setAmount] = useState();
+    const navigate = useNavigate();
 
     /* get data for organization with id
         here... backend people??
@@ -47,6 +49,10 @@ export const Donate = (props) => {
         <Container>
             {/* need to be logged in to donate */}
             {error && <ErrorBox title={"Error transferring eth"}  message={error.message}/>}
+
+            <Button onClick={() => navigate(-1)}><ArrowLeftIcon/>organization page</Button>
+            <Text fontSize={'xl'}>Donating to <b>{org_data.title}</b></Text>
+            <Text fontWeight={'medium'}>Enter your donation amount:</Text>
             <InputGroup>
                 <InputLeftElement
                     pointerEvents='none'
@@ -55,8 +61,8 @@ export const Donate = (props) => {
                 <Input value={amount} onChange={handleAmountChange} placeholder="0.0"/>
             </InputGroup>
             
-            <Button onClick={handlePayment} disabled={isFetching}>
-                Donate now
+            <Button width={"50%"} onClick={handlePayment} disabled={isFetching}>
+                Donate
             </Button>
         </Container>
     );
