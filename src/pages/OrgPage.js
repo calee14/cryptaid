@@ -17,7 +17,7 @@ export const OrgPage = () => {
         title: "Save the turties",
         description: "I was going for the title but got hit by the tidal wave.",
         location: "Santa Barabra, CA",
-        links: ["isnta", "snap", "facebook"],
+        links: ["insta", "snap", "facebook"],
         progress: [100, 100, 20],
         milestone: ["pick up trash in ocean", "save turties injured by human trash", "Clean beaches for turtle's mating season"],
         imgUrl: imgUrl,
