@@ -1,9 +1,13 @@
 import { useLocation } from "react-router";
 import { useTransferEth } from "../hooks/useTransferEth";
 import { ErrorBox } from "../components/Error";
+import { Button, Container, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { useState } from "react";
+
 export const Donate = (props) => {
     const { state } = useLocation();
     const { org_id } = state;
+    const [amount, setAmount] = useState();
 
     /* get data for organization with id
         here... backend people??
@@ -28,12 +32,28 @@ export const Donate = (props) => {
 
     const { fetch, error, isFetching } = useTransferEth(0.01, org_data.owner);
 
+    // const handleAmountChange = (event) => {
+    //     if(parseFloat(event.target.value)) {
+    //         setAmount(event.target.value);
+    //     }
+    // };
+
     return (
-        <>
+        
+        <Container>
+            {/* need to be logged in to donate */}
             {error && <ErrorBox title={"Error transferring eth"}  message={error.message}/>}
-            <button onClick={() => fetch()} disabled={isFetching}>
-                Transfer
-            </button>
-      </>
+            {/* <InputGroup>
+                <InputLeftElement
+                    pointerEvents='none'
+                    children={"Eth"}
+                />
+                <Input value={amount} placeholder="0.0"/>
+            </InputGroup> */}
+            
+            <Button onClick={() => fetch()} disabled={isFetching}>
+                Donate now
+            </Button>
+        </Container>
     );
 };
