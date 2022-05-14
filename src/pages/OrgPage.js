@@ -29,17 +29,20 @@ export const OrgPage = () => {
         <Box mx={'10%'}>
             <Flex width={"100%"}>
                 <Box flex={2} paddingX={"3rem"}>
+                    {/* organiztaion's titlte, img, progress, and donate button */}
                     <Heading>{org_data.title}</Heading>
                     <Spacer my={3}/>
                     <Text fontSize={"lg"} fontWeight={"semibold"}>Raised {org_data.donated} ETH out of {org_data.goal} ETH</Text>
                     <Spacer my={3}/>
                     <Progress height={1} value={org_data.donated/org_data.goal*100} rounded="md" size={"sm"}></Progress>
                     <Spacer my={3}/>
-                    <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate")}>Donate Now</Button>
+                    {/* donate button will route to donate page passing the org id */}
+                    <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate", { state: { org_id: org_id} })}>Donate Now</Button>
                     <Spacer my={3}/>
                     <Text fontWeight={"medium"} >Deadline: <b>{org_data.deadline}</b></Text>
                     <Spacer my={3}/>
                     <Image position={"relative"} width={"100%"} objectFit={"cover"} height={"26rem"} src={org_data.imgUrl} rounded={"xl"} alt='Org Image here'/>
+                    {/* organization description */}
                     <Center height={5} >
                         <Divider orientation="horizontal"/>
                     </Center>
@@ -48,6 +51,7 @@ export const OrgPage = () => {
                     I was going for the title but got hit by the tidal wave.
                     I was going for the title but got hit by the tidal wave.
                     </Text>
+                    {/* organization milstones */}
                     <Center height={5} >
                         <Divider orientation="horizontal"/>
                     </Center>
@@ -64,8 +68,11 @@ export const OrgPage = () => {
                         })}
                         
                     </List>
+                    {/* another donate button */}
                     <Spacer my={3}/>
+                    {/* button will route to donate page passing the org id */}
                     <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate")}>Donate Now</Button>
+                    {/* organization socials */}
                     <Center height={5} >
                         <Divider orientation="horizontal"/>
                     </Center>
@@ -81,6 +88,7 @@ export const OrgPage = () => {
                         })}
                     </List>
                 </Box>
+                {/* put component to sell nfts here */}
                 <Center backgroundColor={"green"} flex={1}>
                     sell nfts here
                 </Center>
