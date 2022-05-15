@@ -2,31 +2,21 @@ import { CheckCircleIcon, SettingsIcon } from "@chakra-ui/icons";
 import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Progress, List, ListItem, ListIcon } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
+import { useState } from "react";
+import { useOrgData } from "../hooks/useOrgData";
+
 
 export const OrgPage = () => {
     const params = useParams();
     const org_id = params.id;
     const navigate = useNavigate();
 
-    const imgUrl = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.kym-cdn.com%2Fentries%2Ficons%2Foriginal%2F000%2F029%2F514%2FScreen_Shot_2019-04-30_at_2.58.37_PM.png&f=1&nofb=1";
-
-    const org_data = {
-        id: 1,
-        owner: "1345",
-        deadline: "5/31/22",
-        title: "Save the turties",
-        description: "I was going for the title but got hit by the tidal wave.",
-        location: "Santa Barabra, CA",
-        links: ["insta", "snap", "facebook"],
-        progress: [100, 100, 20],
-        milestone: ["pick up trash in ocean", "save turties injured by human trash", "Clean beaches for turtle's mating season"],
-        imgUrl: imgUrl,
-        donated: 10,
-        goal: 100,
-    }
+    const [bogus, setBogus] = useState(false)
+    const org_data = useOrgData(org_id)
     
     return (
         <Box mx={'10%'}>
+            {!bogus?
             <Flex width={"100%"}>
                 <Box flex={2} paddingX={"3rem"}>
                     {/* organiztaion's titlte, img, progress, and donate button */}
@@ -93,6 +83,7 @@ export const OrgPage = () => {
                     sell nfts here
                 </Center>
             </Flex>
+            :"Webpage does not exist"}
         </Box>
     );
 };

@@ -4,7 +4,6 @@ import { useMoralis } from "react-moralis";
 import { Routes, Route, Link, Navigate} from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
-import { BackendTesting } from "./pages/BackendTesting";
 import { Auth } from "./pages/Auth";
 import { Navbar } from "./components/Navbar";
 import { useRedirect } from "./hooks/useRedirect";
@@ -25,7 +24,6 @@ function App() {
       {isAuthenticated ? 
       // routes for when the user is logged in
       <Routes>
-        <Route path="/backend" element={<BackendTesting/>} exact/>
         <Route path="/" element={<Home/>} exact/>
         <Route path="/profile" element={<Profile/>} exact/>
         <Route path="/auth" element={<Auth/>} exact/>

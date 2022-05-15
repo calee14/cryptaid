@@ -28,12 +28,6 @@ export const Navbar = () => {
                         Home
                     </Button>
                 </Link>
-
-                <Link to="/backend">
-                    <Button as="a" variant="ghost" aria-label="Backend" my={5} w="100%">
-                        Backend
-                    </Button>
-                </Link>
                 
                 <Spacer />
                 {!isMobile && (

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 export const Home = () => {
 
     const { logout, isAuthenticated, isAuthUndefined, authError } = useMoralis();
-    const imgUrl = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.kym-cdn.com%2Fentries%2Ficons%2Foriginal%2F000%2F029%2F514%2FScreen_Shot_2019-04-30_at_2.58.37_PM.png&f=1&nofb=1";
+    // const imgUrl = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.kym-cdn.com%2Fentries%2Ficons%2Foriginal%2F000%2F029%2F514%2FScreen_Shot_2019-04-30_at_2.58.37_PM.png&f=1&nofb=1";
 
     // const props = {
     //     title: "Save the turties",
@@ -71,7 +71,9 @@ export const Home = () => {
                     imgUrl: props.attributes.imgUrl,
                     donated: props.attributes.donated,
                     goal: props.attributes.goal,
-                    id: props.id
+                    id: props.id,
+                    owner: props.attributes.user,
+                    ethAddress: props.attributes.ethAddress
                 })
             })
             setOrgs(resultArray)
