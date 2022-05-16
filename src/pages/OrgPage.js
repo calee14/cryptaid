@@ -2,7 +2,6 @@ import { CheckCircleIcon, SettingsIcon } from "@chakra-ui/icons";
 import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Progress, List, ListItem, ListIcon } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { useState } from "react";
 import { useOrgData } from "../hooks/useOrgData";
 
 
@@ -10,16 +9,14 @@ export const OrgPage = () => {
     const params = useParams();
     const org_id = params.id;
     const navigate = useNavigate();
-
-    const [bogus, setBogus] = useState(false)
     const org_data = useOrgData(org_id)
     
     return (
         <Box mx={'10%'}>
-            {!bogus?
+            {!org_data.owner == ""?
             <Flex width={"100%"}>
                 <Box flex={2} paddingX={"3rem"}>
-                    {/* organiztaion's titlte, img, progress, and donate button */}
+                    {/* organiztaion's title, img, progress, and donate button */}
                     <Heading>{org_data.title}</Heading>
                     <Spacer my={3}/>
                     <Text fontSize={"lg"} fontWeight={"semibold"}>Raised {org_data.donated} ETH out of {org_data.goal} ETH</Text>
