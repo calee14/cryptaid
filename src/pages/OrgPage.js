@@ -1,5 +1,5 @@
 import { CheckCircleIcon, SettingsIcon } from "@chakra-ui/icons";
-import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Progress, List, ListItem, ListIcon, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Progress, List, ListItem, ListIcon, Grid, GridItem, Container } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useOrgData } from "../hooks/useOrgData";
@@ -77,12 +77,23 @@ export const OrgPage = () => {
                     </List>
                 </Box>
                 {/* put component to sell nfts here */}
-                <Box backgroundColor={"green"} flex={1}>
+                <Box rounded={5} backgroundColor={"gray.50"} flex={1} height={'65rem'} overflow={'scroll'}>
+                    <Container>
+                    <Heading>{org_data.title} Collectible NFTs</Heading>
+                    </Container>
+                    
                     <Flex justifyContent="center">
                     
                     <Grid templateColumns={'repeat(1, 1fr)'} gap={6}>
                         <GridItem>
                             <NftCard/>
+                            <Spacer my={5}/>
+                            <NftCard/>
+                            <Spacer my={5}/>
+                            <NftCard/>
+                            <Spacer my={5}/>
+                            <NftCard/>
+                            <Spacer my={5}/>
                         </GridItem>
                         
                     </Grid>
