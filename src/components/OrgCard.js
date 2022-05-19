@@ -1,8 +1,26 @@
 import { Box, Heading, Image, Spacer, Text, Progress } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import Moralis from "moralis";
+import { useState, useEffect } from "react";
 
 export const OrgCard = (props) => {
-    const { id, title, description, imgUrl, location, donated, goal } = props;
+    const { id, title, description, imgUrl, location, goal, ethAddress } = props;
+    const [donated, setDonated] = useState(0)
+    useEffect(() => {
+        const getTokensByChain = async () => {
+            const transactionQuery = new Moralis.Query("EthTransactions");
+            const tokens = await transactionQuery.find({ useMasterKey: true });
+            let result = 0;
+            tokens.map((props)=>{
+                if(props.attributes.to_address == ethAddress.toLowerCase()){
+                    result += parseFloat(props.attributes.decimal.value.$numberDecimal)
+                }
+            })
+            setDonated(result.toFixed(4))
+        }
+        getTokensByChain();
+    }, [Moralis,ethAddress]);
+
     return (
         <Link to={"/organization/" + id}>
         <Box boxShadow={'md'} border="1px" borderColor={"gray.200"} rounded={10} padding={5} width={"17rem"} height={"26rem"}>
