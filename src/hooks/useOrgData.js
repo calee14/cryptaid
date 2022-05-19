@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import Moralis from "moralis";
 import { useMoralisQuery } from "react-moralis";
 
 export const useOrgData = (org_id) => {
@@ -6,10 +7,26 @@ export const useOrgData = (org_id) => {
     const [user, setUser] = useState("")
     const [location, setLocation] = useState("")
     const [imgUrl, setImgUrl] = useState("")
-    const [donated, setDonated] = useState("")
+    const [donated, setDonated] = useState(0)
     const [goal, setGoal] = useState("")
     const [description, setDescription] = useState("");
     const [ethAddress, setEthAddress] = useState("");
+    
+    useEffect(() => {
+        const getTokensByChain = async () => {
+            const transactionQuery = new Moralis.Query("EthTransactions");
+            const tokens = await transactionQuery.find({ useMasterKey: true });
+            let result = 0;
+            tokens.map((props)=>{
+                if(props.attributes.to_address == ethAddress.toLowerCase()){
+                    result += parseFloat(props.attributes.decimal.value.$numberDecimal)
+                }
+            })
+            setDonated(result.toFixed(4))
+        }
+        getTokensByChain();
+      }, [Moralis,ethAddress]);
+
 
     const { fetch } = useMoralisQuery(
         "Organization",
@@ -27,7 +44,7 @@ export const useOrgData = (org_id) => {
                         setUser(org[0].get("user"))
                         setLocation(org[0].get("location"))
                         setImgUrl(org[0].get("imgUrl"))
-                        setDonated(org[0].get("donated"))
+                        // setDonated(org[0].get("donated"))
                         setGoal(org[0].get("goal"))
                         setDescription(org[0].get("description"))
                         setEthAddress(org[0].get("ethAddress"))

@@ -69,7 +69,6 @@ export const Home = () => {
                     description: props.attributes.description,
                     location: props.attributes.location,
                     imgUrl: props.attributes.imgUrl,
-                    donated: props.attributes.donated,
                     goal: props.attributes.goal,
                     id: props.id,
                     owner: props.attributes.user,

@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useOrgData } from "../hooks/useOrgData";
 import { NftCard } from "../components/NftCard";
-
+import { EditIcon } from '@chakra-ui/icons'
+import Moralis from "moralis";
 
 export const OrgPage = () => {
     const params = useParams();
@@ -18,14 +19,22 @@ export const OrgPage = () => {
             <Flex width={"100%"}>
                 <Box flex={2} paddingX={"3rem"}>
                     {/* organiztaion's title, img, progress, and donate button */}
+                    <Flex>
                     <Heading>{org_data.title}</Heading>
+                    <Spacer/>
+                    {Moralis.User?.current()?.id === org_data.owner?<Button leftIcon={<EditIcon />} colorScheme='teal' variant='solid'>
+                        Edit
+                    </Button>: ""}
+                    </Flex>
                     <Spacer my={3}/>
                     <Text fontSize={"lg"} fontWeight={"semibold"}>Raised {org_data.donated} ETH out of {org_data.goal} ETH</Text>
                     <Spacer my={3}/>
                     <Progress height={1} value={org_data.donated/org_data.goal*100} rounded="md" size={"sm"}></Progress>
                     <Spacer my={3}/>
                     {/* donate button will route to donate page passing the org id */}
-                    <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate", { state: { org_id: org_id} })}>Donate Now</Button>
+                    {Moralis.User?.current()?.id? <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate", { state: { org_id: org_id} })}>
+                        Donate Now
+                    </Button>: <Button width={"50%"}>Login to Donate</Button>}
                     <Spacer my={3}/>
                     <Text fontWeight={"medium"} >Deadline: <b>{org_data.deadline}</b></Text>
                     <Spacer my={3}/>
@@ -34,10 +43,7 @@ export const OrgPage = () => {
                     <Center height={5} >
                         <Divider orientation="horizontal"/>
                     </Center>
-                    <Text fontWeight={"medium"}>I was going for the title but got hit by the tidal wave.
-                    I was going for the title but got hit by the tidal wave.
-                    I was going for the title but got hit by the tidal wave.
-                    I was going for the title but got hit by the tidal wave.
+                    <Text fontWeight={"medium"}>{org_data.description}
                     </Text>
                     {/* organization milstones */}
                     <Center height={5} >
@@ -59,7 +65,9 @@ export const OrgPage = () => {
                     {/* another donate button */}
                     <Spacer my={3}/>
                     {/* button will route to donate page passing the org id */}
-                    <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate")}>Donate Now</Button>
+                    {Moralis.User?.current()?.id? <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate")}>
+                        Donate Now
+                    </Button>: <Button width={"50%"}>Login to Donate</Button>}
                     {/* organization socials */}
                     <Center height={5} >
                         <Divider orientation="horizontal"/>
