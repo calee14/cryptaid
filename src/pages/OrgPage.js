@@ -65,9 +65,10 @@ export const OrgPage = () => {
                     {/* another donate button */}
                     <Spacer my={3}/>
                     {/* button will route to donate page passing the org id */}
-                    {Moralis.User?.current()?.id? <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate")}>
+                    {Moralis.User?.current()?.id? <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate", { state: { org_id: org_id} })}>
                         Donate Now
-                    </Button>: <Button width={"50%"}>Login to Donate</Button>}
+                    </Button>: 
+                    <Button width={"50%"}>Login to Donate</Button>}
                     {/* organization socials */}
                     <Center height={5} >
                         <Divider orientation="horizontal"/>
@@ -83,6 +84,7 @@ export const OrgPage = () => {
                             );
                         })}
                     </List>
+                    <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/mint", { state: { org_id: org_id} })}>Mint NFTs</Button>
                 </Box>
                 {/* put component to sell nfts here */}
                 <Box rounded={5} backgroundColor={"gray.50"} flex={1} height={'65rem'} overflow={'scroll'}>
