@@ -1,8 +1,9 @@
 import { CheckCircleIcon, SettingsIcon } from "@chakra-ui/icons";
-import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Progress, List, ListItem, ListIcon } from "@chakra-ui/react";
+import { Box, Button, Center, Divider, Heading, Image, Spacer, Text, Flex, Progress, List, ListItem, ListIcon, Grid, GridItem, Container } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useOrgData } from "../hooks/useOrgData";
+import { NftCard } from "../components/NftCard";
 
 
 export const OrgPage = () => {
@@ -13,7 +14,7 @@ export const OrgPage = () => {
     
     return (
         <Box mx={'10%'}>
-            {!org_data.owner == ""?
+            {!(org_data.owner === "")?
             <Flex width={"100%"}>
                 <Box flex={2} paddingX={"3rem"}>
                     {/* organiztaion's title, img, progress, and donate button */}
@@ -76,9 +77,28 @@ export const OrgPage = () => {
                     </List>
                 </Box>
                 {/* put component to sell nfts here */}
-                <Center backgroundColor={"green"} flex={1}>
-                    sell nfts here
-                </Center>
+                <Box rounded={5} backgroundColor={"gray.50"} flex={1} height={'65rem'} overflow={'scroll'}>
+                    <Container>
+                    <Heading>{org_data.title} Collectible NFTs</Heading>
+                    </Container>
+                    
+                    <Flex justifyContent="center">
+                    
+                    <Grid templateColumns={'repeat(1, 1fr)'} gap={6}>
+                        <GridItem>
+                            <NftCard/>
+                            <Spacer my={5}/>
+                            <NftCard/>
+                            <Spacer my={5}/>
+                            <NftCard/>
+                            <Spacer my={5}/>
+                            <NftCard/>
+                            <Spacer my={5}/>
+                        </GridItem>
+                        
+                    </Grid>
+                    </Flex>
+                </Box>
             </Flex>
             :"Webpage does not exist"}
         </Box>
