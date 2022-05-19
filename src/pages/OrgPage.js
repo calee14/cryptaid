@@ -5,8 +5,9 @@ import { useNavigate } from "react-router";
 import { useOrgData } from "../hooks/useOrgData";
 import { NftCard } from "../components/NftCard";
 import { EditIcon, CloseIcon } from '@chakra-ui/icons'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Moralis from "moralis";
+import MilestoneInputs from "../components/MilestoneInputs";
 
 export const OrgPage = () => {
     const params = useParams();
@@ -17,17 +18,9 @@ export const OrgPage = () => {
     const [editMode, setEditMode] = useState(false)
     const currentDate = new Date()
 
-    const [numMilestone, setNumMilestone] = useState(org_data.milestone.length);
-
-    const [completeSwitch, setCompleteSwitch] = useState([false,false,false,false,false])
-
-    const changeSwitch = (index) => {
-        let array = completeSwitch
-        array[index] = !array[index]
-        console.log(completeSwitch[4])
-        setCompleteSwitch(array)
-    }
-
+    const [milestone, setMilestone] = useState(org_data.milestone);
+    const [numMilestone,setNumMilestone] = useState(org_data.milestone.length)
+    const [milestoneProgress, setMilestoneProgress] = useState(org_data.progress)
     
     return (
         <Box mx={'10%'}>
@@ -100,23 +93,12 @@ export const OrgPage = () => {
                     {editMode && numMilestone===5?<Button isDisabled={true}>Add Milestone</Button>:""}
                     {editMode && numMilestone<5?<Button onClick={() => setNumMilestone(numMilestone+1)}>Add Milestone</Button>: ""}
                     {editMode && numMilestone>0?<Button onClick={() => setNumMilestone(numMilestone-1)}>Remove Milestone</Button>: ""}
-                    {editMode && numMilestone>=1?<Input placeholder="Add milestone here" defaultValue={org_data.milestone[0]?org_data.milestone[0]:"" }/>:""}
-                    {editMode && numMilestone>=2?<Input placeholder="Add milestone here" defaultValue={org_data.milestone[1]?org_data.milestone[1]:""}/>:""}
-                    {editMode && numMilestone>=3?<Input placeholder="Add milestone here" defaultValue={org_data.milestone[2]?org_data.milestone[2]:""}/>:""}
-                    {editMode && numMilestone>=4?<Input placeholder="Add milestone here" defaultValue={org_data.milestone[3]?org_data.milestone[3]:""}/>:""}
-                    {editMode && numMilestone>=5?<InputGroup>
-                        <Input
-                            defaultValue={org_data.milestone[4]?org_data.milestone[4]:""}
-                            placeholder="Add milestone here"
-                        />                        
-                        <InputRightElement>
-                            <Checkbox onChange = {() =>changeSwitch(4)}/> {/*Fix default value of checkbox*/}
-                        </InputRightElement>
-                        </InputGroup> 
-                    :""}
-                    <Heading fontSize="lg">Milestones:</Heading>
+                    {editMode? <MilestoneInputs num={numMilestone} milestone={milestone} setMilestone={setMilestone} milestoneProgress={milestoneProgress} setMilestoneProgress={setMilestoneProgress}/>:""}
+
+
+                    {!editMode?<Heading fontSize="lg">Milestones:</Heading>:""}
                     <Spacer my={2}/>
-                    <List spacing={3}>
+                    {!editMode?<List spacing={3}>
                         {org_data.milestone.map((ms, i) => {
                             return (
                             <ListItem>
@@ -126,7 +108,9 @@ export const OrgPage = () => {
                             );
                         })}
                         
-                    </List>
+                    </List>:""}
+
+
                     {/* another donate button */}
                     <Spacer my={3}/>
                     {/* button will route to donate page passing the org id */}
