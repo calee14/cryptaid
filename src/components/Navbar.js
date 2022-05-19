@@ -28,6 +28,12 @@ export const Navbar = () => {
                         Cryptaid
                     </Button>
                 </Link>
+
+                <Link to="/">
+                    <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
+                        Home
+                    </Button>
+                </Link>
                 
                 <Spacer />
                 {!isMobile && (
@@ -100,3 +106,4 @@ export const Navbar = () => {
         </Box>
     );
 };
+

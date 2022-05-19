@@ -25,7 +25,7 @@ export const Auth = () => {
                 <ErrorBox title="Authentication has failed" message={authError.message}/>
             }
             <Flex>
-                <SignUp />
+                {/* <SignUp /> */}
                 <Spacer/>
                 <Login />
             </Flex>

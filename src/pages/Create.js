@@ -18,12 +18,17 @@ export const Create = () => {
 
     const redirect = useRedirect();
 
+    let date = new Date()
+
 
     const defineNewObj = async () => {
         if(isAuthenticated){
             if(checkField()){
                 const Org = Moralis.Object.extend("Organization")
                 const org = new Org()
+                
+                date.setTime(0)
+                
                 org.set('title', title)
                 org.set('description', description)
                 org.set('location', location)
@@ -31,6 +36,7 @@ export const Create = () => {
                 org.set('goal', parseFloat(goal))
                 org.set('user', Moralis.User.current().id)
                 org.set('ethAddress', ethAddress)
+                org.set('deadline', date)
 
                 await org.save()
                 redirect("/")
