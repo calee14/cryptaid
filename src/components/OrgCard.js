@@ -12,7 +12,7 @@ export const OrgCard = (props) => {
             const tokens = await transactionQuery.find({ useMasterKey: true });
             let result = 0;
             tokens.map((props)=>{
-                if(props.attributes.to_address == ethAddress.toLowerCase()){
+                if(props.attributes.to_address === ethAddress.toLowerCase()){
                     result += parseFloat(props.attributes.decimal.value.$numberDecimal)
                 }
             })

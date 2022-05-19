@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Spacer, Input, NumberInput, NumberInputField, Center, Flex, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react";
+import { Box, Button, Heading, Spacer, Input, NumberInput, NumberInputField, Center, Flex, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis"
 import { React, useState } from "react";
 import Moralis from "moralis";
@@ -6,7 +6,8 @@ import { useRedirect } from "../hooks/useRedirect";
 
 export const Create = () => {
 
-    const { logout, isAuthenticated, isAuthUndefined, authError } = useMoralis();
+    const { logout, isAuthenticated } = useMoralis();
+    // const { logout, isAuthenticated, isAuthUndefined, authError } = useMoralis();
     
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -14,9 +15,9 @@ export const Create = () => {
     const [imgUrl, setImgUrl] = useState("");
     const [goal, setGoal] = useState(0.0);
     const [ethAddress, setEthAddress] = useState("");
-    const donated = 0.0;
 
     const redirect = useRedirect();
+
 
     const defineNewObj = async () => {
         if(isAuthenticated){
@@ -28,7 +29,6 @@ export const Create = () => {
                 org.set('location', location)
                 org.set('imgUrl', imgUrl)
                 org.set('goal', parseFloat(goal))
-                org.set('donated', donated)
                 org.set('user', Moralis.User.current().id)
                 org.set('ethAddress', ethAddress)
 
@@ -41,13 +41,13 @@ export const Create = () => {
     }
 
     const checkField = () => {
-        if(title.trim() == "") {
+        if(title.trim() === "") {
             return false;
-        } else if (imgUrl.trim() == "") {
+        } else if (imgUrl.trim() === "") {
             return false;
-        } else if (goal == 0.0) {
+        } else if (goal === 0.0) {
             return false;
-        } else if (ethAddress.trim() == "") {
+        } else if (ethAddress.trim() === "") {
             return false;
         }
         return true;
@@ -94,7 +94,7 @@ export const Create = () => {
 
                     <Spacer my={1}/>
 
-                    <label for="goal" id="name">Goal (ETH)</label>
+                    <label for="goal">Goal (ETH)</label>
 
                     <InputGroup>
                         <NumberInput id="goal" defaultValue={0.0} min={0.0} precision={4} onChange={(value) => setGoal(value)}>
@@ -105,6 +105,32 @@ export const Create = () => {
                         />
                         </NumberInput>
                     </InputGroup>
+                    
+                    {/* <label for="deadline">Deadline</label>
+
+                    <Stack shouldWrapChildren direction='row' id ="deadline">
+                        <Stack direction='column'>
+                       <label for="month">Month</label>
+                        <NumberInput id="month" maxW={20} defaultValue={deadline.getMonth()+1} min={1} max={12}>
+                            <NumberInputField />
+                        </NumberInput>
+                        </Stack>
+
+                        <Stack direction='column'>
+                        <label for="day">Day</label>
+                        <NumberInput id="day" maxW={20} defaultValue={deadline.getDate()} min={0} max={31}>
+                            <NumberInputField />
+                        </NumberInput>
+                        </Stack>
+
+                        <Stack direction='column'>
+                        <label for="year">Year</label> 
+                        <NumberInput id="year" maxW={32} defaultValue={deadline.getFullYear()} min={deadline.getFullYear()}>
+                            <NumberInputField />
+                        </NumberInput>
+                        </Stack>
+
+                    </Stack> */}
 
                     <Spacer my={1}/>
                     <Flex>
