@@ -1,4 +1,4 @@
-import { Box, Button, Container, Flex, Image, Spacer, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Spacer, Text } from "@chakra-ui/react";
 
 export const NftCard = () => {
     return (

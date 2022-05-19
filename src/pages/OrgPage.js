@@ -81,7 +81,7 @@ export const OrgPage = () => {
                     <Container>
                     <Heading>{org_data.title} Collectible NFTs</Heading>
                     </Container>
-                    
+                    <Spacer my={5}/>
                     <Flex justifyContent="center">
                     
                     <Grid templateColumns={'repeat(1, 1fr)'} gap={6}>
