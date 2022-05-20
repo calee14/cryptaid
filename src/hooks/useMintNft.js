@@ -1,4 +1,3 @@
-import { MoralisContext, useWeb3Transfer } from "react-moralis";
 import { Moralis } from "moralis";
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
@@ -8,13 +7,15 @@ export const useMintNft = () => {
     const { enableWeb3, isWeb3Enabled, web3 } = useMoralis();
 
     useEffect(() => {
+        Moralis.initPlugins();
+
         if (!isWeb3Enabled) {
-            Moralis.initPlugins()
             enableWeb3();
         }
     }, [web3, enableWeb3, isWeb3Enabled]);
 
     return async function(_owner, _name, _description, _imgData, _supply) {
+
         const imgFile = new Moralis.File(_imgData.name, _imgData);
         await imgFile.saveIPFS();
 
@@ -31,17 +32,17 @@ export const useMintNft = () => {
             image: "/ipfs/" + imgHash
         };
         
-        const metaFile = new Moralis.File("metadata.json", {base64: btoa(JSON.stringify(metadata), 'base64')});
+        const metaFile = new Moralis.File("metadata.json", {base64: btoa(JSON.stringify(metadata))});
         await metaFile.saveIPFS();
 
         const metaDataHash = metaFile.hash();
         console.log(metaFile.ipfs());
         
-        const res = await Moralis.Plugins.rarible.lazyMint({
+        let res = await Moralis.Plugins.rarible.lazyMint({
             chain: 'rinkeby',
             userAddress: _owner,
             tokenType: 'ERC721',
-            tokenUri: 'ipfs://' + metaDataHash,
+            tokenUri: '/ipfs/' + metaDataHash,
             supply: 1,
             royaltiesAmount: 1,
             list: true, // if lazy listing
@@ -50,6 +51,6 @@ export const useMintNft = () => {
             listAssetClass: 'ETH',
         });
 
-        console.log(res);
+        // console.log(res);
     };
 };
