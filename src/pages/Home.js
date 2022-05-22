@@ -7,7 +7,12 @@ import { useEffect, useState } from "react";
 export const Home = () => {
 
     const { logout, isAuthenticated, isAuthUndefined, authError } = useMoralis();
+    const { initialize, isInitialized } = useMoralis();
 
+    if(!isInitialized) {
+        initialize();
+    }
+    
     const [orgs, setOrgs] = useState([]);
     
     useEffect(() => {

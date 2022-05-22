@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
 import Moralis from "moralis";
-import { useMoralisQuery } from "react-moralis";
+import { useMoralisQuery, useMoralis } from "react-moralis";
 
 export const useOrgData = (org_id) => {
+    
     const [title, setTitle] = useState("")
     const [user, setUser] = useState("")
     const [location, setLocation] = useState("")
@@ -15,7 +16,7 @@ export const useOrgData = (org_id) => {
     const [milestone, setMilestone] = useState([]);
     const [progress, setProgress] = useState([]);
     const [nft,setNft] = useState([])
-    
+
     useEffect(() => {
         const getTokensByChain = async () => {
             const transactionQuery = new Moralis.Query("EthTransactions");

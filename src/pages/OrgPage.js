@@ -10,10 +10,11 @@ import {useRedirect} from "../hooks/useRedirect";
 import { useMoralis } from "react-moralis";
 
 export const OrgPage = () => {
+    
     const params = useParams();
     const org_id = params.id;
     const navigate = useNavigate();
-    const org_data = useOrgData(org_id)
+    const org_data = useOrgData(org_id);
     const checkIfOwner = (Moralis.User?.current()?.id === org_data.owner)
     const [editMode, setEditMode] = useState(false)
     const currentDate = new Date()
@@ -42,13 +43,6 @@ export const OrgPage = () => {
     
     const redirect = useRedirect()
     
-
-    useEffect(() => {
-        const appId = process.env.REACT_APP_APP_ID;
-        const serverUrl = process.env.REACT_APP_SERVER_URL;
-        console.log(appId);
-        Moralis.initialize(appId, serverUrl);
-    }, []);
 
     useEffect(() => {
         const updateMilestone = () => {

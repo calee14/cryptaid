@@ -16,7 +16,14 @@ import { MintNft } from "./pages/MintNft";
 function App() {
 
   const { authenticate, isAuthenticated, isAuthUndefined, authError, logout, user } = useMoralis();
-  const redirect = useRedirect();
+
+  // don't load pages until moralis is initialized
+  const { isInitialized } = useMoralis();
+
+  if(!isInitialized) {
+      return (<></>);
+  }
+  // const redirect = useRedirect();
 
   return (
     <>
