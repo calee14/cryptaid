@@ -54,26 +54,5 @@ export const useMintNft = () => {
             royaltiesAmount: 5, // 0.05% royalty. Optional
           });
         console.log(res);
-        // const rarepress = new Rareterm();
-
-        // await rarepress.init({ host: "https://rinkeby.rarenet.app/v1"}).then(async (address) => {
-        //     console.log(address);
-        //     let token = await rarepress.token.create({
-        //         type: "ERC721",
-        //         contract: address,
-        //         metadata: {
-        //             name: "Title goes here",
-        //             description: "Description goes here",
-        //             image: "/ipfs/" + 'hello',
-        //         },
-        //         user: _owner
-        //     });
-            
-        //     console.log(token);
-        //     // // publish the token itself to Rarible marketplace
-        //     let receipt = await rarepress.token.send(token);
-        //     console.log(receipt);
-        //     console.log('finished');
-        // });
     };
 };
