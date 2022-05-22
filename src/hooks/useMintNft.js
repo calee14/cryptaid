@@ -1,17 +1,15 @@
 import { Moralis } from "moralis";
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
-import Rarepress from 'rarepress.js';
-import Rareterm from 'rareterm';
-
+// import Rarepress from 'rarepress.js';
+// import Rareterm from 'rareterm';
 export const useMintNft = () => {
     
-    const { enableWeb3, isWeb3Enabled, web3 } = useMoralis();
+    const { enableWeb3, isWeb3Enabled, web3, user } = useMoralis();
     
-
     useEffect(() => {
         async function initalize() {
-            await Moralis.initPlugins(); 
+            // await Moralis.initPlugins(); 
         }
 
         initalize();
@@ -25,45 +23,57 @@ export const useMintNft = () => {
     return async function(_owner, _name, _description, _imgData, _supply) {
 
 
-        // const imgFile = new Moralis.File(_imgData.name, _imgData);
-        // await imgFile.saveIPFS();
+        const imgFile = new Moralis.File(_imgData.name, _imgData);
+        await imgFile.saveIPFS();
 
-        // const imgHash = imgFile.hash();
+        const imgHash = imgFile.hash();
 
-        // console.log(_owner);
-        // console.log(imgHash);
-        // console.log(imgFile.ipfs());
-        // console.log('/ipfs/'+imgHash);
+        console.log(_owner);
+        console.log(imgHash);
+        console.log(imgFile.ipfs());
+        console.log('/ipfs/'+imgHash);
 
-        // const metadata = {
-        //     name: _name,
-        //     description: _description,
-        //     image: "/ipfs/" + imgHash,
-        // };
+        const metadata = {
+            name: _name,
+            description: _description,
+            image: "/ipfs/" + imgHash,
+        };
         
-        // const metaFile = new Moralis.File("metadata.json", {base64: btoa(JSON.stringify(metadata))});
-        // await metaFile.saveIPFS();
+        const metaFile = new Moralis.File("metadata.json", {base64: btoa(JSON.stringify(metadata))});
+        await metaFile.saveIPFS();
 
-        // const metaDataHash = metaFile.hash();
-        // console.log(metaFile.ipfs());
-        const rarepress = new Rareterm();
+        const metaDataHash = metaFile.hash();
+        console.log(metaFile.ipfs());
+        console.log(user.get('ethAddress'))
+        const res = await Moralis.Plugins.rarible.lazyMint({
+            chain: 'rinkeby',
+            userAddress: _owner,
+            tokenType: 'ERC721',
+            tokenUri: '/ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp',
+            supply: 2,
+            royaltiesAmount: 5, // 0.05% royalty. Optional
+          });
+        console.log(res);
+        // const rarepress = new Rareterm();
 
-        await rarepress.init({ host: "https://rinkeby.rarenet.app/v1"}).then(async (address) => {
-            console.log(address);
-            let token = await rarepress.token.create({
-                type: "ERC721",
-                metadata: {
-                    name: "Title goes here",
-                    description: "Description goes here",
-                    image: "/ipfs/" + 'hello',
-                }
-            });
+        // await rarepress.init({ host: "https://rinkeby.rarenet.app/v1"}).then(async (address) => {
+        //     console.log(address);
+        //     let token = await rarepress.token.create({
+        //         type: "ERC721",
+        //         contract: address,
+        //         metadata: {
+        //             name: "Title goes here",
+        //             description: "Description goes here",
+        //             image: "/ipfs/" + 'hello',
+        //         },
+        //         user: _owner
+        //     });
             
-            console.log(token);
-            // // publish the token itself to Rarible marketplace
-            let receipt = await rarepress.token.send(token);
-            console.log(receipt);
-            console.log('finished');
-        });
+        //     console.log(token);
+        //     // // publish the token itself to Rarible marketplace
+        //     let receipt = await rarepress.token.send(token);
+        //     console.log(receipt);
+        //     console.log('finished');
+        // });
     };
 };

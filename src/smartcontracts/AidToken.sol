@@ -32,7 +32,7 @@ contract AidToken is ERC721, ERC721Enumerable, ERC721URIStorage {
         return super.supportsInterface(interfaceID);
     }
 
-    constructor() ERC721("Minter", "Mint") { }
+    constructor() ERC721("AidToken", "Aid") { }
 
     function mint(string memory _uri) public payable {
         uint256 mintIndex = totalSupply();
