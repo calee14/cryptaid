@@ -19,12 +19,13 @@ export const useMintNft = () => {
         
     }, [web3, enableWeb3, isWeb3Enabled]);
 
-    return async function(_owner, _name, _description, _imgData, _supply) {
+    return async function(_owner, _name, _description, _imgData, _supply, _price) {
 
         const imgFile = new Moralis.File(_imgData.name, _imgData);
         await imgFile.saveIPFS();
 
         const imgHash = imgFile.hash();
+        const imgLink = imgFile.ipfs();
 
         console.log(_owner);
         console.log(imgHash);
@@ -42,15 +43,32 @@ export const useMintNft = () => {
 
         const metaDataHash = metaFile.hash();
         console.log(metaFile.ipfs());
-        console.log(user.get('ethAddress'))
+
         const res = await Moralis.Plugins.rarible.lazyMint({
             chain: 'rinkeby',
             userAddress: _owner, // make sure same account in browser
             tokenType: 'ERC721',
-            tokenUri: '/ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp',
-            supply: 2,
-            royaltiesAmount: 5, // 0.05% royalty. Optional
-        });
-        return res;
+            tokenUri: '/ipfs/' + metaDataHash,
+            supply: _supply,
+            royaltiesAmount: 5, // 0.05% royalty. Optional,
+            list: true,
+            listTokenAmount: _supply,
+            listTokenValue: Moralis.Units.ETH(_price),
+            listAssetClass: 'ETH',
+        }).catch((err) => {
+            console.log(err);
+            return err;
+        })
+
+        
+        var link = `https://rinkeby.rarible.com/token/${res.triggers[2].params.makeTokenAddress.toLowerCase()}:${res.triggers[2].params.makeTokenId}`;
+
+        // const link = 'https://rinkeby.rarible.com/token/' + res.triggers[2].params.makeTokenAddress + ':' + String(res.triggers[2].params.makeTokenId);
+
+        return {
+            link: link,
+            imgLink: imgLink,
+            nftPrice: _price
+        };
     };
 };

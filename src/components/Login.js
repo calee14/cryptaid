@@ -8,14 +8,14 @@ const Login = () => {
     const [password, setPassword] = useState();
   
     return (
-      <Box width={"45%"}>
+      <Box>
         <Heading size="md">Login</Heading>
         <Spacer my={1}/>
         <Input placeholder="Email" value={email} onChange={(event) => setEmail(event.currentTarget.value)} />
         <Spacer my={1}/>
         <Input placeholder="Password" type="password" value={password} onChange={(event) => setPassword(event.currentTarget.value)} />
         <Spacer my={1}/>
-        <Button onClick={() => login(email, password)}>Login</Button>
+        <Button width='100%' onClick={() => login(email, password)}>Login</Button>
       </Box>
     );
 }

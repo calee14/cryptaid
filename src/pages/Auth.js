@@ -1,5 +1,4 @@
 import { Button, Alert, AlertIcon, Box, AlertTitle, AlertDescription, CloseButton, Container, Flex, Spacer, Heading } from "@chakra-ui/react";
-import SignUp from "../components/SignUp";
 import Login from "../components/Login";
 import { useMoralis } from "react-moralis";
 import { ErrorBox } from "../components/Error";
@@ -20,20 +19,17 @@ export const Auth = () => {
 
     return (
         <>
-        <Box mx={"15rem"} >
+        <Box mx={"25%"} >
             {authError &&
                 <ErrorBox title="Authentication has failed" message={authError.message}/>
             }
-            <Flex>
-                {/* <SignUp /> */}
-                <Spacer/>
-                <Login />
-            </Flex>
+            <Login />
             <Spacer my={5}/>
             <Heading size="md">Authenticate with Metamask</Heading>
             <Spacer my={1}/>
-            <Button isLoading={isAuthenticating} onClick={() => authenticate()}>Authenticate</Button>
-        
+            <Flex>
+                <Button width='100%' isLoading={isAuthenticating} onClick={() => authenticate()}>Authenticate</Button>
+            </Flex>
         </Box>
         </>
     );

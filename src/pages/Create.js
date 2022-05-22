@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Spacer, Input, NumberInput, NumberInputField, Center, Flex, InputGroup, InputRightElement } from "@chakra-ui/react";
+import { Box, VStack, Button, Heading, Spacer, Stack, Input, NumberInput, NumberInputField, Center, Flex, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis"
 import { React, useState } from "react";
 import Moralis from "moralis";
@@ -12,7 +12,7 @@ export const Create = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
-    const [imgUrl, setImgUrl] = useState("");
+    const [imgUrl, setImgUrl] = useState("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png");
     const [goal, setGoal] = useState(0.0);
     const [ethAddress, setEthAddress] = useState("");
 
@@ -39,6 +39,7 @@ export const Create = () => {
                 org.set('deadline', date)
                 org.set("milestone", [])
                 org.set("progress", [])
+                org.set("nft", [])
                 await org.save()
                 redirect("/")
             } else {
@@ -60,15 +61,33 @@ export const Create = () => {
         return true;
     }
 
+    const onChange = (e) => {       //copied code from https://codesandbox.io/s/wonderful-pine-i7fs3?file=/src/Demo.tsx:439-784
+        e.preventDefault();
+        let files;
+        if (e.dataTransfer) {
+          files = e.dataTransfer.files;
+        } else if (e.target) {
+          files = e.target.files;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+          setImgUrl(reader.result);
+        };
+        reader.readAsDataURL(files[0]);
+        console.log(files[0])
+    };
+
     return (
-        <div>
-            <Center>
+        <Box mx="15%">
+            <Heading size="md">Create Organization</Heading>
+            <Spacer my={3}/>
+            <Stack direction='row' spacing='24px'>
+                <img alt="error" style={{maxWidth:"45%", maxHeight:350, objectFit:"contain"}} src={imgUrl}/>
                 <Box width={"75%"}>
-                    <Heading size="md">Create Organization</Heading>
                     <Spacer my={1}/>
 
                     <InputGroup>
-                        <Input placeholder="Title" value={title} onChange={(event) => setTitle(event.currentTarget.value)} />
+                        <Input placeholder="Title" onChange={(event) => setTitle(event.currentTarget.value)} />
                         <InputRightElement
                         children={"*"}
                         color="red"
@@ -76,23 +95,25 @@ export const Create = () => {
                     </InputGroup>
 
                     <Spacer my={1}/>
-                    <Input placeholder="Description" value={description} onChange={(event) => setDescription(event.currentTarget.value)} />
+                    <Input placeholder="Description" onChange={(event) => setDescription(event.currentTarget.value)} />
                     <Spacer my={1}/>
-                    <Input placeholder="Location" value={location} onChange={(event) => setLocation(event.currentTarget.value)} />
+                    <Input placeholder="Location" onChange={(event) => setLocation(event.currentTarget.value)} />
                     <Spacer my={1}/>
 
                     <InputGroup>
-                        <Input placeholder="Image URL" value={imgUrl} onChange={(event) => setImgUrl(event.currentTarget.value)} />
+                    <Input width="100%" type="file" onChange={onChange}/>
                         <InputRightElement
                         children={"*"}
                         color="red"
                         />
                     </InputGroup>
 
+                    
+
                     <Spacer my={1}/>
 
                     <InputGroup>
-                        <Input placeholder="Eth Address" value={ethAddress} onChange={(event) => setEthAddress(event.currentTarget.value)} />
+                        <Input placeholder="Eth Address" onChange={(event) => setEthAddress(event.currentTarget.value)} />
                         <InputRightElement
                         children={"*"}
                         color="red"
@@ -112,32 +133,6 @@ export const Create = () => {
                         />
                         </NumberInput>
                     </InputGroup>
-                    
-                    {/* <label for="deadline">Deadline</label>
-
-                    <Stack shouldWrapChildren direction='row' id ="deadline">
-                        <Stack direction='column'>
-                       <label for="month">Month</label>
-                        <NumberInput id="month" maxW={20} defaultValue={deadline.getMonth()+1} min={1} max={12}>
-                            <NumberInputField />
-                        </NumberInput>
-                        </Stack>
-
-                        <Stack direction='column'>
-                        <label for="day">Day</label>
-                        <NumberInput id="day" maxW={20} defaultValue={deadline.getDate()} min={0} max={31}>
-                            <NumberInputField />
-                        </NumberInput>
-                        </Stack>
-
-                        <Stack direction='column'>
-                        <label for="year">Year</label> 
-                        <NumberInput id="year" maxW={32} defaultValue={deadline.getFullYear()} min={deadline.getFullYear()}>
-                            <NumberInputField />
-                        </NumberInput>
-                        </Stack>
-
-                    </Stack> */}
 
                     <Spacer my={1}/>
                     <Flex>
@@ -147,7 +142,7 @@ export const Create = () => {
                         <Button onClick={() => logout()}>Logout</Button>
                     }</Flex>
                 </Box>
-            </Center>
-        </div>
+            </Stack>
+        </Box>
     );
 };
