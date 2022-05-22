@@ -12,6 +12,8 @@ export const useOrgData = (org_id) => {
     const [description, setDescription] = useState("");
     const [ethAddress, setEthAddress] = useState("");
     const [deadline, setDeadline] = useState();
+    const [milestone, setMilestone] = useState([]);
+    const [progress, setProgress] = useState([]);
     
     useEffect(() => {
         const getTokensByChain = async () => {
@@ -50,6 +52,8 @@ export const useOrgData = (org_id) => {
                         setDescription(org[0].get("description"))
                         setEthAddress(org[0].get("ethAddress"))
                         setDeadline(org[0].get("deadline"))
+                        setMilestone(org[0].get("milestone"))
+                        setProgress(org[0].get("progress"))
                     }
                 }
             },
@@ -60,25 +64,24 @@ export const useOrgData = (org_id) => {
     };
 
     useEffect(() => {
-        console.log(objectIdQuery())
+        objectIdQuery()
       }, [useMoralisQuery]);
     
 
     const org_data = {
         id: org_id,
         owner: user,
-        deadline: "5/31/22",
+        deadline: deadline,
         title: title,
         description: description,
         location: location,
         links: ["insta", "snap", "facebook"],
-        progress: [true,true, false],
-        milestone: ["pick up trash in ocean", "save turties injured by human trash", "Clean beaches for turtle's mating season"],
+        progress: progress,
+        milestone: milestone,
         imgUrl: imgUrl,
         donated: donated,
         goal: goal,
         ethAddress: ethAddress,
-        deadline: deadline
     }
     return org_data
 }

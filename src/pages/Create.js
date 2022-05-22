@@ -37,7 +37,8 @@ export const Create = () => {
                 org.set('user', Moralis.User.current().id)
                 org.set('ethAddress', ethAddress)
                 org.set('deadline', date)
-
+                org.set("milestone", [])
+                org.set("progress", [])
                 await org.save()
                 redirect("/")
             } else {
