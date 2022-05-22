@@ -7,6 +7,7 @@ import { NftCard } from "../components/NftCard";
 import { useState, useEffect } from "react";
 import Moralis from "moralis";
 import {useRedirect} from "../hooks/useRedirect";
+import { useMoralis } from "react-moralis";
 
 export const OrgPage = () => {
     const params = useParams();
@@ -43,6 +44,13 @@ export const OrgPage = () => {
     
 
     useEffect(() => {
+        const appId = process.env.REACT_APP_APP_ID;
+        const serverUrl = process.env.REACT_APP_SERVER_URL;
+        console.log(appId);
+        Moralis.initialize(appId, serverUrl);
+    }, []);
+
+    useEffect(() => {
         const updateMilestone = () => {
             let result = [input1, input2, input3, input4, input5]
             setMilestone(result)
@@ -76,6 +84,7 @@ export const OrgPage = () => {
         setCompleted4(org_data.progress[3])
         setCompleted5(org_data.progress[4])
     }, [editMode]);
+    
 
     const updateOrganization = async () => {
         const organization= Moralis.Object.extend("Organization");
@@ -98,8 +107,6 @@ export const OrgPage = () => {
         }
         org.set("milestone", newMilestone)
         org.set("progress", newProgress)
-        console.log(title)
-        console.log(org)
         org.save();
     }
 
@@ -290,9 +297,10 @@ export const OrgPage = () => {
                     {/* another donate button */}
                     <Spacer my={3}/>
                     {/* button will route to donate page passing the org id */}
-                    {Moralis.User?.current()?.id? <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate")}>
+                    {Moralis.User?.current()?.id? <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate", { state: { org_id: org_id} })}>
                         Donate Now
-                    </Button>: <Button width={"50%"}>Login to Donate</Button>}
+                    </Button>: 
+                    <Button width={"50%"}>Login to Donate</Button>}
                     {/* organization socials */}
                     <Center height={5} >
                         <Divider orientation="horizontal"/>
@@ -309,6 +317,8 @@ export const OrgPage = () => {
                         })}
                     </List>
                     <Spacer my={5}/>
+                    {editMode?<Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/mint", { state: { org_id: org_id} })}>Mint NFTs</Button>:""}
+                    <Spacer my={5}/>
                     <Flex>
                     {editMode?<Button leftIcon={<DeleteIcon />} onClick={() => deleteOrgData()}colorScheme='red' variant='solid'>
                         Delete
@@ -324,21 +334,14 @@ export const OrgPage = () => {
                     <Container>
                     <Heading>{org_data.title} Collectible NFTs</Heading>
                     </Container>
-                    
+                    <Spacer my={5}/>
                     <Flex justifyContent="center">
                     
-                    <Grid templateColumns={'repeat(1, 1fr)'} gap={6}>
-                        <GridItem>
-                            <NftCard/>
-                            <Spacer my={5}/>
-                            <NftCard/>
-                            <Spacer my={5}/>
-                            <NftCard/>
-                            <Spacer my={5}/>
-                            <NftCard/>
-                            <Spacer my={5}/>
-                        </GridItem>
-                        
+                    <Grid templateColumns={'repeat(1, 1fr)'} rowGap={5}>
+                        {org_data.nft.length > 0 ? org_data.nft.map((props) => {
+                            return (<NftCard {...props} />)
+                            
+                        }) : <Text>No NFTs from this organization at the moment...</Text>}
                     </Grid>
                     </Flex>
                 </Box>

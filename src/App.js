@@ -11,6 +11,7 @@ import { Create } from "./pages/Create";
 import { Footer } from "./components/Footer";
 import { OrgPage } from "./pages/OrgPage";
 import { Donate } from "./pages/Donate";
+import { MintNft } from "./pages/MintNft";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/create" element={<Create/>} exact/>
         <Route path="/organization/:id" element={<OrgPage/>} exact/>
         <Route path="/organization/:id/donate" element={<Donate/>} exact />
+        <Route path="/organization/:id/mint" element={<MintNft/>} exact/>
       </Routes> : 
         // routes for when the user is not logged in
         <Routes>

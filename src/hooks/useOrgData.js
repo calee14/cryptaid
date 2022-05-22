@@ -14,6 +14,7 @@ export const useOrgData = (org_id) => {
     const [deadline, setDeadline] = useState();
     const [milestone, setMilestone] = useState([]);
     const [progress, setProgress] = useState([]);
+    const [nft,setNft] = useState([])
     
     useEffect(() => {
         const getTokensByChain = async () => {
@@ -47,13 +48,13 @@ export const useOrgData = (org_id) => {
                         setUser(org[0].get("user"))
                         setLocation(org[0].get("location"))
                         setImgUrl(org[0].get("imgUrl"))
-                        // setDonated(org[0].get("donated"))
                         setGoal(org[0].get("goal"))
                         setDescription(org[0].get("description"))
                         setEthAddress(org[0].get("ethAddress"))
                         setDeadline(org[0].get("deadline"))
                         setMilestone(org[0].get("milestone"))
                         setProgress(org[0].get("progress"))
+                        setNft(org[0].get("nft"))
                     }
                 }
             },
@@ -82,6 +83,7 @@ export const useOrgData = (org_id) => {
         donated: donated,
         goal: goal,
         ethAddress: ethAddress,
+        nft: nft,
     }
     return org_data
 }

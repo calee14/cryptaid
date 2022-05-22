@@ -24,7 +24,7 @@ export const Profile = () => {
     };
 
     return (
-        <Box mx={"15rem"}>
+        <Box mx={"25%"}>
             <Stack spacing={3}>
                 {userError && 
                     <ErrorBox title="User update failed" message={userError.message} />
@@ -48,6 +48,7 @@ export const Profile = () => {
                 </Box>
                 <Button onClick={handleSave} isLoading={isUserUpdating}>Save changes</Button>
             </Stack>
+            <Heading>Your NFTs</Heading>
         </Box>
     );
 }
