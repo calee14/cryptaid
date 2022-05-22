@@ -13,6 +13,7 @@ export const MintNft = () => {
     const { org_id } = state;
     const [selectedFile, setSelectedFile] = useState();
     const [isFilePicked, setIsFilePicked] = useState(false);
+    const [minting, setMinting] = useState(false);
     const navigate = useNavigate();
     const mint = useMintNft();
     
@@ -27,8 +28,10 @@ export const MintNft = () => {
 
     const handleMint = async (e) => {
         e.preventDefault();
-        
+
+        setMinting(true);
         await mint(org_data.ethAddress, 'name', 'desc', selectedFile, 1);
+        setMinting(false);
     }
 
     return (
@@ -39,7 +42,7 @@ export const MintNft = () => {
             <Input placeholder="Description"/>
             <Text>{selectedFile?.name}</Text>
             <input type={'file'} name={'file'} onChange={selectHandler}/>
-            <Button onClick={handleMint}>Mint Nft</Button>
+            <Button onClick={handleMint} isLoading={minting}>Mint Nft</Button>
         </Container>
     );
 };

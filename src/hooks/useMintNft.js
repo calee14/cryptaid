@@ -1,15 +1,14 @@
 import { Moralis } from "moralis";
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
-// import Rarepress from 'rarepress.js';
-// import Rareterm from 'rareterm';
+
 export const useMintNft = () => {
     
     const { enableWeb3, isWeb3Enabled, web3, user } = useMoralis();
     
     useEffect(() => {
         async function initalize() {
-            // await Moralis.initPlugins(); 
+            await Moralis.initPlugins(); 
         }
 
         initalize();
@@ -21,7 +20,6 @@ export const useMintNft = () => {
     }, [web3, enableWeb3, isWeb3Enabled]);
 
     return async function(_owner, _name, _description, _imgData, _supply) {
-
 
         const imgFile = new Moralis.File(_imgData.name, _imgData);
         await imgFile.saveIPFS();
@@ -47,12 +45,12 @@ export const useMintNft = () => {
         console.log(user.get('ethAddress'))
         const res = await Moralis.Plugins.rarible.lazyMint({
             chain: 'rinkeby',
-            userAddress: _owner,
+            userAddress: _owner, // make sure same account in browser
             tokenType: 'ERC721',
             tokenUri: '/ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp',
             supply: 2,
             royaltiesAmount: 5, // 0.05% royalty. Optional
-          });
-        console.log(res);
+        });
+        return res;
     };
 };

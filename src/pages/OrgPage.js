@@ -1,13 +1,12 @@
-import { CheckCircleIcon, SettingsIcon } from "@chakra-ui/icons";
-import { Box, Button, Input, InputRightElement, InputGroup, Center, Divider, Heading, Image, Checkbox,  Stack, NumberInput, NumberInputField, Spacer, Text, Flex, Progress, List, ListItem, ListIcon, Grid, GridItem, Container } from "@chakra-ui/react";
+import { CheckCircleIcon, SettingsIcon, CheckIcon, EditIcon, CloseIcon, DeleteIcon } from "@chakra-ui/icons";
+import { Box, Button, Input, InputGroup, InputRightElement, Center, Divider, Heading, Image, Stack, NumberInput, NumberInputField, Spacer, Text, Flex, Progress, List, ListItem, ListIcon, Grid, GridItem, Container } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useOrgData } from "../hooks/useOrgData";
 import { NftCard } from "../components/NftCard";
-import { EditIcon, CloseIcon } from '@chakra-ui/icons'
 import { useState, useEffect } from "react";
 import Moralis from "moralis";
-import MilestoneInputs from "../components/MilestoneInputs";
+import {useRedirect} from "../hooks/useRedirect";
 
 export const OrgPage = () => {
     const params = useParams();
@@ -18,9 +17,109 @@ export const OrgPage = () => {
     const [editMode, setEditMode] = useState(false)
     const currentDate = new Date()
 
-    const [milestone, setMilestone] = useState(org_data.milestone);
-    const [numMilestone,setNumMilestone] = useState(org_data.milestone.length)
-    const [milestoneProgress, setMilestoneProgress] = useState(org_data.progress)
+    const [completed1,setCompleted1] = useState()
+    const [completed2,setCompleted2] = useState()
+    const [completed3,setCompleted3] = useState()
+    const [completed4,setCompleted4] = useState()
+    const [completed5,setCompleted5] = useState()
+    
+    const [input1,setInput1] = useState()
+    const [input2,setInput2] = useState()
+    const [input3,setInput3] = useState()
+    const [input4,setInput4] = useState()
+    const [input5,setInput5] = useState()
+    
+    const [milestone, setMilestone] = useState();
+    const [numMilestone,setNumMilestone] = useState()
+    const [milestoneProgress, setMilestoneProgress] = useState()
+
+    const [title, setTitle] = useState()
+    const [description, setDescription] = useState()
+    const [month, setMonth] = useState()
+    const [date, setDate] = useState()
+    const [year, setYear] = useState()
+    
+    const redirect = useRedirect()
+    
+
+    useEffect(() => {
+        const updateMilestone = () => {
+            let result = [input1, input2, input3, input4, input5]
+            setMilestone(result)
+        }
+        updateMilestone();
+    }, [input1, input2, input3, input4, input5]);
+
+
+    useEffect(() => {
+        const updateCheckbox = () => {
+            let result = [completed1, completed2, completed3, completed4, completed5]
+            setMilestoneProgress(result)
+        }
+        updateCheckbox();
+    }, [completed1, completed2, completed3, completed4, completed5]);
+
+    useEffect(() => {
+        setMilestone(org_data.milestone)
+        setNumMilestone(org_data.milestone.length)
+        setMilestoneProgress(org_data.progress)
+        setTitle(org_data.title)
+        setDescription(org_data.description)
+
+        setMonth(org_data.deadline?.getMonth()+1)
+        setDate(org_data.deadline?.getDate())
+        setYear(org_data.deadline?.getFullYear())
+
+        setCompleted1(org_data.progress[0])
+        setCompleted2(org_data.progress[1])
+        setCompleted3(org_data.progress[2])
+        setCompleted4(org_data.progress[3])
+        setCompleted5(org_data.progress[4])
+    }, [editMode]);
+
+    const updateOrganization = async () => {
+        const organization= Moralis.Object.extend("Organization");
+        const query = new Moralis.Query(organization);
+        query.equalTo("objectId", org_id);
+        const org = await query.first()
+        
+        let newMilestone = []
+        let newProgress = []
+        org.set("title", title)
+        org.set("description", description)
+        const newDate = new Date();
+        newDate.setMonth(month-1)
+        newDate.setDate(date)
+        newDate.setYear(year)
+        org.set("deadline", newDate)
+        for(let i = 0; i < numMilestone; i++) {
+            newMilestone.push(milestone[i])
+            newProgress.push(milestoneProgress[i])
+        }
+        org.set("milestone", newMilestone)
+        org.set("progress", newProgress)
+        console.log(title)
+        console.log(org)
+        org.save();
+    }
+
+    const removeOrganization = async () => {
+        const organization= Moralis.Object.extend("Organization");
+        const query = new Moralis.Query(organization);
+        query.equalTo("objectId", org_id);
+        const org = await query.first()
+        org.destroy();
+    }
+
+    const saveOrgData = () => {
+        updateOrganization();
+        redirect("/")
+    }
+
+    const deleteOrgData = () => {
+        removeOrganization()
+        redirect("/")
+    }
     
     return (
         <Box mx={'10%'}>
@@ -30,12 +129,12 @@ export const OrgPage = () => {
                     {/* organiztaion's title, img, progress, and donate button */}
                     
                     <Flex>
-                    {editMode?<Input defaultValue={org_data.title}/>:<Heading>{org_data.title}</Heading>}
+                    {editMode?<Input defaultValue={org_data.title} onChange={(event)=>setTitle(event.target.value)}/>:<Heading>{org_data.title}</Heading>}
                     <Spacer/>
                     {checkIfOwner && !editMode?<Button leftIcon={<EditIcon />} colorScheme='teal' onClick={() => setEditMode(true)} variant='solid'>
                         Edit
                     </Button>: ""}
-                    {editMode?<Button leftIcon={<CloseIcon />} colorScheme='red' onClick={() => setEditMode(false)} variant='solid'>
+                    {editMode?<Button leftIcon={<CloseIcon />} colorScheme='blackAlpha' onClick={() => setEditMode(false)} variant='solid'>
                         Cancel
                     </Button>: ""}
                     </Flex>
@@ -61,15 +160,15 @@ export const OrgPage = () => {
                     {editMode? 
                     <Stack shouldWrapChildren direction='row'>
                         <Text fontSize={"2xl"} >Deadline: </Text>
-                        <NumberInput maxW={20} defaultValue={org_data.deadline.getMonth()+1} min={1} max={12}>
+                        <NumberInput maxW={20} defaultValue={org_data.deadline.getMonth()+1} onChange={(event)=>setMonth(event)} min={1} max={12}>
                             <NumberInputField />
                         </NumberInput>
 
-                        <NumberInput maxW={20} defaultValue={org_data.deadline.getDate()} min={1} max={31}>
+                        <NumberInput maxW={20} defaultValue={org_data.deadline.getDate()} onChange={(event)=>setDate(event)} min={1} max={31}>
                             <NumberInputField />
                         </NumberInput>
 
-                        <NumberInput maxW={32} defaultValue={org_data.deadline.getFullYear()} min={currentDate.getFullYear()} >
+                        <NumberInput maxW={32} defaultValue={org_data.deadline.getFullYear()} onChange={(event)=>setYear(event)} min={currentDate.getFullYear()} >
                             <NumberInputField />
                         </NumberInput>
                     </Stack>: ""}
@@ -85,7 +184,7 @@ export const OrgPage = () => {
                     </Center>
 
                     
-                    {editMode? <Input defaultValue={org_data.description}/> : <Text fontWeight={"medium"}>{org_data.description}</Text>}
+                    {editMode? <Input defaultValue={org_data.description} onChange={(event) => setDescription(event.target.value)}/> : <Text fontWeight={"medium"}>{org_data.description}</Text>}
                     {/* organization milstones */}
                     <Center height={5} >
                         <Divider orientation="horizontal"/>
@@ -93,13 +192,90 @@ export const OrgPage = () => {
                     {editMode && numMilestone===5?<Button isDisabled={true}>Add Milestone</Button>:""}
                     {editMode && numMilestone<5?<Button onClick={() => setNumMilestone(numMilestone+1)}>Add Milestone</Button>: ""}
                     {editMode && numMilestone>0?<Button onClick={() => setNumMilestone(numMilestone-1)}>Remove Milestone</Button>: ""}
-                    {editMode? <MilestoneInputs num={numMilestone} milestone={milestone} setMilestone={setMilestone} milestoneProgress={milestoneProgress} setMilestoneProgress={setMilestoneProgress}/>:""}
+                    {editMode&&numMilestone>=1?<InputGroup size='md'>
+                        <Input
+                            pr='4.5rem'
+                            defaultValue={org_data.milestone[0]}
+                            placeholder="Add milestone here"
+                            onChange={(event)=>setInput1(event.target.value)}
+                        />                        
+                        <InputRightElement width='6rem'>
+                            <Button h='1.75rem' size='sm' onClick={()=>setCompleted1(!completed1)} colorScheme={completed1? "green" : "gray"}>
+                            {completed1 ? 'Completed' : 'Incompleted'}
+                            </Button>
+                        </InputRightElement>
+                        </InputGroup>
+                    :""}
+
+                    
+                    {editMode&&numMilestone>=2?<InputGroup size='md'>
+                        <Input
+                            pr='4.5rem'
+                            defaultValue={org_data.milestone[1]}
+                            placeholder="Add milestone here"
+                            onChange={(event)=>setInput2(event.target.value)}
+                        />                        
+                        <InputRightElement width='6rem'>
+                            <Button h='1.75rem' size='sm' onClick={()=>setCompleted2(!completed2)} colorScheme={completed2? "green" : "gray"}>
+                            {completed2 ? 'Completed' : 'Incompleted'}
+                            </Button>
+                        </InputRightElement>
+                        </InputGroup>
+                    :""}
+
+                    
+                    {editMode&&numMilestone>=3?<InputGroup size='md'>
+                        <Input
+                            pr='4.5rem'
+                            defaultValue={org_data.milestone[2]}
+                            placeholder="Add milestone here"
+                            onChange={(event)=>setInput3(event.target.value)}
+                        />                        
+                        <InputRightElement width='6rem'>
+                            <Button h='1.75rem' size='sm' onClick={()=>setCompleted3(!completed3)} colorScheme={completed3? "green" : "gray"}>
+                            {completed3 ? 'Completed' : 'Incompleted'}
+                            </Button>
+                        </InputRightElement>
+                        </InputGroup>
+                    :""}
+
+                    
+                    {editMode&&numMilestone>=4?<InputGroup size='md'>
+                        <Input
+                            pr='4.5rem'
+                            defaultValue={org_data.milestone[3]}
+                            placeholder="Add milestone here"
+                            onChange={(event)=>setInput4(event.target.value)}
+                        />                        
+                        <InputRightElement width='6rem'>
+                            <Button h='1.75rem' size='sm' onClick={()=>setCompleted4(!completed4)} colorScheme={completed4? "green" : "gray"}>
+                            {completed4 ? 'Completed' : 'Incompleted'}
+                            </Button>
+                        </InputRightElement>
+                        </InputGroup>
+                    :""}
+
+                    
+                    {editMode&&numMilestone>=5?<InputGroup size='md'>
+                        <Input
+                            pr='4.5rem'
+                            defaultValue={org_data.milestone[4]}
+                            placeholder="Add milestone here"
+                            onChange={(event)=>setInput5(event.target.value)}
+                        />                        
+                        <InputRightElement width='6rem'>
+                            <Button h='1.75rem' size='sm' onClick={()=>setCompleted5(!completed5)} colorScheme={completed5? "green" : "gray"}>
+                            {completed5 ? 'Completed' : 'Incompleted'}
+                            </Button>
+                        </InputRightElement>
+                        </InputGroup>
+                    :""}
 
 
                     {!editMode?<Heading fontSize="lg">Milestones:</Heading>:""}
                     <Spacer my={2}/>
                     {!editMode?<List spacing={3}>
-                        {org_data.milestone.map((ms, i) => {
+                        {org_data.milestone?.map((ms, i) => {
                             return (
                             <ListItem>
                                 <ListIcon as={org_data.progress[i] ? CheckCircleIcon : SettingsIcon} color={org_data.progress[i]? "green.500" : "gray.600"}/>
@@ -133,7 +309,18 @@ export const OrgPage = () => {
                             );
                         })}
                     </List>
+                    <Spacer my={5}/>
                     <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/mint", { state: { org_id: org_id} })}>Mint NFTs</Button>
+                    <Spacer my={5}/>
+                    <Flex>
+                    {editMode?<Button leftIcon={<DeleteIcon />} onClick={() => deleteOrgData()}colorScheme='red' variant='solid'>
+                        Delete
+                    </Button>: ""}
+                    <Spacer/>
+                    {editMode?<Button leftIcon={<CheckIcon />} onClick={() => saveOrgData()} colorScheme='blue' variant='solid'>
+                        Submit
+                    </Button>: ""}
+                    </Flex>
                 </Box>
                 {/* put component to sell nfts here */}
                 <Box rounded={5} backgroundColor={"gray.50"} flex={1} height={'65rem'} overflow={'scroll'}>
