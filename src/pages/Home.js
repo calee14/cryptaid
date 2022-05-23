@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, SimpleGrid, Text, Spacer } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis"
 import { OrgCard } from "../components/OrgCard";
 import {Moralis} from "moralis"
@@ -17,7 +17,7 @@ export const Home = () => {
     
     useEffect(() => {
         const getTokensByChain = async () => {
-            const orgQuery = new Moralis.Query("Organization");
+            const orgQuery = new Moralis.Query("Organization", { useMasterKey: true });
             const tokens = await orgQuery.find({ useMasterKey: true });
             const resultArray = [];
             tokens.map((props)=>{
@@ -40,17 +40,14 @@ export const Home = () => {
 
     
     return (
-        <Container mx={"15rem"}>
-            {isAuthenticated && 
-                <Button onClick={() => logout()}>Logout</Button>
-            }
-            <Grid templateColumns={"repeat(3, 1fr)"} columnGap={10} rowGap={5}>
+        <Box mx={"5rem"}>
+            <SimpleGrid minChildWidth="15rem" spacing="1rem">
 
             {orgs.length > 0 ? orgs.map((props) => {
                 return (<OrgCard {...props} />)
                 
             }) : <Text>No organizations at the moment</Text>}
-            </Grid>
-        </Container>
+            </SimpleGrid>
+        </Box>
     );
 }

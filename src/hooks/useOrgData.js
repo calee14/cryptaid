@@ -19,7 +19,7 @@ export const useOrgData = (org_id) => {
 
     useEffect(() => {
         const getTokensByChain = async () => {
-            const transactionQuery = new Moralis.Query("EthTransactions");
+            const transactionQuery = new Moralis.Query("EthTransactions", { useMasterKey: true });
             const tokens = await transactionQuery.find({ useMasterKey: true });
             let result = 0;
             tokens.map((props)=>{
@@ -77,7 +77,7 @@ export const useOrgData = (org_id) => {
         title: title,
         description: description,
         location: location,
-        links: ["insta", "snap", "facebook"],
+        links: [],
         progress: progress,
         milestone: milestone,
         imgUrl: imgUrl,

@@ -1,12 +1,12 @@
 import { useLocation, useNavigate } from "react-router";
 import { useTransferEth } from "../hooks/useTransferEth";
 import { ErrorBox } from "../components/Error";
-import { Button, Container, Heading, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react";
+import { Button, Container, Spacer, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { ArrowLeftIcon } from "@chakra-ui/icons";
 import { useOrgData } from "../hooks/useOrgData";
 
-export const Donate = (props) => {
+export const Donate = () => {
     const { state } = useLocation();
     const { org_id } = state;
     const [amount, setAmount] = useState();
@@ -28,7 +28,9 @@ export const Donate = (props) => {
             {error && <ErrorBox title={"Error transferring Eth"}  message={error.message}/>}
 
             <Button onClick={() => navigate(-1)}><ArrowLeftIcon/>Organization Page</Button>
+            <Spacer my={5}/>
             <Text fontSize={'xl'}>Donating to <b>{org_data.title}</b></Text>
+            <Spacer my={5}/>
             <Text fontWeight={'medium'}>Enter your donation amount:</Text>
             <InputGroup>
                 <InputLeftElement

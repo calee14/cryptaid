@@ -54,22 +54,14 @@ export const MintNft = () => {
     const handleMint = async (e) => {
         e.preventDefault();
 
-        if(parseFloat(price)) {
+        if(parseFloat(price) && isFilePicked) {
             setMinting(true);
-
-            console.log('parsing stuff here')
-            console.log(parseFloat(price));
-            console.log(Moralis.Units.ETH(price))
             const nftData = await mint(org_data.ethAddress, name, description, selectedFile, 1, parseFloat(price));
             
             updateOrganization(nftData)
-
-            // console.log(link);
-            // console.log('printing stuff');
-            // console.log(imgUri);
-            // console.log(nftPrice);
-            // setMinting(false);
             redirect(-1);
+        } else {
+            alert("Please pick an image file and enter a price")
         }
     }
 

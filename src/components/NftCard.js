@@ -5,7 +5,7 @@ export const NftCard = (props) => {
         <Box boxShadow={'md'} width={"17rem"} height={"26rem"} backgroundColor="white" rounded={13}>
             <Image width={'100%'} height={"80%"} objectFit={"cover"} position={"relative"} roundedTop={13} src={props.imgLink}/>
             <Flex padding={5}>
-                <a href={props.link.toLowerCase()}>
+                <a href={props.link.toLowerCase()} target="_blank">
                 <Button>Buy Now</Button>
                 </a>
                 <Spacer/>
