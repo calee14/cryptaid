@@ -12,6 +12,7 @@ import { Footer } from "./components/Footer";
 import { OrgPage } from "./pages/OrgPage";
 import { Donate } from "./pages/Donate";
 import { MintNft } from "./pages/MintNft";
+import { About } from "./pages/About";
 
 function App() {
 
@@ -32,14 +33,16 @@ function App() {
         <Route path="/organization/:id" element={<OrgPage/>} exact/>
         <Route path="/organization/:id/donate" element={<Donate/>} exact />
         <Route path="/organization/:id/mint" element={<MintNft/>} exact/>
+        <Route path="/about" element={<About/>} exact/>
       </Routes> : 
         // routes for when the user is not logged in
-        <Routes>
-          <Route path="/" element={<Home/>} exact/>
-          <Route path="/auth" element={<Auth/>} exact/>
-          <Route path="/organization/:id" element={<OrgPage/>} exact/>
-          <Route path="/profile" element={<Profile/>} exact/>
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Home/>} exact/>
+        <Route path="/auth" element={<Auth/>} exact/>
+        <Route path="/organization/:id" element={<OrgPage/>} exact/>
+        <Route path="/about" element={<About/>} exact/>
+        <Route path="/profile" element={<Profile/>} exact/>
+      </Routes>
       }
     </Box>
     <Spacer my={10}/>

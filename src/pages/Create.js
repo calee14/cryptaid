@@ -136,11 +136,9 @@ export const Create = () => {
 
                     <Spacer my={1}/>
                     <Flex>
-                    <Button onClick={() => defineNewObj()}>Submit</Button>
-                    <Spacer/>
-                    {isAuthenticated && 
-                        <Button onClick={() => logout()}>Logout</Button>
-                    }</Flex>
+                        <Button onClick={() => defineNewObj()}>Submit</Button>
+                        <Spacer/>
+                    </Flex>
                 </Box>
             </Stack>
         </Box>

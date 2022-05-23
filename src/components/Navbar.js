@@ -7,102 +7,106 @@ import { useIsMobile } from "../hooks/useIsMobile";
 
 
 export const Navbar = () => {
-    const { isAuthenticated, user } = useMoralis();
+    const { isAuthenticated, user, logout } = useMoralis();
     const [display, changeDisplay] = useState('none')
     const isMobile = useIsMobile();
 
     return (
-        // <Flex my={6}>
-        //     <Link to="/"><Heading>Home</Heading></Link>
-        //     <Spacer/>
-        //     {isAuthenticated && <Link to="/profile"><Avatar name={user.attributes.username}/></Link>}
-        // </Flex>
         <Box position={"relative"}>
-        <Flex paddingX={"1rem"} align="center">
+            <Flex paddingX={"1rem"} align="center">
 
-            {/* Desktop */}
-            
-            <Flex width={"100%"} align="center">
-                <Link to="/">
-                    <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
-                        Cryptaid
-                    </Button>
-                </Link>
-
-                <Link to="/">
-                    <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
-                        Home
-                    </Button>
-                </Link>
+                {/* Desktop */}
                 
-                <Spacer />
-                {!isMobile && (
-                <Flex gap={3} align="center"> 
-                    <Link to="/create"><Button>Create<AddIcon ml={"0.5rem"} boxSize={"0.9rem"}/></Button></Link>
-                    {isAuthenticated ? 
-                    <Link to="/profile"><Avatar name={user.attributes.username} /></Link> 
-                    : <Link to="/auth"><Button>Auth</Button></Link>}
+                <Flex width={"100%"} align="center">
+                    <Link to="/">
+                        <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
+                            Cryptaid
+                        </Button>
+                    </Link>
+                    <Link to="/about">
+                        <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
+                            About
+                        </Button>
+                    </Link>
+                    
+                    <Spacer />
+                    {!isMobile && (
+                    <Flex gap={3} align="center"> 
+                        <Link to="/create">
+                            <Button>Create<AddIcon ml={"0.5rem"} boxSize={"0.9rem"}/></Button>
+                        </Link>
+                        {isAuthenticated ? 
+                        <Link to="/profile"><Avatar name={user.attributes.username} /></Link> 
+                        : <Link to="/auth"><Button>Auth</Button></Link>}
+                    </Flex>
+                    )}
                 </Flex>
-                )}
-            </Flex>
-            
+                
 
-            {/* Mobile */}
-            {isMobile && (
-            <IconButton
-                aria-label="Open Menu"
-                size="lg"
-                mr={2}
-                icon={<HamburgerIcon />}
-                onClick={() => changeDisplay('flex')}
-            />
-            )}
-        </Flex>
-
-        {/* Mobile Content */}
-        
-        <Flex
-            w="100vw"
-            display={display}
-            bgColor="gray.50"
-            zIndex={20}
-            h="100vh"
-            pos="fixed"
-            top="0"
-            left="0"
-            overflowY="auto"
-            flexDir="column"
-        >
-            <Flex justify="flex-end">
+                {/* Mobile */}
+                {isMobile && (
                 <IconButton
-                    mt={2}
-                    mr={2}
                     aria-label="Open Menu"
                     size="lg"
-                    icon={<CloseIcon />}
-                    onClick={() => changeDisplay('none')}
+                    mr={2}
+                    icon={<HamburgerIcon />}
+                    onClick={() => changeDisplay('flex')}
                 />
+                )}
             </Flex>
 
-            <Flex flexDir="column" align="center">
+            {/* Mobile Content */}
+            
+            <Flex
+                w="100vw"
+                display={display}
+                bgColor="gray.50"
+                zIndex={20}
+                h="100vh"
+                pos="fixed"
+                top="0"
+                left="0"
+                overflowY="auto"
+                flexDir="column"
+            >
+                <Flex justify="flex-end">
+                    <IconButton
+                        mt={4}
+                        mr={6}
+                        aria-label="Open Menu"
+                        size="lg"
+                        icon={<CloseIcon />}
+                        onClick={() => changeDisplay('none')}
+                    />
+                </Flex>
+
+                <Flex flexDir="column" align="center">
+
+                    <Link to="/">
+                        <Button as="a" variant="ghost" aria-label="Home" my={4} w="100%" onClick={() => changeDisplay('none')}>
+                            Home
+                        </Button>
+                    </Link>
+
+                    <Link to="/about">
+                        <Button as="a" variant="ghost" aria-label="About" my={4} w="100%" onClick={() => changeDisplay('none')}>
+                            About
+                        </Button>
+                    </Link>
+
+                    <Link to="/create">
+                        <Button as="a" variant="ghost" aria-label="Create" my={4} w="100%" onClick={() => changeDisplay('none')}>
+                            Create
+                        </Button>
+                    </Link>
+
                     {isAuthenticated ? 
-                    <Link to="/profile"><Avatar name={user.attributes.username} /></Link> 
-                    : <Link to="/auth"><Button onClick={() => changeDisplay('none')}>auth</Button></Link>}
-
-                <Link to="/about">
-                    <Button as="a" variant="ghost" aria-label="About" my={5} w="100%"
-                            onClick={() => changeDisplay('none')}>
-                        About
-                    </Button>
-                </Link>
-
-                <Link to="/contact">
-                    <Button as="a" variant="ghost" aria-label="Contact" my={5} w="100%">
-                        Contact
-                    </Button>
-                </Link>
+                        <Link to="/profile"><Avatar name={user.attributes.username} my={4} onClick={() => changeDisplay('none')}/></Link> 
+                        : <Link to="/auth"><Button variant='outline' colorScheme="BlackAlpha" my={4} onClick={() => changeDisplay('none')}>auth</Button></Link>
+                    }
+                </Flex>
             </Flex>
-        </Flex>
+            <Spacer my={5}/>
         </Box>
     );
 };

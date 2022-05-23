@@ -18,7 +18,7 @@ export const useOrgData = (org_id) => {
     
     useEffect(() => {
         const getTokensByChain = async () => {
-            const transactionQuery = new Moralis.Query("EthTransactions");
+            const transactionQuery = new Moralis.Query("EthTransactions", { useMasterKey: true });
             const tokens = await transactionQuery.find({ useMasterKey: true });
             let result = 0;
             tokens.map((props)=>{

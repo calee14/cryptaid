@@ -8,7 +8,7 @@ export const OrgCard = (props) => {
     const [donated, setDonated] = useState(0)
     useEffect(() => {
         const getTokensByChain = async () => {
-            const transactionQuery = new Moralis.Query("EthTransactions");
+            const transactionQuery = new Moralis.Query("EthTransactions", { useMasterKey: true });
             const tokens = await transactionQuery.find({ useMasterKey: true });
             let result = 0;
             tokens.map((props)=>{
@@ -23,7 +23,7 @@ export const OrgCard = (props) => {
 
     return (
         <Link to={"/organization/" + id}>
-        <Box boxShadow={'md'} border="1px" borderColor={"gray.200"} rounded={10} padding={5} width={"17rem"} height={"26rem"}>
+        <Box boxShadow={'md'} border="1px" borderColor={"gray.200"} rounded={10} padding={5} minWidth={"15rem"} height={"26rem"}>
             <Heading fontSize="2xl">{title}</Heading>
             <Heading fontSize="sm">{location}</Heading>
             <Spacer my={2} />
