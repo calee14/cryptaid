@@ -190,7 +190,8 @@ export const OrgPage = () => {
                     </Center>
 
                     
-                    {editMode? <Input defaultValue={org_data.description} onChange={(event) => setDescription(event.target.value)}/> : <Text fontWeight={"medium"}>{org_data.description}</Text>}
+                    {editMode? <Input defaultValue={org_data.description} onChange={(event) => setDescription(event.target.value)}/> : ""}
+                    {!editMode && org_data.description != ""?<Text fontWeight={"medium"}>{org_data.description}</Text>:""}
                     {/* organization milstones */}
                     <Center height={5} >
                         <Divider orientation="horizontal"/>
@@ -278,7 +279,7 @@ export const OrgPage = () => {
                     :""}
 
 
-                    {!editMode?<Heading fontSize="lg">Milestones:</Heading>:""}
+                    {!editMode && org_data.milestone.length>0?<Heading fontSize="lg">Milestones:</Heading>:""}
                     <Spacer my={2}/>
                     {!editMode?<List spacing={3}>
                         {org_data.milestone?.map((ms, i) => {
@@ -293,18 +294,13 @@ export const OrgPage = () => {
                     </List>:""}
 
 
-                    {/* another donate button */}
-                    <Spacer my={3}/>
-                    {/* button will route to donate page passing the org id */}
-                    {Moralis.User?.current()?.id? <Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/donate", { state: { org_id: org_id} })}>
-                        Donate Now
-                    </Button>: 
-                    <Button width={"50%"}>Login to Donate</Button>}
                     {/* organization socials */}
                     <Center height={5} >
                         <Divider orientation="horizontal"/>
                     </Center>
-                    <Heading fontSize="lg">Socials:</Heading>
+
+
+                    {org_data.links.length>0 ? <Heading fontSize="lg">Socials:</Heading> : ""}
                     <Spacer my={2}/>
                     <List spacing={2}>
                         {org_data.links.map((link) => {
@@ -315,6 +311,8 @@ export const OrgPage = () => {
                             );
                         })}
                     </List>
+
+
                     <Spacer my={5}/>
                     {editMode?<Button width={"50%"} onClick={() => navigate("/organization/" + org_id + "/mint", { state: { org_id: org_id} })}>Mint NFTs</Button>:""}
                     <Spacer my={5}/>
@@ -328,6 +326,8 @@ export const OrgPage = () => {
                     </Button>: ""}
                     </Flex>
                 </Box>
+
+
                 {/* put component to sell nfts here */}
                 <Box rounded={5} backgroundColor={"gray.50"} flex={1} height={'65rem'} overflow={'scroll'}>
                     <Container>

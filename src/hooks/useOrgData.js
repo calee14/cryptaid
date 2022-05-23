@@ -76,7 +76,7 @@ export const useOrgData = (org_id) => {
         title: title,
         description: description,
         location: location,
-        links: ["insta", "snap", "facebook"],
+        links: [],
         progress: progress,
         milestone: milestone,
         imgUrl: imgUrl,
