@@ -20,7 +20,7 @@ const root = createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <MoralisProvider appId={appId} serverUrl={serverUrl}>
+    <MoralisProvider appId={appId} serverUrl={serverUrl} initializeOnMount={true}>
       <ChakraProvider theme={theme}>
         <BrowserRouter>
           <App />
