@@ -21,7 +21,7 @@ export const Profile = () => {
     }, [isAuthenticated,]);
 
     const handleSave = () => {
-        if(password == conpassword){
+        if(password === conpassword){
             setUserData({username, email, password: password === "" ? undefined : password});
         } else {
             alert("Passwords do not match!")
