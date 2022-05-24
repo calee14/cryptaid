@@ -334,7 +334,7 @@ export const OrgPage = () => {
                         {org_data.nft.length > 0 ? org_data.nft.map((props) => {
                             return (<NftCard {...props} />)
                             
-                        }) : <Text>No NFTs from this organization at the moment...</Text>}
+                        }) : <Text paddingX={26}>No NFTs from this organization at the moment...</Text>}
                     </Grid>
                     </Flex>
                 </Box>

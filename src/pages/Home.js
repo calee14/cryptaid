@@ -1,7 +1,7 @@
-import { Box, Button, Flex, SimpleGrid, Text, Spacer } from "@chakra-ui/react";
+import { Heading, Box, Button, Flex, Grid, SimpleGrid, Text, Spacer } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis"
 import { OrgCard } from "../components/OrgCard";
-import {Moralis} from "moralis"
+import { Moralis } from "moralis"
 import { useEffect, useState } from "react";
 
 export const Home = () => {
@@ -40,14 +40,15 @@ export const Home = () => {
 
     
     return (
-        <Box mx={"5rem"}>
-            <SimpleGrid minChildWidth="15rem" spacing="1rem">
-
-            {orgs.length > 0 ? orgs.map((props) => {
-                return (<OrgCard {...props} />)
-                
-            }) : <Text>No organizations at the moment</Text>}
-            </SimpleGrid>
+        <Box mx={"13rem"}>
+            <Heading>Support Your Causes</Heading>
+            <Spacer my={5}/>
+            <Grid templateColumns={'repeat(4, 1fr)'} rowGap={5} columnGap={2.5} minChildWidth="15rem" spacing="1rem">
+                {orgs.length > 0 ? orgs.map((props) => {
+                    return (<OrgCard {...props} />)
+                    
+                }) : <Text>No organizations at the moment</Text>}
+            </Grid>
         </Box>
     );
 }

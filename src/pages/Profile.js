@@ -1,8 +1,10 @@
-import { Box, Button, Heading, Input, Stack, Text, Spacer, Flex } from "@chakra-ui/react"
+import { Box, Button, Heading, Input, Stack, Text, Spacer, Flex, Grid, Container, Center } from "@chakra-ui/react"
 import { useMoralis } from "react-moralis"
 import { useState, useEffect } from "react";
 import { ErrorBox } from "../components/Error";
 import { useRedirect } from "../hooks/useRedirect";
+import { useGetNfts } from "../hooks/useGetNfts";
+import { NftCardDisplay } from "../components/NftCardDisplay";
 
 export const Profile = () => {
     const { user, setUserData, userError, isUserUpdating, isAuthenticated, logout} = useMoralis();
@@ -11,24 +13,40 @@ export const Profile = () => {
     const [email, setEmail] = useState(user?.attributes.email);
     const [password, setPassword] = useState('');
     const [conpassword, setConpassword] = useState('');
+    const [userNfts, setNfts] = useState([]);
     const redirect = useRedirect();
-
+    const getNfts = useGetNfts();
+    
     // redirect if user is not authenticated
     useEffect(() => {
         if(!isAuthenticated) {
             redirect("/");
         }
-    }, [isAuthenticated,]);
+    }, [isAuthenticated, redirect]);
+
+    async function fetchNfts() {
+        const nftsMeta = await getNfts();
+        setNfts(nftsMeta);
+    }
+
+    useEffect(() => {
+        fetchNfts();
+    }, []);
 
     const handleSave = () => {
-        if(password == conpassword){
+        if(password === conpassword){
             setUserData({username, email, password: password === "" ? undefined : password});
         } else {
             alert("Passwords do not match!")
         }
     };
 
+    function getPosition(string, subString, index) {
+        return string.split(subString, index).join(subString).length;
+    }
+
     return (
+        <>
         <Box mx={"25%"}>
             <Stack spacing={3}>
                 {userError && 
@@ -61,7 +79,29 @@ export const Profile = () => {
                 </Box>
                 <Button onClick={handleSave} isLoading={isUserUpdating}>Save changes</Button>
             </Stack>
-            <Heading>Your NFTs</Heading>
         </Box>
+        <Spacer my={5}/>
+        <Heading mx={"25%"}>Your NFTs</Heading>
+        <Spacer my={5}/>
+        <Flex justifyContent={'center'}>
+            <Grid templateColumns={'repeat(4, 1fr)'} rowGap={5} columnGap={2.5} minChildWidth="15rem" spacing="1rem">
+                    {userNfts.length > 0 ? userNfts.map((nft) => {
+                        console.log(JSON.parse(nft.metadata));
+                        const parsedNft = JSON.parse(nft.metadata);
+                        console.log(parsedNft.image)
+                        console.log(parsedNft.image.substr(getPosition(parsedNft.image, '/', 2)+1));
+                        const imgHash = parsedNft.image.substr(getPosition(parsedNft.image, '/', 2)+1)
+                        const props = {
+                            imgLink: 'https://ipfs.moralis.io:2053/ipfs/' + imgHash,
+                            name: parsedNft.name,
+                        }
+                        return (<NftCardDisplay {...props} />)
+                        
+                    }) : <Text paddingX={26}>No NFTs from this organization at the moment...</Text>}
+                    
+                    
+            </Grid>
+        </Flex>
+        </>
     );
 }
