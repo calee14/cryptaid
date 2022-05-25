@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Input, Stack, Text, Spacer, Flex, Grid, Container, Center } from "@chakra-ui/react"
+import { Box, Button, Heading, Input, Stack, Text, Spacer, Flex, Grid, Container, Center, SimpleGrid } from "@chakra-ui/react"
 import { useMoralis } from "react-moralis"
 import { useState, useEffect } from "react";
 import { ErrorBox } from "../components/Error";
@@ -79,12 +79,11 @@ export const Profile = () => {
                 </Box>
                 <Button onClick={handleSave} isLoading={isUserUpdating}>Save changes</Button>
             </Stack>
-        </Box>
-        <Spacer my={5}/>
-        <Heading mx={"25%"}>Your NFTs</Heading>
-        <Spacer my={5}/>
-        <Flex justifyContent={'center'}>
-            <Grid templateColumns={'repeat(4, 1fr)'} rowGap={5} columnGap={2.5} minChildWidth="15rem" spacing="1rem">
+            <Spacer my={5}/>
+            <Heading>Your NFTs</Heading>
+            <Spacer my={5}/>
+            <Flex justifyContent={'center'}>
+                <Grid templateColumns={'repeat(3, 1fr)'} rowGap={5} columnGap={2.5} minChildWidth="15rem" spacing="1rem">
                     {userNfts.length > 0 ? userNfts.map((nft) => {
                         console.log(JSON.parse(nft.metadata));
                         const parsedNft = JSON.parse(nft.metadata);
@@ -97,11 +96,11 @@ export const Profile = () => {
                         }
                         return (<NftCardDisplay {...props} />)
                         
-                    }) : <Text paddingX={26}>No NFTs from this organization at the moment...</Text>}
-                    
-                    
-            </Grid>
-        </Flex>
+                    }) : <></>}
+                </Grid>
+                {userNfts.length === 0 && <Text>You don't own any NFTs at the moment...</Text>}
+            </Flex>
+        </Box>
         </>
     );
 }
