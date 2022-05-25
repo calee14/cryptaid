@@ -2,6 +2,7 @@ import { Box, Heading, Image, Spacer, Text, Progress } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Moralis from "moralis";
 import { useState, useEffect } from "react";
+import "./OrgCard.css";
 
 export const OrgCard = (props) => {
     const { id, title, description, imgUrl, location, goal, ethAddress } = props;
@@ -24,12 +25,12 @@ export const OrgCard = (props) => {
     return (
         <Link to={"/organization/" + id}>
         <Box boxShadow={'md'} border="1px" borderColor={"gray.200"} rounded={10} padding={5} minWidth={"15rem"} height={"26rem"}>
-            <Heading fontSize="2xl">{title}</Heading>
-            <Heading fontSize="sm">{location}</Heading>
+            <Heading fontSize="2xl" className="twoLineOverflow">{title}</Heading>
+            <Heading fontSize="sm" className="twoLineOverflow">{location}</Heading>
             <Spacer my={2} />
             <Image position={"relative"} width={"100%"} objectFit={"cover"} height={"50%"} src={imgUrl} rounded={"md"} alt='Org Image here' />
             <Spacer my={2} />
-            <Text fontSize={"md"}>{description}</Text>
+            <Text fontSize={"md"} className={'twoLineOverflow'}>{description}</Text>
             <Spacer my={2} />
             <Progress value={donated/goal*100} rounded="md" size={"sm"}></Progress>
             <Text fontSize={"smaller"}>Raised {donated} ETH out of {goal} ETH</Text>
