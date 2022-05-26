@@ -60,7 +60,7 @@ export const Auth = () => {
             <Spacer my={3}/>
             <Flex>
                 <Button 
-                bg={'red.400'} color={'white'} _hover={{bg: 'red.500',}}
+                bg={'pink.400'} color={'white'} _hover={{bg: 'pink.500',}}
                 width='100%' 
                 isLoading={isAuthenticating} 
                 onClick={() => authenticate()}>

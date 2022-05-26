@@ -15,7 +15,7 @@ const Login = () => {
         <Spacer my={2}/>
         <Input bg={"white"}placeholder="Password" type="password" value={password} onChange={(event) => setPassword(event.currentTarget.value)} />
         <Spacer my={2}/>
-        <Button bg={'red.400'} color={'white'} _hover={{bg: 'red.500',}} width='100%' onClick={() => login(email, password)}>Login</Button>
+        <Button bg={'pink.400'} color={'white'} _hover={{bg: 'pink.500'}} width='100%' onClick={() => login(email, password)}>Login</Button>
       </Box>
     );
 }

@@ -77,7 +77,7 @@ export const Profile = () => {
                     <Text>Confirm new password</Text>
                     <Input type="password" onChange={(event) => setConpassword(event.currentTarget.value)}/>
                 </Box>
-                <Button onClick={handleSave} bg={'red.400'} color={'white'} _hover={{bg: 'red.500',}} isLoading={isUserUpdating}>Save changes</Button>
+                <Button onClick={handleSave} bg={'pink.400'} color={'white'} _hover={{bg: 'pink.500',}} isLoading={isUserUpdating}>Save changes</Button>
             </Stack>
             <Spacer my={5}/>
             <Heading>Your NFTs</Heading>

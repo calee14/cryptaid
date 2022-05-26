@@ -193,15 +193,17 @@ export const About = () => {
             </Text>
           </Box>
         </Box>
-        <Divider my={"50px"} />
+        <Divider my={"70px"} />
         <Heading marginTop={{ base: '1', sm: '5' }} as="h2">
           Our Team
         </Heading>
         <Divider my={"10px"} />
-        <Wrap spacing="30px" marginTop="5">
+
+
+        <Wrap spacing="30px" marginTop="5" justify='center'>
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden">
+              <Box borderRadius="lg" overflow="hidden" height="35vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
@@ -225,21 +227,21 @@ export const About = () => {
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
                 Krish Chaudhary is a Computer Engineering major at University of California, Santa Barbara.
-                Topics of interest that he has studied include Machine Learning, Full-Stack Web Development, and Blokchcain.
-                He will pursue a career in Software Engineering. 
+                Topics of interest that he has studied include Machine Learning, Full-Stack Web Development, and Blockchain.
+                He will pursue a career in Software Engineering.
               </Text>
             </Box>
           </WrapItem>
-        </Wrap>
-        <Wrap spacing="30px" >
+          
+
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden">
+              <Box borderRadius="lg" overflow="hidden" height="35vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
                     src={
-                      "https://scontent-sjc3-1.xx.fbcdn.net/v/t1.15752-9/283334258_407649421220102_1766841067310071830_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=181roR_ks50AX9K_3vy&tn=zWIbHeFXFty_ycxX&_nc_ht=scontent-sjc3-1.xx&oh=03_AVLOIjlBJjVLsUizHOFRRuv63ffC3qFE_jhK70QxdJoqbg&oe=62B4BD67"
+                      "https://scontent-lax3-1.xx.fbcdn.net/v/t1.15752-9/277921997_577105017055565_3425564075747718864_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=ae9488&_nc_ohc=c98bc1J8sWsAX-7vCMa&_nc_ht=scontent-lax3-1.xx&oh=03_AVJw-0fmyOzljDZykPheihVNU1YVgQvMQD2F4QquIbMWEQ&oe=62B64F5A"
                     }
                     alt="some text"
                     objectFit="contain"
@@ -253,7 +255,7 @@ export const About = () => {
               </Box>
               <Heading fontSize="xl" marginTop="2">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                  Capppillen Lee
+                  Cappillen Lee
                 </Link>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
@@ -261,16 +263,16 @@ export const About = () => {
               </Text>
             </Box>
           </WrapItem>
-        </Wrap>
-        <Wrap spacing="30px" >
+          
+
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden">
+              <Box borderRadius="lg" overflow="hidden" height="35vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
                     src={
-                      "https://scontent-sjc3-1.xx.fbcdn.net/v/t1.15752-9/281683424_576430080708216_1210614008036510721_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=ae9488&_nc_ohc=FwfVP57O7ZwAX_dOvnw&_nc_ht=scontent-sjc3-1.xx&oh=03_AVLJwygJekNxwnLyHtjcKEFSVZ5HGyds2aipZtx0Vv_XuA&oe=62B55EAA"
+                      "https://scontent-lax3-1.xx.fbcdn.net/v/t1.15752-9/282709176_464840335410129_5018426295762028650_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_ohc=AoZ0RtkxMbYAX_WFd-O&tn=_gGPvupX-MIWYt7n&_nc_ht=scontent-lax3-1.xx&oh=03_AVI8hhkO5z0bqTM_tB35KmG5dSwENmC-Akdio5aaRVg68A&oe=62B55B79"
                     }
                     alt="some text"
                     objectFit="contain"
@@ -292,16 +294,16 @@ export const About = () => {
               </Text>
             </Box>
           </WrapItem>
-        </Wrap>
-        <Wrap spacing="30px" >
+          
+
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden">
+              <Box borderRadius="lg" overflow="hidden" height="35vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
                     src={
-                      "https://scontent-sjc3-1.xx.fbcdn.net/v/t1.15752-9/282296983_710951069956611_2929949998126239630_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=ae9488&_nc_ohc=WDg3OouYN-8AX-18is4&tn=zWIbHeFXFty_ycxX&_nc_ht=scontent-sjc3-1.xx&oh=03_AVI8k0fTAgPxLK56IBYhfVnlhI5SyNlFEMwomvejt25lwg&oe=62B64938"
+                      "https://scontent-lax3-1.xx.fbcdn.net/v/t1.15752-9/280754811_731786347855713_860646073031949820_n.png?_nc_cat=102&ccb=1-7&_nc_sid=ae9488&_nc_ohc=zwTLbmX0qUMAX-CG7xa&_nc_ht=scontent-lax3-1.xx&oh=03_AVI96Gq2SvSzCcT1BIfOO8_mQtfaSJ_hzv63PV8DiD-rmw&oe=62B4811B"
                     }
                     alt="some text"
                     objectFit="contain"
@@ -323,16 +325,16 @@ export const About = () => {
               </Text>
             </Box>
           </WrapItem>
-        </Wrap>
-        <Wrap spacing="30px" >
+          
+
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden">
+              <Box borderRadius="lg" overflow="hidden" height="35vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
                     src={
-                      "https://scontent-sjc3-1.xx.fbcdn.net/v/t1.15752-9/282296983_710951069956611_2929949998126239630_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=ae9488&_nc_ohc=WDg3OouYN-8AX-18is4&tn=zWIbHeFXFty_ycxX&_nc_ht=scontent-sjc3-1.xx&oh=03_AVI8k0fTAgPxLK56IBYhfVnlhI5SyNlFEMwomvejt25lwg&oe=62B64938"
+                      "https://scontent-lax3-2.xx.fbcdn.net/v/t1.15752-9/281898366_505934691315169_4826877107051974197_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=ae9488&_nc_ohc=1b8vNoJLhAQAX_IxSdC&_nc_ht=scontent-lax3-2.xx&oh=03_AVIh8_Wr_Cjgtg9gWnySlFO6dxRrTNZqnDC3OkkMGtV8WA&oe=62904AA0"
                     }
                     alt="some text"
                     objectFit="contain"
