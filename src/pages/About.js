@@ -158,8 +158,8 @@ export const About = () => {
               Cryptaid is a non-profit organization that employs the concept of decentralized applications to allow 
               anonymity for donating to organizations. For example, with the unfortunate Ukraine vs Russia situation, 
               Russian users may be afraid to donate to Ukrainian causes because of internal pressures from the Russian 
-              government. Our full-stack web 3.0 application solves this issue by allowing users to remain 
-              unidentified when donating because only their wallet information is stored on the public blockchain. 
+              government. Cryptaid solves this issue by allowing users to remain unidentified when donating because only 
+              their wallet information is stored on the public blockchain. 
               Users can donate to charities, individual users, and various causes. We offer many functionalities that 
               GoFundMe does, but in the Web 3.0 space. We are the future of donating. 
             </Text>
@@ -196,10 +196,9 @@ export const About = () => {
                 </Link>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy text
-                ever since the 1500s, when an unknown printer took a galley of
-                type and scrambled it to make a type specimen book.
+                Krish Chaudhary is a Computer Engineering major at University of California, Santa Barbara.
+                Topics of interest that he has studied include Machine Learning, Full-Stack Web Development, and B
+                He looks to pursuing a career in Software Engineering. 
               </Text>
             </Box>
           </WrapItem>

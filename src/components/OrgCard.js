@@ -32,7 +32,7 @@ export const OrgCard = (props) => {
             <Spacer my={2} />
             <Text fontSize={"md"} className={'twoLineOverflow'}>{description}</Text>
             <Spacer my={2} />
-            <Progress colorScheme={'red'} value={donated/goal*100} rounded="md" size={"sm"}></Progress>
+            <Progress colorScheme={'aidRed'} value={donated/goal*100} rounded="md" size={"sm"}></Progress>
             <Text fontSize={"smaller"}>Raised {donated} ETH out of {goal} ETH</Text>
             <Spacer my={2}/>
             {/* <Text fontSize={"md"}>Latest NFT sold for 0.5 ETH</Text> */}

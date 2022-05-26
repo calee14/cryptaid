@@ -10,7 +10,10 @@ import { createRoot } from 'react-dom/client';
 const theme = extendTheme({
   config: {
     initialColorMode: 'light' // switch to 'dark' for dark theme :)
-  }
+  },
+  colors: {
+    aidRed: '#FFF'
+  },
 });
 
 const appId = process.env.REACT_APP_APP_ID;
