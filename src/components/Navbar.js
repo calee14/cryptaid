@@ -28,6 +28,11 @@ export const Navbar = () => {
                             Organization
                         </Button>
                     </Link>
+                    <Link to="/tokenchange">
+                        <Button as="a" variant="ghost" aria-label="changetoken" my={5} w="100%">
+                            Token Swap
+                        </Button>
+                    </Link>
                     
                     <Spacer />
                     {!isMobile && (
@@ -89,7 +94,7 @@ export const Navbar = () => {
                     </Link>
 
                     <Link to="/organization">
-                        <Button as="a" variant="ghost" aria-label="About" my={4} w="100%" onClick={() => changeDisplay('none')}>
+                        <Button as="a" variant="ghost" aria-label="organization" my={4} w="100%" onClick={() => changeDisplay('none')}>
                             Organizations
                         </Button>
                     </Link>
@@ -97,6 +102,12 @@ export const Navbar = () => {
                     <Link to="/create">
                         <Button as="a" variant="ghost" aria-label="Create" my={4} w="100%" onClick={() => changeDisplay('none')}>
                             Create
+                        </Button>
+                    </Link>
+
+                    <Link to="/tokenchange">
+                        <Button as="a" variant="ghost" aria-label="changetoken" my={4} w="100%" onClick={() => changeDisplay('none')}>
+                            Token Swap
                         </Button>
                     </Link>
 

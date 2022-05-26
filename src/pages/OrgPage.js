@@ -143,7 +143,7 @@ export const OrgPage = () => {
                     <Spacer my={3}/>
                     <Text fontSize={"lg"} fontWeight={"semibold"}>Raised {org_data.donated} ETH out of {org_data.goal} ETH</Text>
                     <Spacer my={3}/>
-                    <Progress height={1} value={org_data.donated/org_data.goal*100} rounded="md" size={"sm"}></Progress>
+                    <Progress colorScheme={'aidRed'} height={1} value={org_data.donated/org_data.goal*100} rounded="md" size={"sm"}></Progress>
                     <Spacer my={3}/>
                     
                     

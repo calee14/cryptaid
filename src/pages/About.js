@@ -1,9 +1,35 @@
-import { Container, Stack, Flex, Box, Heading, Text, Button, Image, Icon, IconButton, createIcon, IconProps, useColorModeValue, Link, Divider, HStack, Tag, Wrap, WrapItem, SpaceProps, VStack } from '@chakra-ui/react';
+import { useBreakpointValue, Container, Stack, Flex, Box, Heading, Text, Button, Image, Icon, IconButton, createIcon, IconProps, useColorModeValue, Link, Divider, HStack, Tag, Wrap, WrapItem, SpaceProps, VStack } from '@chakra-ui/react';
 import { useMoralis } from 'react-moralis';
+export const Blur = (props: IconProps) => {
+  return (
+    <Icon
+      width={useBreakpointValue({ base: '100%', md: '40vw', lg: '30vw' })}
+      zIndex={useBreakpointValue({ base: -1, md: -1, lg: 0 })}
+      height="560px"
+      viewBox="0 0 528 560"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}>
+      <circle cx="71" cy="61" r="111" fill="#F56565" />
+      <circle cx="244" cy="106" r="139" fill="#ED64A6" />
+      <circle cy="291" r="139" fill="#ED64A6" />
+      <circle cx="80.5" cy="189.5" r="101.5" fill="#ED8936" />
+      <circle cx="196.5" cy="317.5" r="101.5" fill="#ECC94B" />
+      <circle cx="70.5" cy="458.5" r="101.5" fill="#48BB78" />
+      <circle cx="426.5" cy="-0.5" r="101.5" fill="#4299E1" />
+    </Icon>
+  );
+};
 export const About = () => {
     const { logout, isAuthenticated, isAuthUndefined, authError } = useMoralis();
     return (
       <Container maxW={'7xl'}>
+{/* {<Blur
+        position={'absolute'}
+        top={+200}
+        left={+100}
+        style={{ filter: 'blur(50px)' }}
+      /> } */}
         <Stack
           align={'center'}
           spacing={{ base: 8, md: 10 }}
@@ -35,7 +61,7 @@ export const About = () => {
               </Text>
             </Heading>
             <Text color={'gray.500'}>
-            A decentralized platform for cause-driven supporters and crypto enthusiasts to utilize cryptocurrency to send aid.
+            A decentralized platform for cause-driven supporters to utilize cryptocurrency to send aid, safely and anonymously.
             </Text>
             <Stack
               spacing={{ base: 4, sm: 6 }}
@@ -151,6 +177,8 @@ export const About = () => {
                 Our Mission Statement
             </Heading>
             <Text
+              marginLeft={"15px"}
+              marginRight={"15px"}
               as="p"
               marginTop="2"
               color={useColorModeValue('gray.700', 'gray.200')}
@@ -158,10 +186,10 @@ export const About = () => {
               Cryptaid is a non-profit organization that employs the concept of decentralized applications to allow 
               anonymity for donating to organizations. For example, with the unfortunate Ukraine vs Russia situation, 
               Russian users may be afraid to donate to Ukrainian causes because of internal pressures from the Russian 
-              government. Cryptaid solves this issue by allowing users to remain unidentified when donating because only 
-              their wallet information is stored on the public blockchain. 
-              Users can donate to charities, individual users, and various causes. We offer many functionalities that 
-              GoFundMe does, but in the Web 3.0 space. We are the future of donating. 
+              government. Cryptaid solves this issue by allowing users to remain unidentified revealing nothing but their
+              wallet address. 
+              Users can donate to charities, individual users, and various causes, knowing their data and safety is 
+              is our number one priority. We are the future of donating. 
             </Text>
           </Box>
         </Box>
@@ -197,13 +225,13 @@ export const About = () => {
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
                 Krish Chaudhary is a Computer Engineering major at University of California, Santa Barbara.
-                Topics of interest that he has studied include Machine Learning, Full-Stack Web Development, and B
-                He looks to pursuing a career in Software Engineering. 
+                Topics of interest that he has studied include Machine Learning, Full-Stack Web Development, and Blokchcain.
+                He will pursue a career in Software Engineering. 
               </Text>
             </Box>
           </WrapItem>
         </Wrap>
-        <Wrap spacing="30px" marginTop="5">
+        <Wrap spacing="30px" >
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
               <Box borderRadius="lg" overflow="hidden">
@@ -211,7 +239,7 @@ export const About = () => {
                   <Image
                     transform="scale(1.0)"
                     src={
-                      "https://drive.google.com/uc?export=download&id=1yFop2SvP--bcwS2wEZcuMVAioLPPao-S"
+                      "https://scontent-sjc3-1.xx.fbcdn.net/v/t1.15752-9/283334258_407649421220102_1766841067310071830_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=181roR_ks50AX9K_3vy&tn=zWIbHeFXFty_ycxX&_nc_ht=scontent-sjc3-1.xx&oh=03_AVLOIjlBJjVLsUizHOFRRuv63ffC3qFE_jhK70QxdJoqbg&oe=62B4BD67"
                     }
                     alt="some text"
                     objectFit="contain"
@@ -225,14 +253,42 @@ export const About = () => {
               </Box>
               <Heading fontSize="xl" marginTop="2">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                  Some blog title
+                  Capppillen Lee
                 </Link>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy text
-                ever since the 1500s, when an unknown printer took a galley of
-                type and scrambled it to make a type specimen book.
+                A Computer Science student at University of California, Santa Barabara. He recently recovered from COVID. 
+              </Text>
+            </Box>
+          </WrapItem>
+        </Wrap>
+        <Wrap spacing="30px" >
+          <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
+            <Box w="100%">
+              <Box borderRadius="lg" overflow="hidden">
+                <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+                  <Image
+                    transform="scale(1.0)"
+                    src={
+                      "https://scontent-sjc3-1.xx.fbcdn.net/v/t1.15752-9/281683424_576430080708216_1210614008036510721_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=ae9488&_nc_ohc=FwfVP57O7ZwAX_dOvnw&_nc_ht=scontent-sjc3-1.xx&oh=03_AVLJwygJekNxwnLyHtjcKEFSVZ5HGyds2aipZtx0Vv_XuA&oe=62B55EAA"
+                    }
+                    alt="some text"
+                    objectFit="contain"
+                    width="100%"
+                    transition="0.3s ease-in-out"
+                    _hover={{
+                      transform: 'scale(1.05)',
+                    }}
+                  />
+                </Link>
+              </Box>
+              <Heading fontSize="xl" marginTop="2">
+                <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+                  Gen Tamada
+                </Link>
+              </Heading>
+              <Text as="p" fontSize="md" marginTop="2">
+                A Computer Science student at University of California, Santa Barbara. Also recently recovered from COVID.
               </Text>
             </Box>
           </WrapItem>

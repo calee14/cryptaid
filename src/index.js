@@ -12,7 +12,16 @@ const theme = extendTheme({
     initialColorMode: 'light' // switch to 'dark' for dark theme :)
   },
   colors: {
-    aidRed: '#FFF'
+    aidRed: {
+      100: '#FED7D7',
+      200: '#FEB2B2',
+      300: '#E53E3E',
+      400: '#F56565',
+      500: '#F56565',
+      600: '#F56565',
+      700: '#F56565',
+      900: '#F56565',
+    },
   },
 });
 

@@ -13,6 +13,7 @@ import { OrgPage } from "./pages/OrgPage";
 import { Donate } from "./pages/Donate";
 import { MintNft } from "./pages/MintNft";
 import { About } from "./pages/About";
+import { ChangeToken } from "./pages/ChangeToken";
 
 function App() {
 
@@ -41,14 +42,16 @@ function App() {
         <Route path="/organization/:id/donate" element={<Donate/>} exact />
         <Route path="/organization/:id/mint" element={<MintNft/>} exact/>
         <Route path="/organization" element={<Home/>} exact/>
+        <Route path="/tokenchange" element={<ChangeToken/>}/>
       </Routes> : 
         // routes for when the user is not logged in
       <Routes>
         <Route path="/organization" element={<Home/>} exact/>
-        <Route path="/auth" element={<Auth/>} exact/>
         <Route path="/organization/:id" element={<OrgPage/>} exact/>
+        <Route path="/auth" element={<Auth/>} exact/>
         <Route path="/" element={<About/>} exact/>
         <Route path="/profile" element={<Profile/>} exact/>
+        <Route path="/tokenchange" element={<ChangeToken/>}/>
       </Routes>
       }
     </Box>
