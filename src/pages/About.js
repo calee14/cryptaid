@@ -1,6 +1,6 @@
 import { useBreakpointValue, Container, Stack, Flex, Box, Heading, Text, Button, Image, Icon, IconButton, createIcon, IconProps, useColorModeValue, Link, Divider, HStack, Tag, Wrap, WrapItem, SpaceProps, VStack } from '@chakra-ui/react';
 import { useMoralis } from 'react-moralis';
-export const Blur = (props: IconProps) => {
+export const Blur = (props) => {
   return (
     <Icon
       width={useBreakpointValue({ base: '100%', md: '40vw', lg: '30vw' })}
@@ -77,13 +77,13 @@ export const About = () => {
                 _hover={{ bg: 'red.500' }}>
                 <Link color='white.500' href='/organization'>Start funding</Link>
               </Button>
-              {isAuthUndefined?<Button
+              {isAuthenticated?"":<Button
                 rounded={'full'}
                 size={'lg'}
                 fontWeight={'normal'}
                 px={6}>
                 {<Link color='white.500' href='./auth'>Login</Link>}
-              </Button>:""}
+              </Button>}
             </Stack>
           </Stack>
           <Flex
@@ -288,11 +288,74 @@ export const About = () => {
                 </Link>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
+                A Computer Science student at University of California, Santa Barbara. Carried the backend with Andy. This is his mugshot.
+              </Text>
+            </Box>
+          </WrapItem>
+        </Wrap>
+        <Wrap spacing="30px" >
+          <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
+            <Box w="100%">
+              <Box borderRadius="lg" overflow="hidden">
+                <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+                  <Image
+                    transform="scale(1.0)"
+                    src={
+                      "https://scontent-sjc3-1.xx.fbcdn.net/v/t1.15752-9/282296983_710951069956611_2929949998126239630_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=ae9488&_nc_ohc=WDg3OouYN-8AX-18is4&tn=zWIbHeFXFty_ycxX&_nc_ht=scontent-sjc3-1.xx&oh=03_AVI8k0fTAgPxLK56IBYhfVnlhI5SyNlFEMwomvejt25lwg&oe=62B64938"
+                    }
+                    alt="some text"
+                    objectFit="contain"
+                    width="100%"
+                    transition="0.3s ease-in-out"
+                    _hover={{
+                      transform: 'scale(1.05)',
+                    }}
+                  />
+                </Link>
+              </Box>
+              <Heading fontSize="xl" marginTop="2">
+                <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+                  Jacey Buchner
+                </Link>
+              </Heading>
+              <Text as="p" fontSize="md" marginTop="2">
                 A Computer Science student at University of California, Santa Barbara. Also recently recovered from COVID.
               </Text>
             </Box>
           </WrapItem>
         </Wrap>
+        <Wrap spacing="30px" >
+          <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
+            <Box w="100%">
+              <Box borderRadius="lg" overflow="hidden">
+                <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+                  <Image
+                    transform="scale(1.0)"
+                    src={
+                      "https://scontent-sjc3-1.xx.fbcdn.net/v/t1.15752-9/282296983_710951069956611_2929949998126239630_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=ae9488&_nc_ohc=WDg3OouYN-8AX-18is4&tn=zWIbHeFXFty_ycxX&_nc_ht=scontent-sjc3-1.xx&oh=03_AVI8k0fTAgPxLK56IBYhfVnlhI5SyNlFEMwomvejt25lwg&oe=62B64938"
+                    }
+                    alt="some text"
+                    objectFit="contain"
+                    width="100%"
+                    transition="0.3s ease-in-out"
+                    _hover={{
+                      transform: 'scale(1.05)',
+                    }}
+                  />
+                </Link>
+              </Box>
+              <Heading fontSize="xl" marginTop="2">
+                <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+                  Andy Ouyang
+                </Link>
+              </Heading>
+              <Text as="p" fontSize="md" marginTop="2">
+                A Computer Science student at University of California, Santa Barbara. Also recently recovered from COVID.
+              </Text>
+            </Box>
+          </WrapItem>
+        </Wrap>
+
         <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
           <Heading as="h2">Our Functionalities</Heading>
           <Text as="p" fontSize="lg">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMoralis } from "react-moralis";
-import { Button, Box, Input, Spacer, Heading } from "@chakra-ui/react";
+import {useColorModeValue,  Button, Box, Input, Spacer, Heading } from "@chakra-ui/react";
 
 const Login = () => {
     const { login } = useMoralis();
@@ -10,12 +10,12 @@ const Login = () => {
     return (
       <Box>
         <Heading size="md">Login</Heading>
-        <Spacer my={1}/>
-        <Input placeholder="Email" value={email} onChange={(event) => setEmail(event.currentTarget.value)} />
-        <Spacer my={1}/>
-        <Input placeholder="Password" type="password" value={password} onChange={(event) => setPassword(event.currentTarget.value)} />
-        <Spacer my={1}/>
-        <Button width='100%' onClick={() => login(email, password)}>Login</Button>
+        <Spacer my={5}/>
+        <Input bg={"white"}placeholder="Email" value={email} onChange={(event) => setEmail(event.currentTarget.value)} />
+        <Spacer my={2}/>
+        <Input bg={"white"}placeholder="Password" type="password" value={password} onChange={(event) => setPassword(event.currentTarget.value)} />
+        <Spacer my={2}/>
+        <Button bg={'red.400'} color={'white'} _hover={{bg: 'red.500',}} width='100%' onClick={() => login(email, password)}>Login</Button>
       </Box>
     );
 }

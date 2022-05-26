@@ -136,8 +136,8 @@ export const Create = () => {
 
                     <Spacer my={1}/>
                     <Flex>
-                        <Button onClick={() => defineNewObj()}>Submit</Button>
                         <Spacer/>
+                        <Button bg={'red.400'} color={'white'} _hover={{bg: 'red.500',}} onClick={() => defineNewObj()}>Submit</Button>
                     </Flex>
                 </Box>
             </Stack>
