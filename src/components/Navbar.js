@@ -23,9 +23,9 @@ export const Navbar = () => {
                             Cryptaid
                         </Button>
                     </Link>
-                    <Link to="/about">
-                        <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
-                            About
+                    <Link to="/organization">
+                        <Button as="a" variant="ghost" aria-label="Organization" my={5} w="100%">
+                            Organization
                         </Button>
                     </Link>
                     
@@ -88,9 +88,9 @@ export const Navbar = () => {
                         </Button>
                     </Link>
 
-                    <Link to="/about">
+                    <Link to="/organization">
                         <Button as="a" variant="ghost" aria-label="About" my={4} w="100%" onClick={() => changeDisplay('none')}>
-                            About
+                            Organizations
                         </Button>
                     </Link>
 

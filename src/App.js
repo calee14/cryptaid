@@ -33,21 +33,21 @@ function App() {
       {isAuthenticated ? 
       // routes for when the user is logged in
       <Routes>
-        <Route path="/" element={<Home/>} exact/>
+        <Route path="/" element={<About/>} exact/>
         <Route path="/profile" element={<Profile/>} exact/>
         <Route path="/auth" element={<Auth/>} exact/>
         <Route path="/create" element={<Create/>} exact/>
         <Route path="/organization/:id" element={<OrgPage/>} exact/>
         <Route path="/organization/:id/donate" element={<Donate/>} exact />
         <Route path="/organization/:id/mint" element={<MintNft/>} exact/>
-        <Route path="/about" element={<About/>} exact/>
+        <Route path="/organization" element={<Home/>} exact/>
       </Routes> : 
         // routes for when the user is not logged in
       <Routes>
-        <Route path="/" element={<Home/>} exact/>
+        <Route path="/organization" element={<Home/>} exact/>
         <Route path="/auth" element={<Auth/>} exact/>
         <Route path="/organization/:id" element={<OrgPage/>} exact/>
-        <Route path="/about" element={<About/>} exact/>
+        <Route path="/" element={<About/>} exact/>
         <Route path="/profile" element={<Profile/>} exact/>
       </Routes>
       }
