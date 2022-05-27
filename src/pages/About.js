@@ -1,5 +1,7 @@
-import { useBreakpointValue, Container, Stack, Flex, Box, Heading, Text, Button, Image, Icon, IconButton, createIcon, IconProps, useColorModeValue, Link, Divider, HStack, Tag, Wrap, WrapItem, SpaceProps, VStack } from '@chakra-ui/react';
+import { useBreakpointValue, Container, Stack, Flex, Box, Heading, Text, Button, Image, Icon, IconButton, createIcon, IconProps, useColorModeValue, Link, Divider, HStack, Tag, Wrap, WrapItem, SpaceProps, VStack, List, ListItem, ListIcon, Spacer } from '@chakra-ui/react';
 import { useMoralis } from 'react-moralis';
+import { ArrowRightIcon } from "@chakra-ui/icons"
+
 export const Blur = (props) => {
   return (
     <Icon
@@ -203,7 +205,7 @@ export const About = () => {
         <Wrap spacing="30px" marginTop="5" justify='center'>
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden" height="35vh">
+              <Box borderRadius="lg" overflow="hidden" height="30vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
@@ -236,7 +238,7 @@ export const About = () => {
 
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden" height="35vh">
+              <Box borderRadius="lg" overflow="hidden" height="30vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
@@ -259,7 +261,7 @@ export const About = () => {
                 </Link>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                A Computer Science student at University of California, Santa Barabara. He also recently recovered from COVID. 
+                A Computer Science student at University of California, Santa Barabara. Carried crypto transactions and NFTs by himself. He also recently recovered from COVID. 
               </Text>
             </Box>
           </WrapItem>
@@ -267,7 +269,7 @@ export const About = () => {
 
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden" height="35vh">
+              <Box borderRadius="lg" overflow="hidden" height="30vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
@@ -298,7 +300,7 @@ export const About = () => {
 
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden" height="35vh">
+              <Box borderRadius="lg" overflow="hidden" height="30vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
@@ -321,7 +323,7 @@ export const About = () => {
                 </Link>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                A Computer Science student at University of California, Santa Barbara. Also recently recovered from COVID.
+                A Computer Science student at University of California, Santa Barbara. Looking good in the suit. Also recently recovered from COVID.
               </Text>
             </Box>
           </WrapItem>
@@ -329,7 +331,7 @@ export const About = () => {
 
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden" height="35vh">
+              <Box borderRadius="lg" overflow="hidden" height="30vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
@@ -352,7 +354,7 @@ export const About = () => {
                 </Link>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                A Computer Science student at University of California, Santa Barbara. Also recently recovered from COVID.
+                A Computer Science student at University of California, Santa Barbara. Carried the backend with Gen. Also recently recovered from COVID.
               </Text>
             </Box>
           </WrapItem>
@@ -361,20 +363,91 @@ export const About = () => {
         <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
           <Heading as="h2">Our Functionalities</Heading>
           <Text as="p" fontSize="lg">
-          In order to use Cyrptaid, users must install the Metamask plugin, which accesses their wallet 
-          information on the Ethereum blockchain. First-time users must authenticate their profile by 
-          linking their Metamask account to our site. After they have done so, their account information 
-          will be saved and they will be redirected to the registration page. The registration page will 
-          allow users to submit their names, emails, and passwords as JSON data on Moralis servers. 
-          Every consecutive time that a user logs out and logs back in, a user can input their email and password, 
-          and our site will log them in with their Metamask account. The create page also allows users to add an 
-          organization with images, title, description, location, 
-          their Eth address, and an Eth goal they want to reach. The create page will only allow a user to 
-          publish a charity if they are logged in, to help prevent users from positing malicious or inappropriate content.
-          Next, the organization's page shows a list of all the organizations in card format. If a user clicks on the card, 
-          a milestone bar will be displayed with the goal that the organization set. Three milestones will be displayed with 
-          goals that the organization came up with. After every milestone, our website will mint an NFT and award the donator 
-          with an NFT on the blockchain. The NFTs for every user will be displayed on the site if they log in.  
+
+          <Spacer my={8}/>
+            <Heading as='h4' size='md'>Authenticate using Metamask</Heading>
+            <Spacer my={2}/>
+            <List spacing={3}>
+              <ListItem>
+                <ListIcon as={ArrowRightIcon} color='red.400'/>
+                In order to use Cyrptaid, users must install the Metamask plugin, which is available on most chromium based web-browsers.
+              </ListItem>
+              <ListItem>
+                <ListIcon as={ArrowRightIcon} color='red.400'/>
+                Metamask is an extension that allows the website to accesses the users' wallet information on the Ethereum blockchain. 
+              </ListItem>
+              <ListItem>
+                <ListIcon as={ArrowRightIcon} color='red.400'/>
+                First-time users must authenticate their profile by linking their Metamask account to our site.
+              </ListItem>
+              {/* You can also use custom icons from react-icons */}
+              <ListItem>
+                <ListIcon as={ArrowRightIcon} color='red.400'/>
+                After they have done so, their account information will be saved and they will be redirected to the profile page.
+              </ListItem>
+            </List>
+            
+            <Spacer my={8}/>
+            <Heading as='h4' size='md'>User Profile</Heading>
+            <Spacer my={2}/>
+          <List spacing={3}>
+            <ListItem>
+              <ListIcon as={ArrowRightIcon} color='red.400'/>
+                The profile page will allow users to submit their emails and passwords as user information on Moralis servers. 
+            </ListItem>
+            <ListItem>
+              <ListIcon as={ArrowRightIcon} color='red.400'/>
+                Next time users logout and log back in, they can input their email and password, and our site will log them in with their Metamask address.
+            </ListItem>
+            <ListItem>
+              <ListIcon as={ArrowRightIcon} color='red.400'/>
+                If you purchased a NFT from some organization, it would show up in your profile page!
+            </ListItem>
+            <ListItem>
+              <ListIcon as={ArrowRightIcon} color='red.400'/>
+                Tips: Only the account that created the organization can edit that organization. Make sure you login before you interact with the website.
+            </ListItem>
+          </List>
+
+            <Spacer my={8}/>
+            <Heading as='h4' size='md'>Create New Organizations</Heading>
+            <Spacer my={2}/>
+          <List spacing={3}>
+            <ListItem>
+              <ListIcon as={ArrowRightIcon} color='red.400'/>
+                Users can add an organization with the organization's image, title, description, location, Eth address, and Eth goal they want to reach. 
+            </ListItem>
+            <ListItem>
+              <ListIcon as={ArrowRightIcon} color='red.400'/>
+                The creator of the Organization can then proceed to further modify their organization's page by using the edit button.
+            </ListItem>
+            <ListItem>
+              <ListIcon as={ArrowRightIcon} color='red.400'/>
+                In the organization page, creator of the organization may add a deadline, up to five milestones, and even mint their unique NFTs for others to purchase!
+            </ListItem>
+            <ListItem>
+              <ListIcon as={ArrowRightIcon} color='red.400'/>
+                Caution: DO NOT use the same eth address for two separate organizations! You can avoid all sorts of problems by creating a second eth account.
+            </ListItem>
+          </List>
+          
+          <Spacer my={8}/>
+            <Heading as='h4' size='md'>All Organizations</Heading>
+            <Spacer my={2}/>
+          <List spacing={3}>
+            <ListItem>
+              <ListIcon as={ArrowRightIcon} color='red.400'/>
+                The organization's page shows a list of all the organizations in card format. 
+            </ListItem>
+            <ListItem>
+              <ListIcon as={ArrowRightIcon} color='red.400'/>
+                If a user clicks on the card, it would take them to a page with more details about that specific organization.
+            </ListItem>
+            <ListItem>
+              <ListIcon as={ArrowRightIcon} color='red.400'/>
+                Users can donate here, but a user can only donate if they are logged in, to help prevent other users from positing malicious or inappropriate content.
+            </ListItem>
+          </List>
           </Text>
         </VStack>
       </Container>
