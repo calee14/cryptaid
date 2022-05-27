@@ -228,7 +228,7 @@ export const About = () => {
               <Text as="p" fontSize="md" marginTop="2">
                 Krish Chaudhary is a Computer Engineering major at University of California, Santa Barbara.
                 Topics of interest that he has studied include Machine Learning, Full-Stack Web Development, and Blockchain.
-                He will pursue a career in Software Engineering.
+                He will pursue a career in Software Engineering. He recently recovered from COVID.
               </Text>
             </Box>
           </WrapItem>
@@ -259,7 +259,7 @@ export const About = () => {
                 </Link>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                A Computer Science student at University of California, Santa Barabara. He recently recovered from COVID. 
+                A Computer Science student at University of California, Santa Barabara. He also recently recovered from COVID. 
               </Text>
             </Box>
           </WrapItem>
@@ -290,7 +290,7 @@ export const About = () => {
                 </Link>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                A Computer Science student at University of California, Santa Barbara. Carried the backend with Andy. This is his mugshot.
+                A Computer Science student at University of California, Santa Barbara. Carried the backend with Andy. He is immune to COVID.
               </Text>
             </Box>
           </WrapItem>
