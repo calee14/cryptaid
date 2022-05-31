@@ -27,7 +27,7 @@ export const ChangeToken = () => {
             </InputGroup>
             <Text fontSize={'xl'}>Token</Text>
             <InputGroup width={'50%'}>
-                <Input value={tokenAddress} onChange={(event) => setAmount(event.currentTarget.value)} placeholder="Your token address"/>
+                <Input value={tokenAddress} onChange={(event) => setTokenAddress(event.currentTarget.value)} placeholder="Your token address"/>
             </InputGroup>
             <Spacer my={5}/>
             <Button onClick={() => handleSwap()}>Token Swap</Button>
