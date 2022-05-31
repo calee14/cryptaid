@@ -1,4 +1,4 @@
-const contractAddress = "0x42273E61205f6Aab6019De53362661C57C2B6142";
+const contractAddress = "0x4cbb99D05560C82A32aB9CA45d836Dc791F3d041";
 
 /**
  * Swap contract ABI here
@@ -6,6 +6,11 @@ const contractAddress = "0x42273E61205f6Aab6019De53362661C57C2B6142";
  */
 
 const contractABI = [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
 	{
 		"inputs": [
 			{
@@ -19,19 +24,10 @@ const contractABI = [
 				"type": "address"
 			}
 		],
-		"name": "convertEthToDai",
+		"name": "convertEthToToken",
 		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
-	},
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"stateMutability": "payable",
-		"type": "receive"
 	},
 	{
 		"inputs": [
@@ -69,6 +65,10 @@ const contractABI = [
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
 	}
 ]
 
