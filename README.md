@@ -62,6 +62,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 [Make an NFT taught by Ethereum](https://ethereum.org/en/developers/tutorials/how-to-write-and-deploy-an-nft/)      
 [How to token Swap](https://soliditydeveloper.com/uniswap2/)
+[Important interface for token swap](https://github.com/Uniswap/v2-periphery/blob/master/contracts/UniswapV2Router02.sol)
 
 ## Learn More
 
