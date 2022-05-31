@@ -1,7 +1,7 @@
 import { Heading, Box, Button, NumberInput, NumberInputField, Spacer, InputGroup, Text, InputRightElement, Input } from "@chakra-ui/react"
 import "../smartcontracts/TokenSwap.sol"
 import { useState } from "react";
-import { useSwapContract } from '../hooks/useSwapContract.js';
+// import { useSwapContract } from '../hooks/useSwapContract.js';
 
 export const ChangeToken = () => {
     const [amount, setAmount] = useState(0.0);
