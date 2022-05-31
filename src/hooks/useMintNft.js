@@ -20,7 +20,6 @@ export const useMintNft = () => {
     }, [web3, enableWeb3, isWeb3Enabled]);
 
     return async function(_owner, _name, _description, _imgData, _supply, _price) {
-        await authenticate();
 
         const imgFile = new Moralis.File(_imgData.name, _imgData);
         await imgFile.saveIPFS();
