@@ -69,6 +69,7 @@ export const Auth = () => {
             </Flex>
 
         </Box>
+        <Spacer mb={20}/>
         </>
     );
 }

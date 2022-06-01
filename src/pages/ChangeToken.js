@@ -1,4 +1,4 @@
-import { Heading, Box, Button, NumberInput, NumberInputField, Spacer, InputGroup, Text, InputRightElement, Input, Flex } from "@chakra-ui/react"
+import {useColorModeValue, Stack, Heading, Box, Button, NumberInput, NumberInputField, Spacer, InputGroup, Text, InputRightElement, Input, Flex } from "@chakra-ui/react"
 import "../smartcontracts/TokenSwap.sol"
 import { useState } from "react";
 import { useSwapContract } from '../hooks/useSwapContract.js';
@@ -31,9 +31,31 @@ export const ChangeToken = () => {
     ];
 
     return(
-        <Box mx={"14%"}>
-            <Heading>Swap tokens! Control your Defi!!</Heading>
-            <Spacer my={5}/>
+        <>
+        <Spacer marginTop={70}/>
+        <Box mx={"25%"} 
+        bg={useColorModeValue('gray.30', 'gray.800')}
+        boxShadow={'0px 10px 15px #F4AAB9'}
+        
+        borderRadius={"10px"}
+        marginTop={"10px"}
+        padding={"20px"} 
+        paddingTop={"30px"}
+        paddingBottom={"30px"}>
+           
+        <Stack marginBottom={"20px"} align={'center'}>
+            <Heading 
+            fontSize={'4xl'} > Swap tokens! 
+            </Heading>
+            <Stack direction="row">
+            <img src="https://cdn3.emoji.gg/emojis/7675-ethereum.png" width="64px" height="64px" alt="Ethereum"/> 
+            <img src="https://cdn3.emoji.gg/emojis/8788-bitcoin.png" width="64px" height="64px" alt="BitCoin" />
+            <img src="https://cdn3.emoji.gg/emojis/4126-matic.png" width="64px" height="64px" alt="MATIC" />
+            </Stack>
+        </Stack>
+
+        
+
             <Text fontSize={'xl'}>Amount</Text>
             <InputGroup>
                 <NumberInput defaultValue={amount}>
@@ -44,25 +66,28 @@ export const ChangeToken = () => {
                     <NumberInputField  onChange={(e) => setAmount(e.currentTarget.value)}/>
                 </NumberInput>
             </InputGroup>
+            <Spacer my={5}/>
             <Text fontSize={'xl'}>Token</Text>
             <Flex gap="0.5rem">
                 {tokens.map((t) => {
-                    return <Button onClick={() => setTokenAddress(t.address)}>{t.tokenName}</Button>
+                    return <Button bg={'pink.400'} color={'white'}  onClick={() => setTokenAddress(t.address)}>{t.tokenName}</Button>
                 })}
             </Flex>
             <Spacer my={2}/>
             <InputGroup width={'50%'}>
                 <Input value={tokenAddress} onChange={(event) => setTokenAddress(event.currentTarget.value)} placeholder="Your token address"/>
             </InputGroup>
-            <Spacer my={5}/>
+            <Spacer my={2}/>
             {transactionMessage && 
                 <>
                     <Text color={'green.400'} fontSize={'sm'}>{transactionMessage}</Text>
                     <Spacer my={2}/>
                 </>
             }
-            <Button isLoading={swapping} onClick={() => handleSwap()}>Token Swap</Button>
+            <Button bg={'pink.400'} color={'white'} isLoading={swapping} onClick={() => handleSwap()}>Token Swap</Button>
             
         </Box>
+        <Spacer mb={100}/>
+        </>
     )
 }

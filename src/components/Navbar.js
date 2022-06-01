@@ -1,4 +1,4 @@
-import { Button, Flex, IconButton, Spacer, Avatar, Box } from "@chakra-ui/react";
+import { Button, Flex, IconButton, Spacer, Avatar, Box, Image, Stack } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import { useMoralis } from "react-moralis";
@@ -9,6 +9,7 @@ import { useIsMobile } from "../hooks/useIsMobile";
 export const Navbar = () => {
     const { isAuthenticated, user, logout } = useMoralis();
     const [display, changeDisplay] = useState('none')
+    const [iconHover,setIconHover] = useState(false)
     const isMobile = useIsMobile();
 
     return (
@@ -19,11 +20,12 @@ export const Navbar = () => {
                 
                 <Flex width={"100%"} align="center">
                     <Link to="/">
-                        <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
-                            Cryptaid
-                        </Button>
+                        <Image mr={'3'} src='https://scontent.xx.fbcdn.net/v/t1.15752-9/285254828_1725439954476285_519085055936382316_n.png?_nc_cat=103&ccb=1-7&_nc_sid=aee45a&_nc_ohc=xANAMkWeg7QAX9I4rw9&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVI677iTgYn7-BffcexhUxQTPNp-MNGMBvPzO3qVUUjNXA&oe=62BF745A' alt='Home_logo' my={5} w="125px" 
+                        onMouseOver={e => e.currentTarget.src = "https://scontent.xx.fbcdn.net/v/t1.15752-9/283706318_758392685191047_7697960001977730560_n.png?_nc_cat=108&ccb=1-7&_nc_sid=aee45a&_nc_ohc=fbEUn6hrm4oAX-Pzu0q&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVLSxe5-xfJuAj6uRpA9hoknOiTVrFBbXtVV0muxm0mAkA&oe=62BC74A6"}
+                        onMouseLeave={e => e.currentTarget.src = "https://scontent.xx.fbcdn.net/v/t1.15752-9/285254828_1725439954476285_519085055936382316_n.png?_nc_cat=103&ccb=1-7&_nc_sid=aee45a&_nc_ohc=xANAMkWeg7QAX9I4rw9&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVI677iTgYn7-BffcexhUxQTPNp-MNGMBvPzO3qVUUjNXA&oe=62BF745A"}/>
                     </Link>
-                    <Link to="/organization">
+                    {!isMobile?
+                    <Stack direction="row"><Link to="/organization">
                         <Button as="a" variant="ghost" aria-label="Organization" my={5} w="100%">
                             Organization
                         </Button>
@@ -32,13 +34,13 @@ export const Navbar = () => {
                         <Button as="a" variant="ghost" aria-label="changetoken" my={5} w="100%">
                             Token Swap
                         </Button>
-                    </Link>
+                    </Link></Stack>:""}
                     
                     <Spacer />
                     {!isMobile && (
                     <Flex gap={3} align="center"> 
                         <Link to="/create">
-                            <Button>Create<AddIcon ml={"0.5rem"} boxSize={"0.9rem"}/></Button>
+                            <Button colorScheme={'red'} bg={'red.400'} _hover={{ bg: 'red.500' }}>Create<AddIcon ml={"0.5rem"} boxSize={"0.9rem"}/></Button>
                         </Link>
                         {isAuthenticated ? 
                         <Link to="/profile"><Avatar name={user.attributes.username} /></Link> 

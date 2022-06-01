@@ -230,7 +230,7 @@ export const About = () => {
               <Text as="p" fontSize="md" marginTop="2">
                 Krish Chaudhary is a Computer Engineering major at University of California, Santa Barbara.
                 Topics of interest that he has studied include Machine Learning, Full-Stack Web Development, and Blockchain.
-                He will pursue a career in Software Engineering. He recently recovered from COVID.
+                He will pursue a career in Software Engineering.
               </Text>
             </Box>
           </WrapItem>
@@ -261,7 +261,7 @@ export const About = () => {
                 </Link>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                A Computer Science student at University of California, Santa Barabara. Carried crypto transactions and NFTs by himself. He also recently recovered from COVID. 
+                Cap is studying CS at UCSB. I am a passionate python programmer. For this project I developed the solidity smart contracts and front-end interface. I have previously worked on making APIs and backend servers with Express.js.  
               </Text>
             </Box>
           </WrapItem>
@@ -292,7 +292,7 @@ export const About = () => {
                 </Link>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                A Computer Science student at University of California, Santa Barbara. Carried the backend with Andy. He is immune to COVID.
+                A Computer Science student at University of California, Santa Barbara. Interested in learning more about Machine Learning, Artificial Intelligence, Full-Stack Web Development, and Blockchain
               </Text>
             </Box>
           </WrapItem>
@@ -323,7 +323,7 @@ export const About = () => {
                 </Link>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                A Computer Science student at University of California, Santa Barbara. Looking good in the suit. Also recently recovered from COVID.
+              First year Computer Science Student at UCSB. Has held previous internships at Berkeley Pharma Tech as a Software Engineer Intern and will be interning at Kaiser Permanente as PM Intern. Excited to learn about new technologies related to Blockchain, Security and Web-development. 
               </Text>
             </Box>
           </WrapItem>
@@ -336,7 +336,7 @@ export const About = () => {
                   <Image
                     transform="scale(1.0)"
                     src={
-                      "https://scontent-lax3-2.xx.fbcdn.net/v/t1.15752-9/281898366_505934691315169_4826877107051974197_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=ae9488&_nc_ohc=1b8vNoJLhAQAX_IxSdC&_nc_ht=scontent-lax3-2.xx&oh=03_AVIh8_Wr_Cjgtg9gWnySlFO6dxRrTNZqnDC3OkkMGtV8WA&oe=62904AA0"
+                      "https://scontent.xx.fbcdn.net/v/t1.15752-9/281898366_505934691315169_4826877107051974197_n.jpg?stp=dst-jpg_p403x403&_nc_cat=100&ccb=1-7&_nc_sid=aee45a&_nc_ohc=R8lK7PWERcwAX814aFU&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVKQAC4k827CkLkifa0WIRZINL0wjBf25eMgj5kpmcEbbg&oe=62BC3CA0"
                     }
                     alt="some text"
                     objectFit="contain"
@@ -354,13 +354,13 @@ export const About = () => {
                 </Link>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                A Computer Science student at University of California, Santa Barbara. Carried the backend with Gen. Also recently recovered from COVID.
+                First year Computer Science student at University of California, Santa Barbara looking to pursue a career in software enginerring. Topics of interest include React Web Development, Machine Learning, and Artificial Intelligence.
               </Text>
             </Box>
           </WrapItem>
         </Wrap>
 
-        <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
+        <VStack paddingTop="60px" spacing="2" alignItems="flex-start">
           <Heading as="h2">Our Functionalities</Heading>
           <Text as="p" fontSize="lg">
 
@@ -370,7 +370,7 @@ export const About = () => {
             <List spacing={3}>
               <ListItem>
                 <ListIcon as={ArrowRightIcon} color='red.400'/>
-                In order to use Cyrptaid, users must install the Metamask plugin, which is available on most chromium based web-browsers.
+                In order to use Cryptaid, users must install the Metamask plugin, which is available on most chromium based web-browsers.
               </ListItem>
               <ListItem>
                 <ListIcon as={ArrowRightIcon} color='red.400'/>
