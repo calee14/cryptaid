@@ -131,7 +131,7 @@ export const OrgPage = () => {
                     <Flex>
                     {editMode?<Input defaultValue={org_data.title} onChange={(event)=>setTitle(event.target.value)}/>:<Heading>{org_data.title}</Heading>}
                     <Spacer/>
-                    {checkIfOwner && !editMode?<Button leftIcon={<EditIcon />} colorScheme='teal' onClick={() => setEditMode(true)} variant='solid'>
+                    {checkIfOwner && !editMode?<Button leftIcon={<EditIcon />} colorScheme={'red'} bg={'red.400'} _hover={{ bg: 'red.500' }} onClick={() => setEditMode(true)} variant='solid'>
                         Edit
                     </Button>: ""}
                     {editMode?<Button leftIcon={<CloseIcon />} colorScheme='blackAlpha' onClick={() => setEditMode(false)} variant='solid'>
@@ -315,7 +315,7 @@ export const OrgPage = () => {
                         Delete
                     </Button>: ""}
                     <Spacer/>
-                    {editMode?<Button leftIcon={<CheckIcon />} onClick={() => saveOrgData()} colorScheme='blue' variant='solid'>
+                    {editMode?<Button leftIcon={<CheckIcon />} onClick={() => saveOrgData()} colorScheme={'red'} bg={'blue.400'} _hover={{ bg: 'blue.500' }} variant='solid'>
                         Submit
                     </Button>: ""}
                     </Flex>
