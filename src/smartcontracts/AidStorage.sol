@@ -81,6 +81,14 @@ contract AidStorage {
         }
     }
 
+    /*
+    @params:
+        uint orgId - id of the organization we want to access
+        NftUnit[] _nfts - array of Nfts that have been minted (pass to param through struct formatting
+                            which looks like [string, string string])
+    @returns:
+        void - updates the nft array for the mapping of org. Nfts
+    */
     function addNftUnitsFor(uint orgId, NftUnit[] calldata _nfts) public {
         require(orgId >= 0 && orgId < numOrganizations,
             "The organization you are searching for does not exist");
