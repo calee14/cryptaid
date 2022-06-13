@@ -12,6 +12,11 @@ contract AidStorage {
         string price;
     }
 
+    struct MilestoneUnit {
+        string description;
+        bool status;
+    }
+
     // struct object of an organization
     struct Organization {
         string title; // org. title
@@ -30,6 +35,7 @@ contract AidStorage {
     // public dynamic array of all organizations
     Organization[] public orgs;
     mapping (uint => NftUnit[]) public orgNfts;
+    mapping (uint => MilestoneUnit[]) public orgMilestones;
 
     constructor() {
 
@@ -51,19 +57,15 @@ contract AidStorage {
         numOrganizations++;
     }
 
-    function addMilestonesFor(uint orgId, string[] calldata _milestones, 
-                            bool[] calldata _progress) public {
+    function addMilestonesFor(uint orgId, MilestoneUnit[] calldata newMilestones) public {
         require(orgId >= 0 && orgId < numOrganizations,
             "The organization you are searching for does not exist");
-        require(_milestones.length == _progress.length, 
-            "The lengths of milestones and progress are not the same.");
         require(msg.sender == orgs[orgId].ownerEthAddress, 
             "You do not have access to this organization");
 
-        Organization storage newOrg = orgs[orgId];
-        for(uint i=0; i<_milestones.length;i++) {
-            newOrg.milestones.push(_milestones[i]);
-            newOrg.progress.push(_progress[i]);
+        MilestoneUnit[] storage currMilestones = orgMilestones[orgId];
+        for(uint i=0; i<newMilestones.length;i++) {
+            currMilestones.push(newMilestones[i]);
         }
     }
 
@@ -72,16 +74,16 @@ contract AidStorage {
             "The organization you are searching for does not exist");
         require(msg.sender == orgs[orgId].ownerEthAddress, 
             "You do not have access to this organization");
-        Organization storage currOrg = orgs[orgId];
+        MilestoneUnit[] storage currMilestones = orgMilestones[orgId];
         for(uint i=0;i<indices.length;i++) {
             uint rmIdx = indices[i];
-            require(rmIdx >= 0 && rmIdx < currOrg.milestones.length,
+            require(rmIdx >= 0 && rmIdx < currMilestones.length,
             "The organization you are searching for does not exist");
-            delete currOrg.milestones[rmIdx];
+            delete currMilestones[rmIdx];
         }
     }
 
-    /*
+    /* addNftUnitsFor
     @params:
         uint orgId - id of the organization we want to access
         NftUnit[] _nfts - array of Nfts that have been minted (pass to param through struct formatting
