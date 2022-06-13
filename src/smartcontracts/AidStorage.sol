@@ -2,6 +2,8 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
+// temp eth address: 0xe712d4adCEd452954eFf9846982fd043EB0Ee02C
+
 contract AidStorage {
 
     struct NftUnit {
@@ -27,7 +29,7 @@ contract AidStorage {
     uint public numOrganizations; 
     // public dynamic array of all organizations
     Organization[] public orgs;
-    mapping (uint => NftUnit[]) orgNfts;
+    mapping (uint => NftUnit[]) public orgNfts;
 
     constructor() {
 
@@ -51,19 +53,37 @@ contract AidStorage {
 
     function addMilestonesFor(uint orgId, string[] calldata _milestones, 
                             bool[] calldata _progress) public {
+        require(orgId >= 0 && orgId < numOrganizations,
+            "The organization you are searching for does not exist");
         require(_milestones.length == _progress.length, 
             "The lengths of milestones and progress are not the same.");
         require(msg.sender == orgs[orgId].ownerEthAddress, 
             "You do not have access to this organization");
 
         Organization storage newOrg = orgs[orgId];
-        for(uint i; i<_milestones.length;i++) {
+        for(uint i=0; i<_milestones.length;i++) {
             newOrg.milestones.push(_milestones[i]);
             newOrg.progress.push(_progress[i]);
         }
     }
 
+    function removeMilestonesFor(uint orgId, uint[] calldata indices) public {
+        require(orgId >= 0 && orgId < numOrganizations,
+            "The organization you are searching for does not exist");
+        require(msg.sender == orgs[orgId].ownerEthAddress, 
+            "You do not have access to this organization");
+        Organization storage currOrg = orgs[orgId];
+        for(uint i=0;i<indices.length;i++) {
+            uint rmIdx = indices[i];
+            require(rmIdx >= 0 && rmIdx < currOrg.milestones.length,
+            "The organization you are searching for does not exist");
+            delete currOrg.milestones[rmIdx];
+        }
+    }
+
     function addNftUnitsFor(uint orgId, NftUnit[] calldata _nfts) public {
+        require(orgId >= 0 && orgId < numOrganizations,
+            "The organization you are searching for does not exist");
         require(msg.sender == orgs[orgId].ownerEthAddress);
         require(_nfts.length > 0, "Not enough data in Nft array");
         NftUnit[] storage _orgNfts = orgNfts[orgId];
