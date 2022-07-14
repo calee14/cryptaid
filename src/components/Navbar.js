@@ -5,11 +5,13 @@ import { useMoralis } from "react-moralis";
 import { useState } from "react";
 import { useIsMobile } from "../hooks/useIsMobile";
 
+import lightLogo from "../images/light_logo.png"
+import darkLogo from "../images/dark_logo.png"
+
 
 export const Navbar = () => {
     const { isAuthenticated, user, logout } = useMoralis();
     const [display, changeDisplay] = useState('none')
-    const [iconHover,setIconHover] = useState(false)
     const isMobile = useIsMobile();
 
     return (
@@ -20,9 +22,9 @@ export const Navbar = () => {
                 
                 <Flex width={"100%"} align="center">
                     <Link to="/">
-                        <Image mr={'3'} src='https://scontent.xx.fbcdn.net/v/t1.15752-9/285254828_1725439954476285_519085055936382316_n.png?_nc_cat=103&ccb=1-7&_nc_sid=aee45a&_nc_ohc=xANAMkWeg7QAX9I4rw9&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVI677iTgYn7-BffcexhUxQTPNp-MNGMBvPzO3qVUUjNXA&oe=62BF745A' alt='Home_logo' my={5} w="125px" 
-                        onMouseOver={e => e.currentTarget.src = "https://scontent.xx.fbcdn.net/v/t1.15752-9/283706318_758392685191047_7697960001977730560_n.png?_nc_cat=108&ccb=1-7&_nc_sid=aee45a&_nc_ohc=fbEUn6hrm4oAX-Pzu0q&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVLSxe5-xfJuAj6uRpA9hoknOiTVrFBbXtVV0muxm0mAkA&oe=62BC74A6"}
-                        onMouseLeave={e => e.currentTarget.src = "https://scontent.xx.fbcdn.net/v/t1.15752-9/285254828_1725439954476285_519085055936382316_n.png?_nc_cat=103&ccb=1-7&_nc_sid=aee45a&_nc_ohc=xANAMkWeg7QAX9I4rw9&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVI677iTgYn7-BffcexhUxQTPNp-MNGMBvPzO3qVUUjNXA&oe=62BF745A"}/>
+                        <Image mr={'3'} src={darkLogo} alt='Home_logo' my={5} w="125px" 
+                        onMouseOver={e => e.currentTarget.src = lightLogo}
+                        onMouseLeave={e => e.currentTarget.src = darkLogo}/>
                     </Link>
                     {!isMobile?
                     <Stack direction="row"><Link to="/organization">

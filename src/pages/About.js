@@ -2,6 +2,12 @@ import { useBreakpointValue, Container, Stack, Flex, Box, Heading, Text, Button,
 import { useMoralis } from 'react-moralis';
 import { ArrowRightIcon } from "@chakra-ui/icons"
 
+import krish from "../images/krish.jpg"
+import andy from "../images/andy.jpg"
+import jacey from "../images/jacey.png"
+import gen from "../images/gen.jpg"
+import cap from "../images/cap.jpg"
+
 export const Blur = (props) => {
   return (
     <Icon
@@ -205,13 +211,11 @@ export const About = () => {
         <Wrap spacing="30px" marginTop="5" justify='center'>
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden" height="30vh">
+              <Box borderRadius="lg" overflow="hidden" height="25vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
-                    src={
-                      'https://scontent-sjc3-1.xx.fbcdn.net/v/t1.15752-9/280908222_842671417123437_4135169116374229379_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=ae9488&_nc_ohc=q6jZPHz5Qw8AX_N5IqE&_nc_ht=scontent-sjc3-1.xx&oh=03_AVJOuqu_DCxHMisn2rZKlJhSmJOOjAdUuG8eFIeAj6KjhA&oe=62B2A8A4'
-                    }
+                    src={krish}
                     alt="some text"
                     objectFit="contain"
                     width="100%"
@@ -238,13 +242,11 @@ export const About = () => {
 
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden" height="30vh">
+              <Box borderRadius="lg" overflow="hidden" height="25vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
-                    src={
-                      "https://scontent-lax3-1.xx.fbcdn.net/v/t1.15752-9/277921997_577105017055565_3425564075747718864_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=ae9488&_nc_ohc=c98bc1J8sWsAX-7vCMa&_nc_ht=scontent-lax3-1.xx&oh=03_AVJw-0fmyOzljDZykPheihVNU1YVgQvMQD2F4QquIbMWEQ&oe=62B64F5A"
-                    }
+                    src={cap}
                     alt="some text"
                     objectFit="contain"
                     width="100%"
@@ -269,13 +271,11 @@ export const About = () => {
 
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden" height="30vh">
+              <Box borderRadius="lg" overflow="hidden" height="25vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
-                    src={
-                      "https://scontent-lax3-1.xx.fbcdn.net/v/t1.15752-9/282709176_464840335410129_5018426295762028650_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_ohc=AoZ0RtkxMbYAX_WFd-O&tn=_gGPvupX-MIWYt7n&_nc_ht=scontent-lax3-1.xx&oh=03_AVI8hhkO5z0bqTM_tB35KmG5dSwENmC-Akdio5aaRVg68A&oe=62B55B79"
-                    }
+                    src={gen}
                     alt="some text"
                     objectFit="contain"
                     width="100%"
@@ -300,13 +300,11 @@ export const About = () => {
 
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden" height="30vh">
+              <Box borderRadius="lg" overflow="hidden" height="25vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
-                    src={
-                      "https://scontent-lax3-1.xx.fbcdn.net/v/t1.15752-9/280754811_731786347855713_860646073031949820_n.png?_nc_cat=102&ccb=1-7&_nc_sid=ae9488&_nc_ohc=zwTLbmX0qUMAX-CG7xa&_nc_ht=scontent-lax3-1.xx&oh=03_AVI96Gq2SvSzCcT1BIfOO8_mQtfaSJ_hzv63PV8DiD-rmw&oe=62B4811B"
-                    }
+                    src={jacey}
                     alt="some text"
                     objectFit="contain"
                     width="100%"
@@ -331,13 +329,11 @@ export const About = () => {
 
           <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
             <Box w="100%">
-              <Box borderRadius="lg" overflow="hidden" height="30vh">
+              <Box borderRadius="lg" overflow="hidden" height="25vh">
                 <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                   <Image
                     transform="scale(1.0)"
-                    src={
-                      "https://scontent.xx.fbcdn.net/v/t1.15752-9/281898366_505934691315169_4826877107051974197_n.jpg?stp=dst-jpg_p403x403&_nc_cat=100&ccb=1-7&_nc_sid=aee45a&_nc_ohc=R8lK7PWERcwAX814aFU&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVKQAC4k827CkLkifa0WIRZINL0wjBf25eMgj5kpmcEbbg&oe=62BC3CA0"
-                    }
+                    src={andy}
                     alt="some text"
                     objectFit="contain"
                     width="100%"
